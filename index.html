@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1D6E8C">
 <title>Zui Jurnal</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap">
@@ -204,6 +206,7 @@ textarea.ni{resize:vertical;line-height:1.5}
 .hrow{display:flex;gap:8px;margin:8px 0 4px}
 .hrow .ni{margin:0;flex:1}
 .hrow .go2{margin:0;padding:10px 16px}
+.warn{color:var(--hi);font-size:12px;margin:10px 0 0}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -245,6 +248,10 @@ textarea.ni{resize:vertical;line-height:1.5}
 <p id="am" class="am" role="alert"></p>
 <button type="button" id="afg" class="lnk" onclick="forgot()">Lupa kata sandi?</button>
 </form></div>
+<div id="ek" class="au" style="display:none;z-index:300"><form class="ac" onsubmit="return ekGo(event)">
+<h1>ZUI JURNAL</h1><p class="m">Data Anda terenkripsi. Masukkan kata sandi enkripsi.</p>
+<input id="ekp" type="password" autocomplete="off" aria-label="Kata sandi enkripsi">
+<button class="go2" id="ekb" type="submit">Buka</button><p id="ekm" class="am er" role="alert"></p></form></div>
 <div id="lk" class="au" style="display:none;z-index:200"><form class="ac" onsubmit="return unlock(event)">
 <h1>ZUI JURNAL</h1><p class="m">Masukkan PIN</p>
 <input id="lkp" type="password" inputmode="numeric" autocomplete="off" maxlength="6" aria-label="PIN">
@@ -266,6 +273,14 @@ textarea.ni{resize:vertical;line-height:1.5}
   <label for="s-rem">Pengingat harian (jam, kosongkan untuk mati)</label><input id="s-rem" type="time">
   <label for="s-pin">PIN pengunci (4 sampai 6 angka)</label><input id="s-pin" type="password" inputmode="numeric" maxlength="6" autocomplete="new-password" placeholder="PIN baru">
   <button type="button" class="lnk" onclick="pinDel()">Hapus PIN</button>
+  <h3 class="hh">Keamanan</h3>
+  <p class="m" id="esm"></p>
+  <label for="s-ep">Kata sandi enkripsi (min. 12 karakter)</label><input id="s-ep" type="password" autocomplete="new-password">
+  <label for="s-ep2">Ulangi kata sandi enkripsi</label><input id="s-ep2" type="password" autocomplete="new-password">
+  <button type="button" class="lnk" onclick="encOn()">Aktifkan atau ganti kata sandi enkripsi</button>
+  <button type="button" class="lnk" id="eoff" onclick="encOff()" style="display:none">Matikan enkripsi</button>
+  <button type="button" class="lnk" onclick="$('sd').close();relock()">Kunci sekarang</button>
+  <p class="m warn">Jika kata sandi enkripsi lupa, data tidak bisa dipulihkan oleh siapa pun, termasuk pengembang dan penyedia layanan cloud.</p>
   <div id="acw" style="display:none"><h3 class="hh">Akun</h3><p class="m" id="acm"></p><button type="button" class="lnk" onclick="logout()">Keluar</button></div>
   <p class="m" style="font-size:13px;color:var(--mu);margin:12px 0 0">Pengaturan ini tersimpan di perangkat ini.</p>
   <div class="act"><button onclick="$('sd').close()">Tutup</button><button class="go" onclick="saveSet()">Simpan</button></div>
@@ -279,8 +294,9 @@ var ST=['Direncanakan','Berjalan','Selesai'];
 var S={rencana:[],todo:[],progres:[],manifest:[],script:[],afirmasi:[],syukur:[],bukti:[],proyek:[],m369:[],visual:[],vision:[],catatan:[],kebiasaan:[]};
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
 function iso(n){var d=new Date();d.setDate(d.getDate()+n);return d.toLocaleDateString('sv-SE')}
-var CFG={url:'ISI_URL_PROYEK_SUPABASE',key:'ISI_ANON_KEY_SUPABASE'},CLOUD=/^https:\/\//.test(CFG.url),fresh=true;
-try{var r=localStorage.getItem(K);if(r){S=Object.assign(S,JSON.parse(r));fresh=false}}catch(e){}
+var CFG={apiKey:'ISI_API_KEY_FIREBASE',authDomain:'ISI_PROJECT_ID.firebaseapp.com',projectId:'ISI_PROJECT_ID',appId:'ISI_APP_ID'},CLOUD=!/^ISI/.test(CFG.apiKey),fresh=true;
+var ENV=null,ENC=false,KEY=null,SALT='',LASTOUT=null,SQ=Promise.resolve();
+try{var r=localStorage.getItem(K);if(r){var _o=JSON.parse(r);if(_o&&_o.enc){ENV=_o;ENC=true;SALT=_o.s;fresh=false}else{S=Object.assign(S,_o);fresh=false}}}catch(e){}
 if(fresh&&!CLOUD){S={
 rencana:[{id:uid(),t:'Susun target kuartal berikutnya',d:iso(14),s:1},{id:uid(),t:'Evaluasi anggaran tahunan',d:iso(45),s:0}],
 todo:[{id:uid(),t:'Tinjau agenda minggu ini',p:'Tinggi',x:0},{id:uid(),t:'Balas surel yang tertunda',p:'Sedang',x:1}],
@@ -288,7 +304,7 @@ progres:[{id:uid(),t:'Proyek utama',v:40},{id:uid(),t:'Belajar keterampilan baru
 manifest:[{id:uid(),t:'Saya bekerja dengan fokus dan menyelesaikan hal penting tepat waktu.',x:0}],
 script:[{id:uid(),t:'Hari ideal saya',b:'Pagi ini saya bangun dengan tenang dan penuh syukur.\nSaya menyelesaikan pekerjaan penting dengan fokus, lalu menikmati sore bersama orang-orang yang saya sayangi.\nSaya merasa ringan, percaya diri, dan cukup.',c:'Karier',d:iso(0),r:0}],
 afirmasi:[{id:uid(),t:'Saya layak mendapatkan hasil baik dari usaha saya.',g:9,n:0,dd:''}],syukur:[],bukti:[]};save()}
-function save(){S._ts=Date.now();try{localStorage.setItem(K,JSON.stringify(S))}catch(e){toast('Penyimpanan penuh, data tidak tersimpan di perangkat')}push()}
+function save(){S._ts=Date.now();if(ENC&&!KEY)return;SQ=SQ.then(pst2)}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function fd(d){if(!d)return'Tanpa tanggal';try{return new Date(d+'T00:00').toLocaleDateString(LOC,{day:'numeric',month:'short',year:'numeric'})}catch(e){return d}}
 var $=function(i){return document.getElementById(i)},pv=$('pv'),hdi=$('hdi'),dl=$('dl');
@@ -354,7 +370,7 @@ var D={'Rencana baru':'New plan','Proyek baru':'New project','Tugas baru':'New t
 'Tugas selesai per hari':'Tasks done per day','Progres proyek':'Project progress','Target pribadi':'Personal targets','Rata-rata proyek dan target':'Average of projects and targets','Kendali diri, terwujud':'Self-control, manifested',
 'Tidak ada rencana pada filter ini.':'No plans match this filter.','Tidak ada tugas pada filter ini.':'No tasks match this filter.','Belum ada proyek. Ubah rencana menjadi proyek, atau buat langsung.':'No projects yet. Turn a plan into a project, or create one directly.','Belum ada target.':'No targets yet.','Belum ada proyek aktif.':'No active projects.','Tulis niat Anda sebagai kalimat positif, seolah sudah terjadi.':'Write your intention as a positive sentence, as if it already happened.','Belum ada script. Tulis satu halaman tentang hari ideal Anda, seolah sudah terjadi.':'No scripts yet. Write a page about your ideal day, as if it already happened.','Belum ada afirmasi. Tulis kalimat positif dalam waktu sekarang.':'No affirmations yet. Write a positive sentence in the present tense.','Belum ada catatan.':'No entries yet.','Belum ada praktik 369. Tulis satu kalimat niat untuk dimulai.':'No 369 practice yet. Write one intention sentence to begin.','Papan visi masih kosong. Tambahkan impian pertama, dengan gambar bila ada.':'Your vision board is empty. Add your first dream, with an image if you have one.',
 'Tulis sebagai kenyataan hari ini: waktu sekarang, detail, dan perasaan Anda. Baca ulang secara rutin.':'Write it as today\'s reality: present tense, details, and your feelings. Re-read it regularly.','Ucapkan dalam hati atau lisan, lalu catat setiap ulangan.':'Say it silently or aloud, then log each repeat.','Catat hal yang Anda syukuri hari ini, sekecil apa pun.':'Note what you are grateful for today, however small.','Catat tanda kecil yang menunjukkan niat Anda bergerak.':'Note small signs that your intention is moving.','Tulis niat 3 kali di pagi hari, 6 kali di siang, dan 9 kali di malam, selama 33 hari berturut-turut.':'Write your intention 3 times in the morning, 6 at noon, and 9 at night, for 33 days in a row.','Tutup mata. Bayangkan hasil akhirnya sejelas mungkin: apa yang Anda lihat, dengar, dan rasakan, seolah sedang terjadi.':'Close your eyes. Imagine the final result as vividly as you can: what you see, hear, and feel, as if it is happening now.','Kumpulkan gambar dan kalimat tentang hidup yang Anda tuju. Lihat papan ini setiap hari.':'Collect images and sentences about the life you are heading toward. Look at this board every day.',
-'Pengaturan':'Settings','Bahasa / Language':'Language','Mode tampilan':'Display mode','Sistem':'System','Terang':'Light','Gelap':'Dark','Data diri':'Personal details','Nama':'Name','Tanggal lahir':'Date of birth','Motto atau tujuan hidup':'Life motto or purpose','Data tersimpan hanya di perangkat ini.':'Data is stored only on this device.','Tulisan di bawah nama aplikasi':'Text under the app name','Kendalikan diri & terwujud':'Control yourself & manifest','Catatan':'Notes','Suasana hati':'Mood','Energi':'Energy','Refleksi bebas':'Free reflection','Pemicu & respons':'Trigger & response','Judul (opsional)':'Title (optional)','Apa pemicunya?':'What was the trigger?','Apa yang saya lakukan?':'What did I do?','Lain kali saya akan ...':'Next time I will ...','Tulis apa yang Anda pikirkan dan rasakan hari ini ...':'Write what you think and feel today ...','Simpan catatan':'Save note','Cari catatan ...':'Search notes ...','Sematkan':'Pin','Lepas sematan':'Unpin','Pemicu':'Trigger','Respons saya':'My response','Lain kali saya akan':'Next time I will','Tidak ada catatan yang cocok.':'No notes match.','Belum ada catatan. Tulis refleksi pertama Anda di atas.':'No notes yet. Write your first reflection above.','Sangat buruk':'Very bad','Kurang baik':'Not great','Biasa':'Okay','Baik':'Good','Sangat baik':'Very good','Fokus hari ini':'Today\'s focus','Kebiasaan hari ini':'Habits today','Kebiasaan':'Habits','Tugas fokus':'Focus tasks','Sesi 369':'369 sessions','Tinjauan 7 hari':'7-day review','Tugas selesai':'Tasks done','Rata-rata suasana hati':'Average mood','Tren 14 hari':'14-day trend','Tambah':'Add','Kebiasaan baru, mis. Tidak membuka media sosial sebelum jam 9':'New habit, e.g. No social media before 9am','Tidak ada tugas yang jatuh tempo. Nikmati harinya.':'No tasks due. Enjoy your day.','Tambahkan satu kebiasaan kecil yang ingin Anda jaga.':'Add one small habit you want to keep.','Tulis catatan dengan suasana hati dan energi untuk melihat tren.':'Write notes with mood and energy to see the trend.','Tren suasana hati dan energi':'Mood and energy trend','Pengingat harian (jam, kosongkan untuk mati)':'Daily reminder (time, leave empty to turn off)','PIN pengunci (4 sampai 6 angka)':'Lock PIN (4 to 6 digits)','PIN baru':'New PIN','Hapus PIN':'Remove PIN','Masukkan PIN':'Enter PIN','Buka':'Unlock','PIN salah':'Wrong PIN','PIN diaktifkan':'PIN enabled','PIN dihapus':'PIN removed','PIN harus 4 sampai 6 angka':'PIN must be 4 to 6 digits','Masuk':'Sign in','Daftar':'Sign up','Lupa kata sandi?':'Forgot password?','Keluar':'Sign out','Akun':'Account','Menyinkronkan…':'Syncing…','Tersinkron ✓':'Synced ✓','Gagal sinkron':'Sync failed','Ubah':'Edit','Kata sandi (min. 8 karakter)':'Password (min. 8 characters)','Penyimpanan penuh, data tidak tersimpan di perangkat':'Storage full, data was not saved on this device','Pengaturan ini tersimpan di perangkat ini.':'These settings are stored on this device.','Buka gambar':'Open image','Halo,':'Hello,'};
+'Pengaturan':'Settings','Bahasa / Language':'Language','Mode tampilan':'Display mode','Sistem':'System','Terang':'Light','Gelap':'Dark','Data diri':'Personal details','Nama':'Name','Tanggal lahir':'Date of birth','Motto atau tujuan hidup':'Life motto or purpose','Data tersimpan hanya di perangkat ini.':'Data is stored only on this device.','Tulisan di bawah nama aplikasi':'Text under the app name','Kendalikan diri & terwujud':'Control yourself & manifest','Catatan':'Notes','Suasana hati':'Mood','Energi':'Energy','Refleksi bebas':'Free reflection','Pemicu & respons':'Trigger & response','Judul (opsional)':'Title (optional)','Apa pemicunya?':'What was the trigger?','Apa yang saya lakukan?':'What did I do?','Lain kali saya akan ...':'Next time I will ...','Tulis apa yang Anda pikirkan dan rasakan hari ini ...':'Write what you think and feel today ...','Simpan catatan':'Save note','Cari catatan ...':'Search notes ...','Sematkan':'Pin','Lepas sematan':'Unpin','Pemicu':'Trigger','Respons saya':'My response','Lain kali saya akan':'Next time I will','Tidak ada catatan yang cocok.':'No notes match.','Belum ada catatan. Tulis refleksi pertama Anda di atas.':'No notes yet. Write your first reflection above.','Sangat buruk':'Very bad','Kurang baik':'Not great','Biasa':'Okay','Baik':'Good','Sangat baik':'Very good','Fokus hari ini':'Today\'s focus','Kebiasaan hari ini':'Habits today','Kebiasaan':'Habits','Tugas fokus':'Focus tasks','Sesi 369':'369 sessions','Tinjauan 7 hari':'7-day review','Tugas selesai':'Tasks done','Rata-rata suasana hati':'Average mood','Tren 14 hari':'14-day trend','Tambah':'Add','Kebiasaan baru, mis. Tidak membuka media sosial sebelum jam 9':'New habit, e.g. No social media before 9am','Tidak ada tugas yang jatuh tempo. Nikmati harinya.':'No tasks due. Enjoy your day.','Tambahkan satu kebiasaan kecil yang ingin Anda jaga.':'Add one small habit you want to keep.','Tulis catatan dengan suasana hati dan energi untuk melihat tren.':'Write notes with mood and energy to see the trend.','Tren suasana hati dan energi':'Mood and energy trend','Pengingat harian (jam, kosongkan untuk mati)':'Daily reminder (time, leave empty to turn off)','PIN pengunci (4 sampai 6 angka)':'Lock PIN (4 to 6 digits)','PIN baru':'New PIN','Hapus PIN':'Remove PIN','Masukkan PIN':'Enter PIN','Buka':'Unlock','PIN salah':'Wrong PIN','PIN diaktifkan':'PIN enabled','PIN dihapus':'PIN removed','PIN harus 4 sampai 6 angka':'PIN must be 4 to 6 digits','Keamanan':'Security','Enkripsi: aktif':'Encryption: on','Enkripsi: nonaktif':'Encryption: off','Kata sandi enkripsi (min. 12 karakter)':'Encryption password (min. 12 characters)','Ulangi kata sandi enkripsi':'Repeat encryption password','Aktifkan atau ganti kata sandi enkripsi':'Enable or change encryption password','Matikan enkripsi':'Turn off encryption','Kunci sekarang':'Lock now','Jika kata sandi enkripsi lupa, data tidak bisa dipulihkan oleh siapa pun, termasuk pengembang dan penyedia layanan cloud.':'If you forget the encryption password, nobody can recover your data, including the developer and the cloud provider.','Data Anda terenkripsi. Masukkan kata sandi enkripsi.':'Your data is encrypted. Enter the encryption password.','Kata sandi enkripsi':'Encryption password','Kata sandi salah':'Wrong password','Kata sandi minimal 12 karakter':'Password must be at least 12 characters','Konfirmasi kata sandi tidak cocok':'Password confirmation does not match','Enkripsi diaktifkan':'Encryption enabled','Enkripsi dimatikan':'Encryption turned off','Gagal mengenkripsi data':'Failed to encrypt data','Email atau kata sandi salah':'Wrong email or password','Email sudah terdaftar':'Email already registered','Kata sandi terlalu lemah':'Password is too weak','Format email tidak valid':'Invalid email format','Terlalu banyak percobaan. Coba lagi nanti':'Too many attempts. Try again later','Tidak ada koneksi internet':'No internet connection','Terjadi kesalahan':'Something went wrong','Email belum diverifikasi. Kami mengirim ulang tautan verifikasi ke email Anda.':'Email not verified. We resent the verification link to your email.','Pendaftaran berhasil. Cek email Anda untuk verifikasi, lalu masuk.':'Signed up. Check your email to verify, then sign in.','Tautan reset dikirim ke email Anda.':'Reset link sent to your email.','Isi email dulu.':'Enter your email first.','Data terlalu besar untuk disinkronkan. Kurangi gambar papan visi.':'Data is too large to sync. Reduce vision board images.','Masuk':'Sign in','Daftar':'Sign up','Lupa kata sandi?':'Forgot password?','Keluar':'Sign out','Akun':'Account','Menyinkronkan…':'Syncing…','Tersinkron ✓':'Synced ✓','Gagal sinkron':'Sync failed','Ubah':'Edit','Kata sandi (min. 8 karakter)':'Password (min. 8 characters)','Penyimpanan penuh, data tidak tersimpan di perangkat':'Storage full, data was not saved on this device','Pengaturan ini tersimpan di perangkat ini.':'These settings are stored on this device.','Buka gambar':'Open image','Halo,':'Hello,'};
 var RX=[[/(\d+) dari (\d+) tugas selesai/g,'$1 of $2 tasks done'],[/(\d+) dari (\d+) sudah terwujud/g,'$1 of $2 manifested'],[/Terlambat (\d+) hari/g,'Overdue $1 days'],[/Hari ke-(\d+), (\d+) hari lengkap/g,'Day $1, $2 full days'],[/dibaca (\d+) kali/g,'read $1 times'],[/(\d+) menit/g,'$1 min'],[/H-(\d+)/g,'D-$1'],[/\+1 ulangan/g,'+1 repeat'],[/Runtutan (\d+) hari/g,'Streak: $1 days']];
 var TD=Object.keys(D).sort((a,b)=>b.length-a.length).map(k=>[new RegExp('(?<![\\p{L}\\p{N}])'+k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?![\\p{L}])','gu'),D[k]]);
 function t1(s){RX.forEach(r=>{s=s.replace(r[0],r[1])});TD.forEach(r=>{s=s.replace(r[0],r[1])});return s}
@@ -362,9 +378,9 @@ function tr(root){if(SET.lang!='en')return;var w=document.createTreeWalker(root,
 L.forEach(n=>{var p=n.parentElement;if(p&&!p.closest('.t,.bd,.nt,#fj'))n.nodeValue=t1(n.nodeValue)});
 root.querySelectorAll('[placeholder],[aria-label]').forEach(e=>['placeholder','aria-label'].forEach(a=>{var v=e.getAttribute(a);if(v)e.setAttribute(a,t1(v))}))}
 function applyTheme(){var t=SET.theme,r=document.documentElement;if(t=='light'||t=='dark')r.setAttribute('data-app',t);else r.removeAttribute('data-app')}
-function openSet(){$('s-lang').value=SET.lang||'id';$('s-theme').value=SET.theme||'sys';['name','email','dob','motto','tag','rem'].forEach(k=>{$('s-'+k).value=SET[k]||''});$('acw').style.display=USER?'':'none';$('acm').textContent=USER?USER.email:'';$('sd').showModal()}
-function saveSet(){pinSave();var old=SET.lang||'id';SET.lang=$('s-lang').value;SET.theme=$('s-theme').value;['name','email','dob','motto','tag','rem'].forEach(k=>{SET[k]=$('s-'+k).value.trim()});
-try{localStorage.setItem('jurnal.set',JSON.stringify(SET))}catch(e){}remAsk();applyTheme();$('sd').close();if(old!=SET.lang)location.reload();else rr()}
+function openSet(){$('s-lang').value=SET.lang||'id';$('s-theme').value=SET.theme||'sys';['name','email','dob','motto','tag','rem'].forEach(k=>{$('s-'+k).value=['tag','rem'].indexOf(k)>=0?(SET[k]||''):gv(k)});$('esm').textContent=ENC?'Enkripsi: aktif':'Enkripsi: nonaktif';$('eoff').style.display=ENC?'':'none';tr($('esm'));$('acw').style.display=USER?'':'none';$('acm').textContent=USER?USER.email:'';$('sd').showModal()}
+function saveSet(){pinSave();var old=SET.lang||'id';SET.lang=$('s-lang').value;SET.theme=$('s-theme').value;['name','email','dob','motto','tag','rem'].forEach(k=>{sv(k,$('s-'+k).value.trim())});
+try{localStorage.setItem('jurnal.set',JSON.stringify(spub()))}catch(e){}if(ENC)save();remAsk();applyTheme();$('sd').close();if(old!=SET.lang)location.reload();else rr()}
 function tagR(){var e=$('tag');if(!e)return;e.textContent=SET.tag||(SET.lang=='en'?'Control yourself & manifest':'Kendalikan diri & terwujud')}
 var NS={mood:0,en:0,mode:0,t:'',b:'',pm:'',rs:'',nx:'',pj:'',q:''},MOOD=['😞','😕','😐','🙂','😄'],ML=['Sangat buruk','Kurang baik','Biasa','Baik','Sangat baik'];
 function nin(k,v){NS[k]=v}
@@ -379,23 +395,34 @@ if(NSE){var o=f('catatan',NSE);Object.assign(o,{t:NS.t.trim(),b:b,mood:NS.mood,e
 NS={mood:0,en:0,mode:NS.mode,t:'',b:'',pm:'',rs:'',nx:'',pj:'',q:NS.q};save();rr()}
 function npin(id){var x=f('catatan',id);x.pin=x.pin?0:1;save();nlist()}
 function E(){return{rencana:[],todo:[],progres:[],manifest:[],script:[],afirmasi:[],syukur:[],bukti:[],proyek:[],m369:[],visual:[],vision:[],catatan:[],kebiasaan:[]}}
-var sb=null,USER=null,PT=null,AM='in',EDIT=null,NSE='',WL={rencana:'t d c n',proyek:'t d b c',todo:'t p u pj',progres:'t',manifest:'t',script:'t b c',afirmasi:'t g',m369:'t',vision:'t c',syukur:'t',bukti:'t'};
+var fa=null,fs=null,CN=0,USER=null,PT=null,AM='in',EDIT=null,NSE='',WL={rencana:'t d c n',proyek:'t d b c',todo:'t p u pj',progres:'t',manifest:'t',script:'t b c',afirmasi:'t g',m369:'t',vision:'t c',syukur:'t',bukti:'t'};
 function toast(m){var e=$('ts');e.textContent=m;tr(e);e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(function(){e.classList.remove('on')},3500)}
 function syn(t){var e=$('sy');if(e){e.textContent=t;tr(e)}}
-function push(){if(!CLOUD||!USER)return;clearTimeout(PT);syn('Menyinkronkan…');PT=setTimeout(async function(){var r=await sb.from('journals').upsert({user_id:USER.id,data:S,updated_at:new Date().toISOString()});syn(r.error?'Gagal sinkron':'Tersinkron ✓');if(r.error)toast(r.error.message)},1500)}
-async function boot(u){USER=u;K='jurnal.v1.'+u.id;var loc=null;try{loc=JSON.parse(localStorage.getItem(K))}catch(e){}
+function fe(e){var m={'auth/invalid-credential':'Email atau kata sandi salah','auth/wrong-password':'Email atau kata sandi salah','auth/user-not-found':'Email atau kata sandi salah','auth/email-already-in-use':'Email sudah terdaftar','auth/weak-password':'Kata sandi terlalu lemah','auth/invalid-email':'Format email tidak valid','auth/too-many-requests':'Terlalu banyak percobaan. Coba lagi nanti','auth/network-request-failed':'Tidak ada koneksi internet'};return m[e&&e.code]||(e&&e.message)||'Terjadi kesalahan'}
+function push(){if(!CLOUD||!USER)return;clearTimeout(PT);syn('Menyinkronkan…');PT=setTimeout(async function(){var d=LASTOUT||(ENC?null:S);if(!d)return;
+try{var t=JSON.stringify(d),n=Math.ceil(t.length/250000)||1;if(n>35){syn('Gagal sinkron');toast('Data terlalu besar untuk disinkronkan. Kurangi gambar papan visi.');return}
+var r=fs.collection('users').doc(USER.uid),b=fs.batch(),i;
+for(i=0;i<n;i++)b.set(r.collection('chunks').doc(String(i)),{d:t.slice(i*250000,(i+1)*250000)});
+for(i=n;i<CN;i++)b.delete(r.collection('chunks').doc(String(i)));
+b.set(r,{n:n,ts:tsOf(d),enc:d.enc?1:0,u:Date.now()});await b.commit();CN=n;syn('Tersinkron ✓')}
+catch(e){syn('Gagal sinkron');toast(fe(e))}},1500)}
+async function boot(u){USER=u;K='jurnal.v1.'+u.uid;var loc=null,cl=null,er=null,r=fs.collection('users').doc(u.uid);
+try{loc=JSON.parse(localStorage.getItem(K))}catch(e){}
 if(!loc){try{loc=JSON.parse(localStorage.getItem('jurnal.v1'))}catch(e){}}
-var r=await sb.from('journals').select('data').eq('user_id',u.id).maybeSingle(),cl=r.data&&r.data.data,lt=loc&&loc._ts||0,ct=cl&&cl._ts||0;
-S=Object.assign(E(),(cl&&ct>=lt)?cl:(loc||{}));
-if(r.error)syn('Gagal sinkron');else if(!cl||lt>ct)push();else syn('Tersinkron ✓');
+try{var m=await r.get();if(m.exists){CN=m.data().n||0;var cs=await Promise.all(Array.from({length:CN},function(_,i){return r.collection('chunks').doc(String(i)).get()}));cl=JSON.parse(cs.map(function(x){return x.data().d}).join(''))}}catch(e){er=e}
+var lt=tsOf(loc),ct=tsOf(cl),ch=(cl&&ct>=lt)?cl:(loc||{}),env=ch.enc?ch:null;
+if(env){ENC=true;SALT=env.s;KEY=null;$('au').style.display='none';ch=await ekAsk(env);LASTOUT=env}else{ENC=false;KEY=null;LASTOUT=null}
+S=Object.assign(E(),ch);
+if(er){syn('Gagal sinkron');toast(fe(er))}else if(!cl||lt>ct)push();else syn('Tersinkron ✓');
 $('au').style.display='none';rr();sync()}
-function msg(t,e){var m=$('am');m.textContent=t;m.className='am'+(e?' er':'')}
+function msg(t,e){var m=$('am');m.textContent=t;m.className='am'+(e?' er':'');tr(m)}
 function amode(m){AM=m;$('abt').textContent=m=='in'?'Masuk':'Daftar';$('afg').style.display=m=='in'?'':'none';$('ap').autocomplete=m=='in'?'current-password':'new-password';$('ain').classList.toggle('on',m=='in');$('aup').classList.toggle('on',m=='up');msg('');tr($('au'))}
-async function authGo(ev){ev.preventDefault();if(!sb){msg('Layanan login belum siap.',1);return false}var em=$('ae').value.trim(),pw=$('ap').value;$('abt').disabled=true;
-var r=AM=='in'?await sb.auth.signInWithPassword({email:em,password:pw}):await sb.auth.signUp({email:em,password:pw,options:{emailRedirectTo:location.origin+location.pathname}});
-$('abt').disabled=false;if(r.error)msg(r.error.message,1);else if(AM=='up'&&!r.data.session)msg('Pendaftaran berhasil. Cek email Anda untuk konfirmasi, lalu masuk.');return false}
-async function forgot(){var em=$('ae').value.trim();if(!em){msg('Isi email dulu.',1);return}var r=await sb.auth.resetPasswordForEmail(em,{redirectTo:location.origin+location.pathname});msg(r.error?r.error.message:'Tautan reset dikirim ke email Anda.',!!r.error)}
-async function logout(){$('sd').close();await sb.auth.signOut()}
+async function authGo(ev){ev.preventDefault();if(!fa){msg('Layanan login belum siap.',1);return false}var em=$('ae').value.trim(),pw=$('ap').value;$('abt').disabled=true;
+try{if(AM=='in'){var c=await fa.signInWithEmailAndPassword(em,pw);if(!c.user.emailVerified){await c.user.sendEmailVerification().catch(function(){});await fa.signOut();msg('Email belum diverifikasi. Kami mengirim ulang tautan verifikasi ke email Anda.',1)}}
+else{var c2=await fa.createUserWithEmailAndPassword(em,pw);await c2.user.sendEmailVerification();await fa.signOut();msg('Pendaftaran berhasil. Cek email Anda untuk verifikasi, lalu masuk.')}}
+catch(e){msg(fe(e),1)}$('abt').disabled=false;return false}
+async function forgot(){var em=$('ae').value.trim();if(!em){msg('Isi email dulu.',1);return}try{await fa.sendPasswordResetEmail(em);msg('Tautan reset dikirim ke email Anda.')}catch(e){msg(fe(e),1)}}
+async function logout(){$('sd').close();await fa.signOut()}
 function ed(k,id){var x=f(k,id);if(!x)return;
 if(k=='catatan'){NS={mood:x.mood||0,en:x.en||0,mode:x.pm?1:0,t:x.t||'',b:x.b||'',pm:x.pm||'',rs:x.rs||'',nx:x.nx||'',pj:x.pj||'',q:''};NSE=id;rn();tr($('p5'));$('p5').scrollTop=0;return}
 var mp={rencana:0,proyek:1,todo:2,progres:3};if(k in mp)cur=mp[k];else{cur=4;mf=k=='manifest'?'niat':k}
@@ -434,8 +461,33 @@ function remChk(){if(!SET.rem||!window.Notification||Notification.permission!='g
 if(hm<SET.rem||localStorage.getItem('jurnal.remd')==td)return;try{localStorage.setItem('jurnal.remd',td)}catch(e){}
 var t='Zui Jurnal',o={body:L?'Time to fill your journal: habits, tasks, and notes for today.':'Waktunya mengisi jurnal: kebiasaan, tugas, dan catatan hari ini.',icon:'icon-192.png',tag:'zui-rem'};
 if(navigator.serviceWorker&&navigator.serviceWorker.controller)navigator.serviceWorker.ready.then(function(r){r.showNotification(t,o)});else new Notification(t,o)}
+var PDK=['name','email','dob','motto'],EKR=null,EKV=null;
+function tsOf(o){return o&&(o.enc?o.ts:o._ts)||0}
+function b2s(u){var s='',i=0;for(;i<u.length;i+=8192)s+=String.fromCharCode.apply(null,u.subarray(i,i+8192));return btoa(s)}
+function s2b(t){var s=atob(t),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u}
+async function dkey(p,salt){var m=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:600000,hash:'SHA-256'},m,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+async function enc(o){var iv=crypto.getRandomValues(new Uint8Array(12)),c=await crypto.subtle.encrypt({name:'AES-GCM',iv:iv},KEY,new TextEncoder().encode(JSON.stringify(o)));return{enc:1,v:1,ts:o._ts,s:SALT,i:b2s(iv),c:b2s(new Uint8Array(c))}}
+async function dec(env,p){var k=await dkey(p,s2b(env.s)),pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:s2b(env.i)},k,s2b(env.c));KEY=k;return JSON.parse(new TextDecoder().decode(pt))}
+async function pst2(){if(ENC&&!KEY)return;var out;try{out=ENC?await enc(S):S}catch(e){toast('Gagal mengenkripsi data');return}
+LASTOUT=out;try{localStorage.setItem(K,JSON.stringify(out))}catch(e){toast('Penyimpanan penuh, data tidak tersimpan di perangkat')}push()}
+function ekAsk(env){return new Promise(function(res){EKV=env;EKR=res;$('ek').style.display='flex';$('ekp').value='';$('ekm').textContent='';$('ekp').focus()})}
+async function ekGo(ev){ev.preventDefault();$('ekb').disabled=true;$('ekm').textContent='';
+try{var o=await dec(EKV,$('ekp').value);ENC=true;SALT=EKV.s;$('ek').style.display='none';var r=EKR;EKR=null;r(o)}catch(e){$('ekm').textContent='Kata sandi salah';tr($('ekm'))}
+$('ekb').disabled=false;return false}
+function gv(k){return(PDK.indexOf(k)>=0&&ENC?(S._p||{})[k]:SET[k])||''}
+function sv(k,v){if(PDK.indexOf(k)>=0&&ENC){S._p=S._p||{};S._p[k]=v}else SET[k]=v}
+function spub(){var o=Object.assign({},SET);if(ENC)PDK.forEach(function(k){delete o[k]});return o}
+async function encOn(){var a=$('s-ep').value;if(a.length<12){toast('Kata sandi minimal 12 karakter');return}if(a!==$('s-ep2').value){toast('Konfirmasi kata sandi tidak cocok');return}
+var salt=crypto.getRandomValues(new Uint8Array(16));try{KEY=await dkey(a,salt)}catch(e){toast('Enkripsi tidak didukung di peramban ini');return}
+SALT=b2s(salt);if(!ENC)PDK.forEach(function(k){S._p=S._p||{};S._p[k]=SET[k]||'';SET[k]=''});ENC=true;
+$('s-ep').value='';$('s-ep2').value='';try{localStorage.setItem('jurnal.set',JSON.stringify(spub()));if(CLOUD)localStorage.removeItem('jurnal.v1')}catch(e){}
+save();toast('Enkripsi diaktifkan');$('esm').textContent='Enkripsi: aktif';$('eoff').style.display='';tr($('esm'))}
+function encOff(){if(!ENC||!confirm('Matikan enkripsi? Data akan disimpan tanpa enkripsi.'))return;ENC=false;KEY=null;SALT='';PDK.forEach(function(k){SET[k]=(S._p||{})[k]||''});S._p={};
+try{localStorage.setItem('jurnal.set',JSON.stringify(SET))}catch(e){}save();toast('Enkripsi dimatikan');$('esm').textContent='Enkripsi: nonaktif';$('eoff').style.display='none';tr($('esm'))}
+function relock(){if(!ENC||!KEY)return;KEY=null;S=E();rr();var raw=null;try{raw=JSON.parse(localStorage.getItem(K))}catch(e){}
+if(raw&&raw.enc)ekAsk(raw).then(function(o){S=Object.assign(E(),o);LASTOUT=raw;rr()})}
 function editTag(){openSet();setTimeout(function(){$('s-tag').focus()},60)}
-function greet(){return SET.name?`<p class="sum">Halo, ${esc(SET.name)}</p>`+(SET.motto?`<p class="m nt mot">${esc(SET.motto)}</p>`:''):''}
+function greet(){var n=gv('name'),m=gv('motto');return n?`<p class="sum">Halo, ${esc(n)}</p>`+(m?`<p class="m nt mot">${esc(m)}</p>`:''):''}
 applyTheme();document.documentElement.lang=SET.lang=='en'?'en':'id';
 function gp(id){return S.proyek.filter(x=>x.id===id)[0]}
 function pst(id){var T=S.todo.filter(x=>x.pj===id),d=T.filter(x=>x.x).length;return{n:T.length,d:d,p:T.length?Math.round(d/T.length*100):0}}
@@ -484,17 +536,15 @@ function zoom(id){var x=f('vision',id);$('lbi').src=x.img;$('lbi').alt=x.t;$('lb
 function pop(k){var e=$('p'+k);e.classList.remove('in');void e.offsetWidth;e.classList.add('in');setTimeout(function(){e.classList.remove('in')},700)}
 function vbx(id){var x=f('vision',id);x.x=x.x?0:1;save();rr()}
 $('ft').addEventListener('keydown',function(e){if(e.key==='Enter')add()});
-if(CLOUD){S=E();K='jurnal.v1.pending';$('au').style.display='flex';
-if(typeof supabase=='undefined')msg('Tidak dapat memuat layanan login. Periksa koneksi internet.',1);
-else{sb=supabase.createClient(CFG.url,CFG.key);
-sb.auth.onAuthStateChange(function(ev,ses){
-if(ev=='PASSWORD_RECOVERY')setTimeout(function(){var p=prompt('Kata sandi baru (min. 8 karakter):');if(p)sb.auth.updateUser({password:p}).then(function(r){toast(r.error?r.error.message:'Kata sandi diperbarui')})},0);
-if(ses&&ses.user){if(!USER||USER.id!==ses.user.id)setTimeout(function(){boot(ses.user)},0)}
-else if(ev=='SIGNED_OUT'||ev=='INITIAL_SESSION'){USER=null;S=E();$('au').style.display='flex';rr()}})}}
+if(CLOUD){S=E();K='jurnal.v1.pending';ENV=null;ENC=false;KEY=null;$('au').style.display='flex';
+if(typeof firebase=='undefined')msg('Tidak dapat memuat layanan login. Periksa koneksi internet.',1);
+else{firebase.initializeApp(CFG);fa=firebase.auth();fs=firebase.firestore();
+fa.onAuthStateChanged(function(u){if(u&&u.emailVerified){if(!USER||USER.uid!==u.uid)setTimeout(function(){boot(u)},0)}else if(!u){USER=null;S=E();$('au').style.display='flex';rr()}})}}
 rr();pv.scrollLeft=6*pv.clientWidth;sync();lockShow();
-document.addEventListener('visibilitychange',function(){if(document.hidden)HT=Date.now();else if(Date.now()-HT>60000)lockShow()});
+document.addEventListener('visibilitychange',function(){if(document.hidden)HT=Date.now();else{var dt=Date.now()-HT;if(dt>120000)relock();else if(dt>60000)lockShow()}});
 setInterval(remChk,30000);
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(function(){});
+if(ENV&&!CLOUD)ekAsk(ENV).then(function(o){S=Object.assign(E(),o);LASTOUT=ENV;rr();sync()});
 </script>
 </body>
 </html>
