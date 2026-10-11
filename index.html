@@ -294,7 +294,7 @@ var ST=['Direncanakan','Berjalan','Selesai'];
 var S={rencana:[],todo:[],progres:[],manifest:[],script:[],afirmasi:[],syukur:[],bukti:[],proyek:[],m369:[],visual:[],vision:[],catatan:[],kebiasaan:[]};
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
 function iso(n){var d=new Date();d.setDate(d.getDate()+n);return d.toLocaleDateString('sv-SE')}
-var CFG={apiKey:'ISI_API_KEY_FIREBASE',authDomain:'ISI_PROJECT_ID.firebaseapp.com',projectId:'ISI_PROJECT_ID',appId:'ISI_APP_ID'},CLOUD=!/^ISI/.test(CFG.apiKey),fresh=true;
+var CFG={apiKey: "AIzaSyDRH3IeFVmwsYvw0qVMj0DGVut9g50p4s0",authDomain: "jurnal-9f607.firebaseapp.com",projectId: "jurnal-9f607",storageBucket: "jurnal-9f607.firebasestorage.app",messagingSenderId: "717493302320",appId: "1:717493302320:web:6d1189f8bd7956e9e269f5",measurementId: "G-WTBJHCDE2M"},CLOUD=!/^ISI/.test(CFG.apiKey),fresh=true;
 var ENV=null,ENC=false,KEY=null,SALT='',LASTOUT=null,SQ=Promise.resolve();
 try{var r=localStorage.getItem(K);if(r){var _o=JSON.parse(r);if(_o&&_o.enc){ENV=_o;ENC=true;SALT=_o.s;fresh=false}else{S=Object.assign(S,_o);fresh=false}}}catch(e){}
 if(fresh&&!CLOUD){S={
