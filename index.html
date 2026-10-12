@@ -211,9 +211,26 @@ textarea.ni{resize:vertical;line-height:1.5}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 .ib{font-size:12px;border:1px solid var(--ac);color:var(--ac);border-radius:99px;padding:4px 10px;white-space:nowrap}
 .ib:hover{background:var(--ac);color:var(--bg)}
+
+#spl{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:var(--bg);transition:opacity .5s ease,visibility .5s}
+#spl.out{opacity:0;visibility:hidden}
+#spl .lg{width:104px;height:104px;border-radius:24px;background:#1D6E8C;display:grid;place-items:center;box-shadow:0 10px 30px rgba(29,110,140,.35);animation:splIn .7s cubic-bezier(.34,1.56,.64,1) both}
+#spl svg{width:62px;height:62px;overflow:visible}
+#spl .z{fill:none;stroke:#fff;stroke-width:11;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:160;stroke-dashoffset:160;animation:splDraw .8s .35s ease-out forwards}
+#spl .u{fill:#E0A64A;transform-origin:50px 0;transform:scaleX(0);animation:splLine .45s 1s ease-out forwards}
+#spl .nm{font-size:26px;font-weight:600;letter-spacing:.08em;color:var(--ink);animation:splUp .5s 1.1s ease-out both}
+#spl .tl{font-size:13px;color:var(--mu);margin-top:-12px;animation:splUp .5s 1.25s ease-out both}
+@keyframes splIn{from{opacity:0;transform:scale(.4) rotate(-12deg)}to{opacity:1;transform:none}}
+@keyframes splDraw{to{stroke-dashoffset:0}}
+@keyframes splLine{to{transform:scaleX(1)}}
+@keyframes splUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){#spl *{animation-duration:.01s!important;animation-delay:0s!important}}
 </style>
 </head>
 <body>
+<div id="spl" aria-hidden="true"><div class="lg"><svg viewBox="0 0 100 100"><path class="z" d="M24 22H76L24 70H76"/><rect class="u" x="30" y="86" width="40" height="7" rx="3.5"/></svg></div><div class="nm">ZUI JURNAL</div><div class="tl" id="spt">Kendalikan diri &amp; terwujud</div></div>
+<script>(function(){try{var t=(JSON.parse(localStorage.getItem('jurnal.set'))||{}).tag;if(t)document.getElementById('spt').textContent=t}catch(e){}
+setTimeout(function(){var e=document.getElementById('spl');e.classList.add('out');setTimeout(function(){e.remove()},600)},2000)})()</script>
 <div class="app">
   <div class="top"><b>ZUI JURNAL <small id="tag" class="nt" role="button" tabindex="0" title="Ubah tulisan" onclick="editTag()" onkeydown="if(event.key==='Enter')editTag()" style="font-weight:400;color:var(--mu);letter-spacing:0">Kendalikan diri &amp; terwujud</small></b><span class="rt"><span id="sy"></span><span id="tg"></span><button class="ib" id="inst" onclick="install()" style="display:none">⬇ Instal</button><button class="gear" onclick="openSet()" aria-label="Pengaturan">⚙</button></span></div>
   <div class="hd"><div class="hdi" id="hdi" role="tablist"></div></div>
