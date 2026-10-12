@@ -214,23 +214,36 @@ textarea.ni{resize:vertical;line-height:1.5}
 
 #spl{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:var(--bg);transition:opacity .8s ease,visibility .8s}
 #spl.out{opacity:0;visibility:hidden}
-#spl .lg{width:104px;height:104px;border-radius:24px;background:#1D6E8C;display:grid;place-items:center;box-shadow:0 10px 30px rgba(29,110,140,.35);animation:splIn 1.2s cubic-bezier(.34,1.56,.64,1) both}
+#spl .lg{width:104px;height:104px;border-radius:24px;background:#1D6E8C;display:grid;place-items:center;box-shadow:0 10px 30px rgba(29,110,140,.35);animation:splIn 2.4s cubic-bezier(.34,1.56,.64,1) both}
 #spl svg{width:62px;height:62px;overflow:visible}
-#spl .z{fill:none;stroke:#fff;stroke-width:11;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:160;stroke-dashoffset:160;animation:splDraw 1.6s .7s ease-in-out forwards}
-#spl .u{fill:#E0A64A;transform-origin:50px 0;transform:scaleX(0);animation:splLine .8s 2.3s ease-out forwards}
-#spl .nm{font-size:26px;font-weight:600;letter-spacing:.08em;color:var(--ink);animation:splUp .9s 2.7s ease-out both}
-#spl .tl{font-size:13px;color:var(--mu);margin-top:-12px;animation:splUp .9s 3.1s ease-out both}
+#spl .z{fill:none;stroke:#fff;stroke-width:11;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:160;stroke-dashoffset:160;animation:splDraw 3.2s 1.4s ease-in-out forwards}
+#spl .u{fill:#E0A64A;transform-origin:50px 0;transform:scaleX(0);animation:splLine 1.6s 4.6s ease-out forwards}
+#spl .nm{font-size:26px;font-weight:600;letter-spacing:.08em;color:var(--ink);animation:splUp 1.8s 5.4s ease-out both}
+#spl .tl{font-size:13px;color:var(--mu);margin-top:-12px;animation:splUp 1.8s 6.2s ease-out both}
 @keyframes splIn{from{opacity:0;transform:scale(.4) rotate(-12deg)}to{opacity:1;transform:none}}
 @keyframes splDraw{to{stroke-dashoffset:0}}
 @keyframes splLine{to{transform:scaleX(1)}}
 @keyframes splUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+#spl .sp{display:none;width:38px;height:38px;border-radius:50%;border:3px solid var(--ln);border-top-color:var(--ac);animation:splSpin .8s linear infinite}
+#spl .ld{display:none;font-size:12px;color:var(--mu)}
+#spl.rl{transition-duration:.3s}
+#spl.rl .lg,#spl.rl .nm,#spl.rl .tl{display:none}
+#spl.rl .sp,#spl.rl .ld{display:block}
+@keyframes splSpin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){#spl *{animation-duration:.01s!important;animation-delay:0s!important}}
 </style>
 </head>
 <body>
-<div id="spl" aria-hidden="true" onclick="splEnd()"><div class="lg"><svg viewBox="0 0 100 100"><path class="z" d="M24 22H76L24 70H76"/><rect class="u" x="30" y="86" width="40" height="7" rx="3.5"/></svg></div><div class="nm">ZUI JURNAL</div><div class="tl" id="spt">Kendalikan diri &amp; terwujud</div></div>
+<div id="spl" aria-hidden="true" onclick="splEnd()"><div class="lg"><svg viewBox="0 0 100 100"><path class="z" d="M24 22H76L24 70H76"/><rect class="u" x="30" y="86" width="40" height="7" rx="3.5"/></svg></div><div class="nm">ZUI JURNAL</div><div class="tl" id="spt">Kendalikan diri &amp; terwujud</div><div class="sp"></div><div class="ld" id="spld">Memuat…</div></div>
 <script>(function(){try{var t=(JSON.parse(localStorage.getItem('jurnal.set'))||{}).tag;if(t)document.getElementById('spt').textContent=t}catch(e){}
-window.splEnd=function(){var e=document.getElementById('spl');if(!e||e.classList.contains('out'))return;e.classList.add('out');setTimeout(function(){e.remove()},900)};setTimeout(splEnd,5000)})()</script>
+window.splEnd=function(){var e=document.getElementById('spl');if(!e||e.classList.contains('out'))return;e.classList.add('out');setTimeout(function(){e.remove()},900)};
+var nv=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0],again=false;
+try{again=sessionStorage.getItem('zui.spl')==='1'||(nv&&nv.type==='reload');sessionStorage.setItem('zui.spl','1')}catch(e){again=nv&&nv.type==='reload'}
+if(again){var sp=document.getElementById('spl'),t0=Date.now();sp.classList.add('rl');sp.onclick=null;
+try{if((JSON.parse(localStorage.getItem('jurnal.set'))||{}).lang=='en')document.getElementById('spld').textContent='Loading…'}catch(e){}
+var fin=function(){setTimeout(splEnd,Math.max(0,600-(Date.now()-t0)))};
+if(document.readyState==='complete')fin();else window.addEventListener('load',fin);setTimeout(splEnd,5000)}
+else setTimeout(splEnd,10000)})()</script>
 <div class="app">
   <div class="top"><b>ZUI JURNAL <small id="tag" class="nt" role="button" tabindex="0" title="Ubah tulisan" onclick="editTag()" onkeydown="if(event.key==='Enter')editTag()" style="font-weight:400;color:var(--mu);letter-spacing:0">Kendalikan diri &amp; terwujud</small></b><span class="rt"><span id="sy"></span><span id="tg"></span><button class="ib" id="inst" onclick="install()" style="display:none">⬇ Instal</button><button class="gear" onclick="openSet()" aria-label="Pengaturan">⚙</button></span></div>
   <div class="hd"><div class="hdi" id="hdi" role="tablist"></div></div>
