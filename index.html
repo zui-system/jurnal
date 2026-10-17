@@ -19,7 +19,8 @@ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:en
 *{box-sizing:border-box}
 html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:'Outfit',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased}
-button,input,select{font:inherit;color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+textarea::placeholder,input::placeholder{color:var(--mu);opacity:.8}
 button{cursor:pointer;background:none;border:0;padding:0}
 :focus-visible{outline:2px solid var(--ac);outline-offset:2px;border-radius:4px}
 .app{max-width:760px;margin:0 auto;height:100%;display:flex;flex-direction:column;position:relative}
@@ -231,6 +232,90 @@ textarea.ni{resize:vertical;line-height:1.5}
 #spl.rl .sp,#spl.rl .ld{display:block}
 @keyframes splSpin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){#spl *{animation-duration:.01s!important;animation-delay:0s!important}}
+/* v26.02 langganan */
+.lock{text-align:left;margin-top:8px}.lock b{font-weight:500}
+.plan{cursor:pointer}.plan.sel{border-color:var(--ac);box-shadow:inset 0 0 0 2px var(--ac)}
+.pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;border:1px solid var(--ln);color:var(--mu);font-weight:400;white-space:nowrap}
+.pill.ok{border-color:var(--ok);color:var(--ok)}.pill.bad{border-color:var(--hi);color:var(--hi)}
+.sst{margin:0 0 12px}
+.pay{border:1px solid var(--ln);border-radius:12px;padding:14px;background:var(--sf)}
+.pay .amt{font-size:24px;font-weight:500;color:var(--ac);margin-bottom:8px}
+.pay .qr{display:block;width:100%;max-width:260px;margin:6px auto 10px;border-radius:10px;background:#fff}
+.pay .stp{padding-left:18px;margin:8px 0}.pay .ni{margin-top:6px}
+.go2.alt{background:none;color:var(--ac);border:1px solid var(--ac)}
+.bim{display:block;max-width:220px;width:100%;border-radius:8px;margin-bottom:4px;background:#fff}
+.rob{display:flex;gap:10px;align-items:center;justify-content:space-between;margin:0 20px 6px;padding:8px 12px;border-radius:10px;border:1px solid var(--hi);color:var(--hi);font-size:12px}
+.ib.bad{border-color:var(--hi);color:var(--hi)}
+label.w.ph{border:1px solid var(--ln);border-radius:10px;padding:9px 11px;cursor:pointer;font-size:16px;line-height:1}
+#sbc .ub{vertical-align:top;margin-left:-6px}
+/* v26.01 */
+dialog textarea,dialog input,dialog select,.ni{color:var(--ink)}
+.cv{color:var(--mu);font-size:11px}
+.hh2{font-size:12px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;margin:14px 0 4px}
+.tb{padding:2px 0 14px 34px;border-bottom:1px solid var(--ln)}
+.si{display:flex;gap:8px;align-items:center;padding:5px 0;font-size:14px}
+.si .t{flex:1;min-width:0;overflow-wrap:anywhere}
+.si.done .t{text-decoration:line-through;color:var(--mu)}
+.chk.s{width:18px;height:18px;font-size:10px;border-width:1.5px}
+.x.sx{font-size:15px;padding:2px 6px}
+.lgi{display:flex;gap:8px;align-items:flex-start;font-size:13px;padding:6px 0;border-top:1px dashed var(--ln)}
+.lgi time{color:var(--mu);font-size:11px;white-space:nowrap;padding-top:2px;min-width:92px}
+.lgi span{flex:1;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.mf .lgi{border-top-color:var(--ln)}
+.w.lj{border:1px solid var(--ac2);color:var(--ac2);border-radius:8px;padding:7px 14px;font-size:12px;margin-top:12px}
+.ri{margin:8px 0;padding:8px 10px;border:1px solid var(--ln);border-radius:10px;background:var(--sf)}
+.ri .row{padding:10px 0}
+.ri .row:last-child{border-bottom:0}
+.rh{display:flex;gap:8px;align-items:center}
+.rh .t{flex:1;min-width:0;font-weight:500;overflow-wrap:anywhere}
+.rh .w{border:1px solid var(--ln);border-radius:8px;padding:4px 10px;font-size:12px;white-space:nowrap}
+.rn{display:inline-grid;place-items:center;min-width:22px;height:22px;border-radius:50%;background:var(--ac);color:var(--bg);font-size:11px;font-weight:600;flex:none}
+.ri.ok .rn{background:var(--ok)}
+.gh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.gh b{font-weight:500;font-size:15px}
+.gd .si{border-top:1px solid var(--ln)}
+.gd .si .rn{background:var(--ac2)}
+#p7{padding-bottom:16px;display:flex;flex-direction:column}
+.crow{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:12px 0;border-bottom:1px solid var(--ln)}
+.crow .tx{flex:1;min-width:0}
+.crow .t{display:block;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crow .m{display:block;font-size:12px;color:var(--mu);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.av{width:38px;height:38px;border-radius:50%;background:var(--ac);color:var(--bg);display:grid;place-items:center;font-weight:600;flex:none}
+.av.ad{background:var(--ac2)}
+.ub{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--hi);margin-left:4px;vertical-align:super;flex:none}
+.chd{display:flex;gap:12px;align-items:center;padding:4px 0 10px;border-bottom:1px solid var(--ln);position:sticky;top:-4px;background:var(--bg);z-index:2}
+.chd .w{border:1px solid var(--ln);border-radius:8px;padding:6px 12px;font-size:12px}
+.chd b{font-weight:500;font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cm{flex:1;display:flex;flex-direction:column;gap:6px;padding:12px 0}
+.bb{max-width:80%;padding:8px 12px;border-radius:14px 14px 14px 4px;background:var(--sf);border:1px solid var(--ln);align-self:flex-start;font-size:14px;line-height:1.45}
+.bb span{white-space:pre-wrap;overflow-wrap:anywhere}
+.bb.me{align-self:flex-end;background:var(--ac);color:#fff;border-color:var(--ac);border-radius:14px 14px 4px 14px}
+.bb small{display:block;font-size:10px;opacity:.7;margin-top:2px;text-align:right}
+.cdv{align-self:center;font-size:11px;color:var(--mu);padding:6px 0}
+.cbar{position:sticky;bottom:0;display:flex;gap:8px;align-items:flex-end;padding:10px 0;background:var(--bg)}
+.cbar .ni{margin:0;flex:1;max-height:140px}
+.cbar .go2{margin:0}
+.adm{display:flex;gap:6px;flex-wrap:wrap;padding:8px 0}
+.adm button{border:1px solid var(--ac2);color:var(--ac2);border-radius:8px;padding:4px 10px;font-size:12px}
+.ly button,.ly a{display:flex;justify-content:space-between;align-items:center;width:100%;padding:12px 2px;border-bottom:1px solid var(--ln);font-size:14px;text-align:left;color:var(--ink);text-decoration:none}
+.ly i{font-style:normal;color:var(--mu)}
+.ly small{color:var(--ac);font-size:12px;margin-left:auto;margin-right:8px}
+.zs{display:block;text-align:center;text-decoration:none;margin-top:16px}
+.ver{text-align:center;font-size:12px;color:var(--mu);margin-top:18px;line-height:1.6}
+.ver b{color:var(--ink);font-weight:600}
+.inb{font-size:14px;line-height:1.6}
+.inb h4{font-size:14px;margin:14px 0 2px;font-weight:600}
+.inb p,.inb li{color:var(--ink);margin:4px 0}
+.inb ol,.inb ul{padding-left:20px;margin:6px 0}
+.plan{border:1px solid var(--ln);border-radius:12px;padding:14px;margin:10px 0}
+.plan.cur{border-color:var(--ac);box-shadow:inset 0 0 0 1px var(--ac)}
+.plan h4{margin:0;font-size:15px}
+.plan .pr{font-size:22px;font-weight:500;color:var(--ac);margin:4px 0}
+.plan .pr small{font-size:12px;color:var(--mu);font-weight:400}
+.plan ul{padding-left:18px;margin:6px 0 10px;font-size:13px}
+.plan .go2{width:100%;margin-top:4px}
+.shg{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
+.shg a,.shg button{display:block;text-align:center;border:1px solid var(--ln);border-radius:10px;padding:12px 6px;font-size:13px;color:var(--ink);text-decoration:none}
 </style>
 </head>
 <body>
@@ -245,8 +330,9 @@ var fin=function(){setTimeout(splEnd,Math.max(0,600-(Date.now()-t0)))};
 window.splReady=fin;setTimeout(splEnd,8000)}
 else setTimeout(splEnd,10000)})()</script>
 <div class="app">
-  <div class="top"><b>ZUI JURNAL <small id="tag" class="nt" role="button" tabindex="0" title="Ubah tulisan" onclick="editTag()" onkeydown="if(event.key==='Enter')editTag()" style="font-weight:400;color:var(--mu);letter-spacing:0">Kendalikan diri &amp; terwujud</small></b><span class="rt"><span id="sy"></span><span id="tg"></span><button class="ib" id="inst" onclick="install()" style="display:none">⬇ Instal</button><button class="gear" onclick="openSet()" aria-label="Pengaturan">⚙</button></span></div>
+  <div class="top"><b>ZUI JURNAL <small id="tag" class="nt" role="button" tabindex="0" title="Ubah tulisan" onclick="editTag()" onkeydown="if(event.key==='Enter')editTag()" style="font-weight:400;color:var(--mu);letter-spacing:0">Kendalikan diri &amp; terwujud</small></b><span class="rt"><span id="sy"></span><span id="tg"></span><button class="ib" id="inst" onclick="install()" style="display:none">⬇ Instal</button><button class="ib" id="sbp" onclick="openSub()" style="display:none"></button><span id="sbc"></span><button class="gear" onclick="openSet()" aria-label="Pengaturan">⚙</button></span></div>
   <div class="hd"><div class="hdi" id="hdi" role="tablist"></div></div>
+  <div id="rob" class="rob" style="display:none"><span id="robt"></span><button class="ib" onclick="openSub()">Langganan</button></div>
   <div class="pv" id="pv">
     <section id="p0" aria-label="Rencana"></section>
     <section id="p1" aria-label="Proyek"></section>
@@ -255,6 +341,7 @@ else setTimeout(splEnd,10000)})()</script>
     <section id="p4" aria-label="Manifestasi"></section>
     <section id="p5" aria-label="Catatan"></section>
     <section id="p6" aria-label="Hari ini"></section>
+    <section id="p7" aria-label="Chat"></section>
   </div>
   <button class="fab" id="fab" onclick="openAdd()"></button>
 </div>
@@ -265,9 +352,12 @@ else setTimeout(splEnd,10000)})()</script>
   <div id="fbw" style="display:none"><label for="fb">Isi script (tulis dengan kalimat sekarang, lengkap dengan perasaan)</label><textarea id="fb" rows="8" maxlength="4000"></textarea></div>
   <div id="fcw" style="display:none"><label for="fc">Bidang hidup</label><select id="fc"><option value="Karier">Karier</option><option value="Keuangan">Keuangan</option><option value="Hubungan">Hubungan</option><option value="Kesehatan">Kesehatan</option><option value="Spiritual">Spiritual</option><option value="Mimpi">Mimpi</option><option value="Lainnya">Lainnya</option></select></div>
   <div id="fgw" style="display:none"><label for="fg">Target ulangan per hari</label><input id="fg" type="number" min="1" max="999" value="9"></div>
-  <div id="fjw" style="display:none"><label for="fj">Proyek terkait</label><select id="fj"></select></div>
+  <div id="fjw" style="display:none"><label for="fj">Proyek terkait</label><select id="fj" onchange="frs()"></select></div>
+  <div id="frw" style="display:none"><label for="fr">Rincian proyek</label><select id="fr"></select></div>
+  <div id="fkw" style="display:none"><label for="fk">Kelompok (opsional)</label><input id="fk" list="fkl" maxlength="40" autocomplete="off" placeholder="Mis. Rumah impian, Perjalanan"><datalist id="fkl"></datalist></div>
   <div id="fiw" style="display:none"><label for="fi">Gambar (opsional)</label><input id="fi" type="file" accept="image/*" onchange="pimg(this)"></div>
   <div id="fdw"><label for="fd">Tanggal target</label><input id="fd" type="date"></div>
+  <div id="fww" style="display:none"><label for="fw">Jam (opsional)</label><input id="fw" type="time"></div>
   <div id="fpw"><label for="fp">Prioritas</label><select id="fp"><option value="Tinggi">Tinggi</option><option value="Sedang" selected>Sedang</option><option value="Rendah">Rendah</option></select></div>
   <div class="act"><button onclick="dl.close()">Batal</button><button class="go" onclick="add()">Simpan</button></div>
 </dialog>
@@ -282,7 +372,7 @@ else setTimeout(splEnd,10000)})()</script>
 <button type="button" id="inst2" class="lnk" onclick="install()" style="display:none">⬇ Instal aplikasi</button>
 </form></div>
 <div id="ek" class="au" style="display:none;z-index:300"><form class="ac" onsubmit="return ekGo(event)">
-<h1>ZUI JURNAL</h1><p class="m">Data Anda terenkripsi. Masukkan kata sandi enkripsi.</p>
+<h1>ZUI JURNAL</h1><p class="m">Data Anda dari versi sebelumnya masih terenkripsi. Masukkan kata sandi enkripsi sekali untuk membukanya. Setelah itu enkripsi dimatikan.</p>
 <input id="ekp" type="password" autocomplete="off" aria-label="Kata sandi enkripsi">
 <button class="go2" id="ekb" type="submit">Buka</button><p id="ekm" class="am er" role="alert"></p></form></div>
 <div id="lk" class="au" style="display:none;z-index:200"><form class="ac" onsubmit="return unlock(event)">
@@ -304,23 +394,30 @@ else setTimeout(splEnd,10000)})()</script>
   <label for="s-motto">Motto atau tujuan hidup</label><input id="s-motto" maxlength="160">
   <label for="s-tag">Tulisan di bawah nama aplikasi</label><input id="s-tag" maxlength="60" placeholder="Kendalikan diri & terwujud">
   <label for="s-rem">Pengingat harian (jam, kosongkan untuk mati)</label><input id="s-rem" type="time">
+  <h3 class="hh">Kunci PIN</h3>
   <label for="s-pin">PIN pengunci (4 sampai 6 angka)</label><input id="s-pin" type="password" inputmode="numeric" maxlength="6" autocomplete="new-password" placeholder="PIN baru">
   <button type="button" class="lnk" onclick="pinDel()">Hapus PIN</button>
-  <h3 class="hh">Keamanan</h3>
-  <p class="m" id="esm"></p>
-  <label for="s-ep">Kata sandi enkripsi (min. 12 karakter)</label><input id="s-ep" type="password" autocomplete="new-password">
-  <label for="s-ep2">Ulangi kata sandi enkripsi</label><input id="s-ep2" type="password" autocomplete="new-password">
-  <button type="button" class="lnk" onclick="encOn()">Aktifkan atau ganti kata sandi enkripsi</button>
-  <button type="button" class="lnk" id="eoff" onclick="encOff()" style="display:none">Matikan enkripsi</button>
-  <button type="button" class="lnk" onclick="$('sd').close();relock()">Kunci sekarang</button>
-  <p class="m warn">Jika kata sandi enkripsi lupa, data tidak bisa dipulihkan oleh siapa pun, termasuk pengembang dan penyedia layanan cloud.</p>
+  <button type="button" class="lnk" onclick="lockNow()" style="margin-left:14px">Kunci sekarang</button>
   <div id="acw" style="display:none"><h3 class="hh">Akun</h3><p class="m" id="acm"></p><button type="button" class="lnk" onclick="logout()">Keluar</button></div>
   <p class="m" style="font-size:13px;color:var(--mu);margin:12px 0 0">Pengaturan ini tersimpan di perangkat ini.</p>
   <div class="act"><button onclick="$('sd').close()">Tutup</button><button class="go" onclick="saveSet()">Simpan</button></div>
+  <h3 class="hh">Layanan</h3>
+  <div class="ly">
+    <button type="button" onclick="info('faq')"><span>❓ FAQ</span><i>›</i></button>
+    <button type="button" onclick="info('terms')"><span>📄 Syarat penggunaan</span><i>›</i></button>
+    <button type="button" onclick="info('privacy')"><span>🔒 Kebijakan privasi</span><i>›</i></button>
+    <button type="button" onclick="info('plan')"><span>⭐ Kelola langganan</span><small id="plb">Gratis</small><i>›</i></button>
+    <button type="button" onclick="info('share')"><span>📤 Berbagi dengan teman</span><i>›</i></button>
+    <button type="button" onclick="feedback()"><span>💬 Umpan balik (chat langsung dengan admin)</span><i>›</i></button>
+  </div>
+  <a class="go2 zs" href="https://zuisystem.com" target="_blank" rel="noopener">Jelajahi aplikasi lainnya di ZUISYSTEM.COM ↗</a>
+  <div class="ver"><b>Zui Jurnal versi 26.01</b><br>Aplikasi Zui Jurnal dikelola oleh Zui System<br>PT. Zaor Utama Indonesia</div>
 </dialog>
+<dialog id="sub"><h2>Langganan ZUI JURNAL</h2><div id="subb"></div><div class="act"><button onclick="$('sub').close()">Tutup</button></div></dialog>
+<dialog id="inf"><h2 id="inh"></h2><div id="inb" class="inb"></div><div class="act"><button onclick="$('inf').close()">Tutup</button></div></dialog>
 <script>
-var SET=(function(){try{return JSON.parse(localStorage.getItem('jurnal.set'))||{}}catch(e){return{}}})(),LOC=SET.lang=='en'?'en-US':'id-ID',K='jurnal.v1',N=['Rencana','Proyek','Tugas','Progres','Manifestasi','Catatan','Hari ini'],cur=0;
-var FAB=['Tambah rencana','Buat proyek','Tambah tugas','Tambah target','Tambah manifestasi','Tulis catatan','Hari ini'];
+var SET=(function(){try{return JSON.parse(localStorage.getItem('jurnal.set'))||{}}catch(e){return{}}})(),LOC=SET.lang=='en'?'en-US':'id-ID',K='jurnal.v1',N=['Rencana','Proyek','Tugas','Progres','Manifestasi','Catatan','Hari ini','Chat'],cur=0,MX=N.length-1;
+var FAB=['Tambah rencana','Buat proyek','Tambah tugas','Tambah target','Tambah manifestasi','Tulis catatan','Hari ini','Chat'];
 var DT=['Rencana baru','Proyek baru','Tugas baru','Target progres baru','Manifestasi baru'];
 var PH=['Apa yang ingin Anda capai?','Nama proyek','Apa yang perlu dikerjakan?','Apa yang ingin dilacak?','Saya sudah ... (tulis seolah sudah terjadi)'];
 var ST=['Direncanakan','Berjalan','Selesai'];
@@ -336,8 +433,8 @@ todo:[{id:uid(),t:'Tinjau agenda minggu ini',p:'Tinggi',x:0},{id:uid(),t:'Balas 
 progres:[{id:uid(),t:'Proyek utama',v:40},{id:uid(),t:'Belajar keterampilan baru',v:20}],
 manifest:[{id:uid(),t:'Saya bekerja dengan fokus dan menyelesaikan hal penting tepat waktu.',x:0}],
 script:[{id:uid(),t:'Hari ideal saya',b:'Pagi ini saya bangun dengan tenang dan penuh syukur.\nSaya menyelesaikan pekerjaan penting dengan fokus, lalu menikmati sore bersama orang-orang yang saya sayangi.\nSaya merasa ringan, percaya diri, dan cukup.',c:'Karier',d:iso(0),r:0}],
-afirmasi:[{id:uid(),t:'Saya layak mendapatkan hasil baik dari usaha saya.',g:9,n:0,dd:''}],syukur:[],bukti:[]};save()}
-function save(){S._ts=Date.now();if(ENC&&!KEY)return;SQ=SQ.then(pst2)}
+afirmasi:[{id:uid(),t:'Saya layak mendapatkan hasil baik dari usaha saya.',g:9,n:0,dd:''}],syukur:[],bukti:[]};S=Object.assign(E(),S);save()}
+function save(){if(RO()){roBlock();return}S._ts=Date.now();if(ENC&&!KEY)return;SQ=SQ.then(pst2)}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function fd(d){if(!d)return'Tanpa tanggal';try{return new Date(d+'T00:00').toLocaleDateString(LOC,{day:'numeric',month:'short',year:'numeric'})}catch(e){return d}}
 var $=function(i){return document.getElementById(i)},pv=$('pv'),hdi=$('hdi'),dl=$('dl');
@@ -345,8 +442,8 @@ $('tg').textContent=new Date().toLocaleDateString(LOC,{day:'numeric',month:'shor
 hdi.innerHTML=N.map(function(n,i){return'<button role="tab" onclick="go('+i+')">'+n+'</button>'}).join('');
 var items=[].slice.call(hdi.children);
 function go(i){pv.scrollTo({left:i*pv.clientWidth,behavior:'smooth'})}
-function sync(){var w=pv.clientWidth||1,p=pv.scrollLeft/w,i=Math.max(0,Math.min(Math.floor(p),6)),f=p-i,a=items[i].offsetLeft,b=items[Math.min(i+1,6)].offsetLeft;
-var hw=hdi.parentNode,mx=Math.max(0,hdi.offsetWidth-(hw.clientWidth-20));hdi.style.transform='translateX('+(-Math.min(a+(b-a)*f,mx))+'px)';var k=Math.max(0,Math.min(Math.round(p),6));
+function sync(){var w=pv.clientWidth||1,p=pv.scrollLeft/w,i=Math.max(0,Math.min(Math.floor(p),MX)),f=p-i,a=items[i].offsetLeft,b=items[Math.min(i+1,MX)].offsetLeft;
+var hw=hdi.parentNode,mx=Math.max(0,hdi.offsetWidth-(hw.clientWidth-20));hdi.style.transform='translateX('+(-Math.min(a+(b-a)*f,mx))+'px)';var k=Math.max(0,Math.min(Math.round(p),MX));
 items.forEach(function(e,j){e.classList.toggle('on',j===k);e.setAttribute('aria-selected',j===k)});if(k!==cur){cur=k;pop(k)}fabl()}
 pv.addEventListener('scroll',function(){requestAnimationFrame(sync)});window.addEventListener('resize',sync);
 var F0=0,F1=0,CH=['Semua','Aktif','Selesai'];
@@ -362,26 +459,61 @@ function r0(){
 var A=S.rencana,L=A.filter(x=>F0==0||(F0==1?x.s<2:x.s==2)).sort((a,b)=>(a.d||'9').localeCompare(b.d||'9'));
 $('p0').innerHTML=greet()+kp([[A.filter(x=>x.s==0).length,'Direncanakan'],[A.filter(x=>x.s==1).length,'Berjalan'],[A.filter(x=>x.s==2).length,'Selesai']])+chips('fl0',F0)+(L.length?L.map(x=>`<div class="row${x.s==2?' done':''}"><div class="tx"><div class="t">${esc(x.t)}</div><div class="m">${x.c?esc(x.c)+', ':''}${dd(x.d,x.s==2)||'Tanpa tanggal'}</div>${x.n?`<div class="m nt">${esc(x.n)}</div>`:''}${x.pid?'<div class="m nt">Sudah menjadi proyek</div>':`<button class="lnk" onclick="mkp('${x.id}')">Jadikan proyek</button>`}</div><button class="st st-${x.s}" onclick="cyc('${x.id}')" aria-label="Ubah status">${ST[x.s]}</button><button class="x" onclick="del('rencana','${x.id}')" aria-label="Hapus">×</button></div>`).join(''):'<div class="em">Tidak ada rencana pada filter ini.</div>')}
 function r1(){
-var n=S.todo.length,dn=S.todo.filter(x=>x.x).length,o={Tinggi:0,Sedang:1,Rendah:2},L=S.todo.filter(x=>F1==0||(F1==1?!x.x:x.x)).sort((a,b)=>a.x-b.x||o[a.p]-o[b.p]||(a.u||'9').localeCompare(b.u||'9'));
-$('p2').innerHTML=`<p class="sum">${dn} dari ${n} tugas selesai</p><div class="bar"><i style="width:${n?Math.round(dn/n*100):0}%"></i></div>`+chips('fl1',F1)+(L.length?L.map(x=>`<div class="row${x.x?' done':''}"><button class="chk" onclick="tg('${x.id}')" aria-label="Tandai selesai">✓</button><div class="tx"><div class="t">${esc(x.t)}</div><div class="m"><span class="dot p-${x.p}"></span>${x.p}${x.u?', '+dd(x.u,x.x):''}${x.pj&&gp(x.pj)?', '+esc(gp(x.pj).t):''}</div></div><button class="x" onclick="del('todo','${x.id}')" aria-label="Hapus">×</button></div>`).join(''):'<div class="em">Tidak ada tugas pada filter ini.</div>')+(dn?'<button class="lnk" onclick="clr()">Hapus tugas yang selesai</button>':'')}
+var n=S.todo.length,dn=S.todo.filter(x=>x.x).length,lt=S.todo.filter(isLate).length,o={Tinggi:0,Sedang:1,Rendah:2},L=S.todo.filter(x=>F1==0||(F1==1?!x.x:x.x)).sort((a,b)=>a.x-b.x||isLate(b)-isLate(a)||o[a.p]-o[b.p]||((a.u||'9')+(a.w||'')).localeCompare((b.u||'9')+(b.w||'')));
+$('p2').innerHTML=`<p class="sum">${dn} dari ${n} tugas selesai${lt?`, <span class="late">${lt} terlambat</span>`:''}</p><div class="bar"><i style="width:${n?Math.round(dn/n*100):0}%"></i></div>`+chips('fl1',F1)+(L.length?L.map(x=>trow(x)).join(''):'<div class="em">Tidak ada tugas pada filter ini.</div>')+(dn?'<button class="lnk" onclick="clr()">Hapus tugas yang selesai</button>':'')}
+function hm(){var n=new Date();return('0'+n.getHours()).slice(-2)+':'+('0'+n.getMinutes()).slice(-2)}
+function fdt(ts){if(!ts)return'';try{return new Date(ts).toLocaleString(LOC,{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}catch(e){return''}}
+function ftm(ts){try{return new Date(ts).toLocaleTimeString(LOC,{hour:'2-digit',minute:'2-digit'})}catch(e){return''}}
+function dl2(d){var E2=SET.lang=='en';if(d==iso(0))return E2?'Today':'Hari ini';if(d==iso(-1))return E2?'Yesterday':'Kemarin';try{return new Date(d+'T00:00').toLocaleDateString(LOC,{weekday:'long',day:'numeric',month:'long',year:'numeric'})}catch(e){return d}}
+function isLate(x){if(x.x)return 0;var td=iso(0),b=x.u0||x.u;return(b&&b<td)||(x.u==td&&x.w&&!x.u0&&hm()>x.w)?1:0}
+function tdd(x){if(x.x)return x.u?fd(x.u)+(x.w?' '+x.w:''):'';var td=iso(0),b=x.u0||x.u,s='';
+if(b&&b<td){var n=Math.round((new Date(td+'T00:00')-new Date(b+'T00:00'))/864e5);s=`<span class="late">Terlambat ${n} hari</span>`}
+else if(x.u==td&&x.w&&!x.u0&&hm()>x.w)s=`<span class="late">Lewat jam ${x.w}</span>`;
+else if(x.u)s=dd(x.u,0)+(x.w?' · '+x.w:'');
+if(x.cr)s+=(s?', ':'')+`<span class="soon">Dilanjutkan ${x.cr}x ke ${fd(x.u)}${x.w?' '+x.w:''}</span>`;return s}
+function trow(x,sm){var pj=x.pj&&gp(x.pj),ri=pj&&x.ri&&(pj.ri||[]).filter(r=>r.id==x.ri)[0],sb=x.sb||[],nl=x.nl||[],sd=sb.filter(s=>s.x).length,o=OP['t'+x.id],ds=tdd(x);
+return`<div class="row${x.x?' done':''}"><button class="chk" onclick="tg('${x.id}')" aria-label="Tandai selesai">✓</button><div class="tx" onclick="tgo('${x.id}')" style="cursor:pointer"><div class="t"${sm?' style="font-size:14px"':''}>${esc(x.t)}</div><div class="m"><span class="dot p-${x.p}"></span>${x.p}${ds?', '+ds:''}${pj&&!sm?', <span class="nt">'+esc(pj.t)+'</span>':''}${ri&&!sm?' › <span class="nt">'+esc(ri.t)+'</span>':''}${sb.length?`, ☑ ${sd}/${sb.length}`:''}${nl.length?`, 💬 ${nl.length}`:''} <span class="cv">${o?'▲':'▼'}</span></div></div>${sm?'':`<button class="x" onclick="del('todo','${x.id}')" aria-label="Hapus">×</button>`}</div>${o?tbody(x):''}`}
+function tbody(x){var sb=x.sb||[],nl=x.nl||[],td=iso(0);
+return`<div class="tb">${x.ct?`<div class="m">Dibuat ${fdt(x.ct)}</div>`:''}${x.u0?`<div class="m">Tenggat awal ${fd(x.u0)}</div>`:''}<div class="hh2">Sub item</div>`
++sb.map(s=>`<div class="si${s.x?' done':''}"><button class="chk s" onclick="sbt('${x.id}','${s.id}')" aria-label="Tandai selesai">✓</button><span class="t nt">${esc(s.t)}</span><button class="x sx" onclick="sbd('${x.id}','${s.id}')" aria-label="Hapus">×</button></div>`).join('')
++`<div class="hrow"><input class="ni" id="sbi-${x.id}" maxlength="120" placeholder="Tambah sub item ..." onkeydown="if(event.key==='Enter')sba('${x.id}')"><button class="go2" onclick="sba('${x.id}')">Tambah</button></div><div class="hh2">Catatan</div>`
++nl.map(n=>`<div class="lgi"><time>${fdt(n.ts)}</time><span class="nt">${esc(n.t)}</span><button class="x sx" onclick="ntd('${x.id}','${n.id}')" aria-label="Hapus">×</button></div>`).join('')
++`<div class="hrow"><input class="ni" id="nti-${x.id}" maxlength="300" placeholder="Tulis catatan atau alasan belum selesai ..." onkeydown="if(event.key==='Enter')nta('${x.id}')"><button class="go2" onclick="nta('${x.id}')">Catat</button></div>`
++(!x.x&&(!x.u||x.u<=td)?`<button class="w lj" onclick="lanj('${x.id}')">↪ Lanjutkan besok</button><p class="tip">Belum selesai hari ini? Tulis alasannya di kolom catatan, lalu tekan Lanjutkan besok. Tenggat awal tetap dihitung, jadi status terlambat tetap terlihat.</p>`:'')+`</div>`}
+function tgo(id){OP['t'+id]=!OP['t'+id];rr()}
+function fcs(id){setTimeout(function(){var e=$(id);if(e)e.focus()},0)}
+function sba(id){var e=$('sbi-'+id),t=e.value.trim();if(!t){e.focus();return}var x=f('todo',id);(x.sb=x.sb||[]).push({id:uid(),t:t,x:0});save();rr();fcs('sbi-'+id)}
+function sbt(id,s){var x=f('todo',id),o=(x.sb||[]).filter(a=>a.id==s)[0];if(!o)return;o.x=o.x?0:1;save();rr()}
+function sbd(id,s){var x=f('todo',id);x.sb=(x.sb||[]).filter(a=>a.id!=s);save();rr()}
+function nta(id){var e=$('nti-'+id),t=e?e.value.trim():'';if(!t){if(e)e.focus();return}var x=f('todo',id);(x.nl=x.nl||[]).push({id:uid(),ts:Date.now(),t:t});save();rr();fcs('nti-'+id)}
+function ntd(id,n){var x=f('todo',id);x.nl=(x.nl||[]).filter(a=>a.id!=n);save();rr()}
+function lanj(id){var x=f('todo',id),e=$('nti-'+id),r=e?e.value.trim():'',nx=iso(1);x.u0=x.u0||x.u||iso(0);x.u=nx;x.cr=(x.cr||0)+1;
+(x.nl=x.nl||[]).push({id:uid(),ts:Date.now(),t:(SET.lang=='en'?'Continued to ':'Dilanjutkan ke ')+fd(nx)+(r?': '+r:'')});save();rr();toast('Tugas dilanjutkan ke besok')}
 function r2(){
 var P=S.progres,av=(function(){var a=P.map(x=>x.v).concat(S.proyek.filter(x=>x.s<2).map(x=>pst(x.id).p));return a.length?Math.round(a.reduce((s,v)=>s+v,0)/a.length):0})(),days=[];
 for(var i=6;i>=0;i--){var d=iso(-i);days.push([d,S.todo.filter(x=>x.z==d).length])}
 var mx=Math.max(1,...days.map(a=>a[1])),tot=days.reduce((s,a)=>s+a[1],0);
 $('p3').innerHTML=`<p class="sum">Rata-rata proyek dan target</p><div class="big">${av}<small>%</small></div>`+kp([[S.proyek.filter(x=>x.s<2).length,'Proyek aktif'],[P.filter(x=>x.v>=100).length,'Tercapai'],[tot,'Tugas 7 hari']])+`<h3 class="hh">Tugas selesai per hari</h3><div class="wk">${days.map(a=>`<div><div class="bx"><i style="height:${a[1]/mx*100}%" title="${a[1]} tugas"></i></div><span>${new Date(a[0]+'T00:00').toLocaleDateString(LOC,{weekday:'short'})}</span></div>`).join('')}</div><h3 class="hh">Progres proyek</h3>${pgl()}<h3 class="hh">Target pribadi</h3>`+(P.length?P.map(x=>`<div class="pg"><div class="h"><div class="t" style="font-size:18px">${esc(x.t)}</div><div class="n" id="pn-${x.id}">${x.v}%</div></div><input type="range" min="0" max="100" step="5" value="${x.v}" aria-label="Progres ${esc(x.t)}" oninput="lv('${x.id}',this.value)" onchange="setv('${x.id}',this.value)"><div class="ctl"><span class="m">${x.v>=100?'Tercapai':'Sedang berjalan'}</span><button class="x" onclick="del('progres','${x.id}')" aria-label="Hapus">×</button></div></div>`).join(''):'<div class="em">Belum ada target.</div>')}
-function rr(){r0();rp();r1();r2();rm();rn();rh();tagR();addEd();tr(document.body)}
+function rr(){r0();rp();r1();r2();rm();rn();rh();rc();tagR();addEd();tr(document.body)}
 var mf='niat',MD={niat:{n:'Niat',fab:'Tambah niat',dt:'Niat baru',ph:'Saya ...'},script:{n:'Scripting',fab:'Tulis script',dt:'Script baru',ph:'Judul, mis. Satu tahun dari sekarang'},afirmasi:{n:'Afirmasi',fab:'Tambah afirmasi',dt:'Afirmasi baru',ph:'Saya layak ...'},syukur:{n:'Syukur',fab:'Catat syukur',dt:'Rasa syukur hari ini',ph:'Saya bersyukur karena ...'},bukti:{n:'Bukti',fab:'Catat bukti',dt:'Bukti atau tanda baru',ph:'Hal kecil yang menandakan niat ini bergerak ...'},m369:{n:'369',fab:'Mulai praktik 369',dt:'Praktik 369 baru',ph:'Saya ... (kalimat niat singkat)'},visual:{n:'Visualisasi',fab:'',dt:'',ph:''},vision:{n:'Papan visi',fab:'Tambah ke papan',dt:'Tambah ke papan visi',ph:'Tujuan atau impian ...'}};
 function fabl(){var b=$('fab');b.style.display=(cur>=5||(cur==4&&mf=='visual'))?'none':'';b.textContent='+ '+(cur==4?MD[mf].fab:FAB[cur]);tr(b)}
 function sm(k){mf=k;rr();fabl()}
 function rm(){
 var h='<div class="sgs">'+Object.keys(MD).map(function(k){return'<button class="sg'+(k==mf?' on':'')+'" onclick="sm(\''+k+'\')">'+MD[k].n+'</button>'}).join('')+'</div>',b='',L=S[mf=='niat'?'manifest':mf];
-if(mf=='niat'){b='<p class="sum">'+L.filter(function(x){return x.x}).length+' dari '+L.length+' sudah terwujud</p>'+(L.length?L.map(function(x){return'<div class="mf'+(x.x?' done':'')+'"><div class="t">'+esc(x.t)+'</div><div class="ctl"><button class="w" onclick="mw(\''+x.id+'\')">'+(x.x?'Terwujud ✓':'Tandai terwujud')+'</button><button class="x" onclick="del(\'manifest\',\''+x.id+'\')" aria-label="Hapus">×</button></div></div>'}).join(''):'<div class="em">Tulis niat Anda sebagai kalimat positif, seolah sudah terjadi.</div>')}
-else if(mf=='script'){b='<p class="tip">Tulis sebagai kenyataan hari ini: waktu sekarang, detail, dan perasaan Anda. Baca ulang secara rutin.</p>'+(L.length?L.map(function(x){return'<details class="sc"><summary><span class="t">'+esc(x.t)+'</span><span class="m" id="m-'+x.id+'">'+esc(x.c)+', '+fd(x.d)+', dibaca '+x.r+' kali</span></summary><div class="bd">'+esc(x.b)+'</div><div class="ctl"><button class="w" onclick="rd(\''+x.id+'\')">Saya sudah membaca ulang</button><button class="x" onclick="del(\'script\',\''+x.id+'\')" aria-label="Hapus">×</button></div></details>'}).join(''):'<div class="em">Belum ada script. Tulis satu halaman tentang hari ideal Anda, seolah sudah terjadi.</div>')}
+if(mf=='niat'){b='<p class="sum">'+L.filter(function(x){return x.x}).length+' dari '+L.length+' sudah terwujud</p>'+(L.length?L.map(function(x){var kt=x.kt||[],o=OP['k'+x.id];return'<div class="mf'+(x.x?' done':'')+'"><div class="t">'+esc(x.t)+'</div>'+(x.ct?'<div class="m">Ditulis '+fdt(x.ct)+'</div>':'')+(x.x&&x.xt?'<div class="m" style="color:var(--ok)">Terwujud '+fdt(x.xt)+'</div>':'')
++kt.map(function(k){return'<div class="lgi"><time>'+fdt(k.ts)+'</time><span class="nt">'+esc(k.t)+'</span><button class="x sx" onclick="ktd(\''+x.id+'\',\''+k.id+'\')" aria-label="Hapus">×</button></div>'}).join('')
++(o?'<div class="hrow"><input class="ni" id="kti-'+x.id+'" maxlength="400" placeholder="Tulis keterangan ..." onkeydown="if(event.key===\'Enter\')kta(\''+x.id+'\')"><button class="go2" onclick="kta(\''+x.id+'\')">Simpan</button></div>':'')
++'<div class="ctl"><button class="w" onclick="mw(\''+x.id+'\')">'+(x.x?'Terwujud ✓':'Tandai terwujud')+'</button><button class="w" onclick="kto(\''+x.id+'\')">+ Keterangan</button><button class="x" onclick="del(\'manifest\',\''+x.id+'\')" aria-label="Hapus">×</button></div></div>'}).join(''):'<div class="em">Tulis niat Anda sebagai kalimat positif, seolah sudah terjadi.</div>')}
+else if(mf=='syukur'){var G={};L.forEach(function(x){(G[x.d]=G[x.d]||[]).push(x)});var ks=Object.keys(G).sort().reverse();
+b='<p class="tip">Catat hal yang Anda syukuri hari ini, sekecil apa pun. Setiap hari otomatis menjadi satu kelompok.</p><div class="hrow"><input class="ni" id="syi" maxlength="200" placeholder="Saya bersyukur karena ..." onkeydown="if(event.key===\'Enter\')sya()"><button class="go2" onclick="sya()">Catat</button></div>'
++(ks.length?'<p class="sum" style="margin-top:12px">'+ks.length+' hari bersyukur, '+L.length+' catatan</p>'+ks.map(function(d){return'<div class="nc gd"><div class="gh"><b>'+dl2(d)+'</b><span class="m">'+G[d].length+' syukur</span></div>'+G[d].slice().sort(function(a,c){return(a.ts||0)-(c.ts||0)}).map(function(x,i){return'<div class="si"><span class="rn">'+(i+1)+'</span><span class="t nt">'+esc(x.t)+'</span>'+(x.ts?'<span class="m">'+ftm(x.ts)+'</span>':'')+'<button class="x" onclick="del(\'syukur\',\''+x.id+'\')" aria-label="Hapus">×</button></div>'}).join('')+'</div>'}).join(''):'<div class="em">Belum ada catatan.</div>')}
+else if(mf=='script'&&can('mlanjut')){b='<p class="tip">Tulis sebagai kenyataan hari ini: waktu sekarang, detail, dan perasaan Anda. Baca ulang secara rutin.</p>'+(L.length?L.map(function(x){return'<details class="sc"><summary><span class="t">'+esc(x.t)+'</span><span class="m" id="m-'+x.id+'">'+esc(x.c)+', '+fd(x.d)+', dibaca '+x.r+' kali</span></summary><div class="bd">'+esc(x.b)+'</div><div class="ctl"><button class="w" onclick="rd(\''+x.id+'\')">Saya sudah membaca ulang</button><button class="x" onclick="del(\'script\',\''+x.id+'\')" aria-label="Hapus">×</button></div></details>'}).join(''):'<div class="em">Belum ada script. Tulis satu halaman tentang hari ideal Anda, seolah sudah terjadi.</div>')}
 else if(mf=='afirmasi'){var td=iso(0);b='<p class="tip">Ucapkan dalam hati atau lisan, lalu catat setiap ulangan.</p>'+(L.length?L.map(function(x){var c=x.dd==td?x.n:0,p=Math.min(100,Math.round(c/x.g*100));return'<div class="pg"><div class="h"><div class="t" style="font-size:20px;font-weight:300">'+esc(x.t)+'</div><div class="n">'+c+'/'+x.g+'</div></div><div class="bar"><i style="width:'+p+'%"></i></div><div class="ctl"><button onclick="af(\''+x.id+'\')">+1 ulangan</button><button class="x" onclick="del(\'afirmasi\',\''+x.id+'\')" aria-label="Hapus">×</button></div></div>'}).join(''):'<div class="em">Belum ada afirmasi. Tulis kalimat positif dalam waktu sekarang.</div>')}
+else if(['script','m369','visual','vision'].indexOf(mf)>=0&&!can('mlanjut'))b=lock('mlanjut');
 else if(mf=='m369')b=r369();
 else if(mf=='visual')b=rvz();
 else if(mf=='vision')b=rvb();
-else{b='<p class="tip">'+(mf=='syukur'?'Catat hal yang Anda syukuri hari ini, sekecil apa pun.':'Catat tanda kecil yang menunjukkan niat Anda bergerak.')+'</p>'+(L.length?L.slice().reverse().map(function(x){return'<div class="row"><div class="tx"><div class="t">'+esc(x.t)+'</div><div class="m">'+fd(x.d)+'</div></div><button class="x" onclick="del(\''+mf+'\',\''+x.id+'\')" aria-label="Hapus">×</button></div>'}).join(''):'<div class="em">Belum ada catatan.</div>')}
+else{b='<p class="tip">Catat tanda kecil yang menunjukkan niat Anda bergerak.</p>'+(L.length?L.slice().reverse().map(function(x){return'<div class="row"><div class="tx"><div class="t">'+esc(x.t)+'</div><div class="m">'+(x.ts?fdt(x.ts):fd(x.d))+'</div></div><button class="x" onclick="del(\''+mf+'\',\''+x.id+'\')" aria-label="Hapus">×</button></div>'}).join(''):'<div class="em">Belum ada catatan.</div>')}
 $('p4').innerHTML=h+b}
 function rd(id){var x=f('script',id);x.r++;save();var e=$('m-'+id);if(e)e.textContent=x.c+', '+fd(x.d)+', dibaca '+x.r+' kali'}
 function af(id){var x=f('afirmasi',id),t=iso(0);if(x.dd!=t){x.dd=t;x.n=0}x.n++;save();rr()}
@@ -389,7 +521,11 @@ function f(k,id){return S[k].filter(function(x){return x.id===id})[0]}
 function cyc(id){var x=f('rencana',id);x.s=(x.s+1)%3;save();rr()}
 function tg(id){var x=f('todo',id);x.x=x.x?0:1;x.z=x.x?iso(0):'';save();rr()}
 function stp(id,d){var x=f('progres',id);x.v=Math.max(0,Math.min(100,x.v+d));save();rr()}
-function mw(id){var x=f('manifest',id);x.x=x.x?0:1;save();rr()}
+function mw(id){var x=f('manifest',id);x.x=x.x?0:1;x.xt=x.x?Date.now():0;save();rr()}
+function kto(id){OP['k'+id]=!OP['k'+id];rr();fcs('kti-'+id)}
+function kta(id){var e=$('kti-'+id),t=e?e.value.trim():'';if(!t){if(e)e.focus();return}var x=f('manifest',id);(x.kt=x.kt||[]).push({id:uid(),ts:Date.now(),t:t});OP['k'+id]=0;save();rr()}
+function ktd(id,k){var x=f('manifest',id);x.kt=(x.kt||[]).filter(function(a){return a.id!=k});save();rr()}
+function sya(){var e=$('syi'),t=e?e.value.trim():'';if(!t){if(e)e.focus();return}S.syukur.push({id:uid(),t:t,d:iso(0),ts:Date.now()});save();rr();fcs('syi')}
 function del(k,id){S[k]=S[k].filter(function(x){return x.id!==id});save();rr()}
 var IMG='',IMGP=0,OP={},PS=['Aktif','Ditahan','Selesai'],VZ={run:0,left:0,tm:null,t:'',m:5};
 var D={'Rencana baru':'New plan','Proyek baru':'New project','Tugas baru':'New task','Target progres baru':'New progress target','Manifestasi baru':'New manifestation','Niat baru':'New intention','Script baru':'New script','Afirmasi baru':'New affirmation','Rasa syukur hari ini':'Gratitude today','Bukti atau tanda baru':'New evidence or sign','Praktik 369 baru':'New 369 practice','Tambah ke papan visi':'Add to vision board',
@@ -405,15 +541,18 @@ var D={'Rencana baru':'New plan','Proyek baru':'New project','Tugas baru':'New t
 'Tulis sebagai kenyataan hari ini: waktu sekarang, detail, dan perasaan Anda. Baca ulang secara rutin.':'Write it as today\'s reality: present tense, details, and your feelings. Re-read it regularly.','Ucapkan dalam hati atau lisan, lalu catat setiap ulangan.':'Say it silently or aloud, then log each repeat.','Catat hal yang Anda syukuri hari ini, sekecil apa pun.':'Note what you are grateful for today, however small.','Catat tanda kecil yang menunjukkan niat Anda bergerak.':'Note small signs that your intention is moving.','Tulis niat 3 kali di pagi hari, 6 kali di siang, dan 9 kali di malam, selama 33 hari berturut-turut.':'Write your intention 3 times in the morning, 6 at noon, and 9 at night, for 33 days in a row.','Tutup mata. Bayangkan hasil akhirnya sejelas mungkin: apa yang Anda lihat, dengar, dan rasakan, seolah sedang terjadi.':'Close your eyes. Imagine the final result as vividly as you can: what you see, hear, and feel, as if it is happening now.','Kumpulkan gambar dan kalimat tentang hidup yang Anda tuju. Lihat papan ini setiap hari.':'Collect images and sentences about the life you are heading toward. Look at this board every day.',
 'Pengaturan':'Settings','Bahasa / Language':'Language','Mode tampilan':'Display mode','Sistem':'System','Terang':'Light','Gelap':'Dark','Data diri':'Personal details','Nama':'Name','Tanggal lahir':'Date of birth','Motto atau tujuan hidup':'Life motto or purpose','Data tersimpan hanya di perangkat ini.':'Data is stored only on this device.','Tulisan di bawah nama aplikasi':'Text under the app name','Kendalikan diri & terwujud':'Control yourself & manifest','Catatan':'Notes','Suasana hati':'Mood','Energi':'Energy','Refleksi bebas':'Free reflection','Pemicu & respons':'Trigger & response','Judul (opsional)':'Title (optional)','Apa pemicunya?':'What was the trigger?','Apa yang saya lakukan?':'What did I do?','Lain kali saya akan ...':'Next time I will ...','Tulis apa yang Anda pikirkan dan rasakan hari ini ...':'Write what you think and feel today ...','Simpan catatan':'Save note','Cari catatan ...':'Search notes ...','Sematkan':'Pin','Lepas sematan':'Unpin','Pemicu':'Trigger','Respons saya':'My response','Lain kali saya akan':'Next time I will','Tidak ada catatan yang cocok.':'No notes match.','Belum ada catatan. Tulis refleksi pertama Anda di atas.':'No notes yet. Write your first reflection above.','Sangat buruk':'Very bad','Kurang baik':'Not great','Biasa':'Okay','Baik':'Good','Sangat baik':'Very good','Fokus hari ini':'Today\'s focus','Kebiasaan hari ini':'Habits today','Kebiasaan':'Habits','Tugas fokus':'Focus tasks','Sesi 369':'369 sessions','Tinjauan 7 hari':'7-day review','Tugas selesai':'Tasks done','Rata-rata suasana hati':'Average mood','Tren 14 hari':'14-day trend','Tambah':'Add','Kebiasaan baru, mis. Tidak membuka media sosial sebelum jam 9':'New habit, e.g. No social media before 9am','Tidak ada tugas yang jatuh tempo. Nikmati harinya.':'No tasks due. Enjoy your day.','Tambahkan satu kebiasaan kecil yang ingin Anda jaga.':'Add one small habit you want to keep.','Tulis catatan dengan suasana hati dan energi untuk melihat tren.':'Write notes with mood and energy to see the trend.','Tren suasana hati dan energi':'Mood and energy trend','Pengingat harian (jam, kosongkan untuk mati)':'Daily reminder (time, leave empty to turn off)','PIN pengunci (4 sampai 6 angka)':'Lock PIN (4 to 6 digits)','PIN baru':'New PIN','Hapus PIN':'Remove PIN','Masukkan PIN':'Enter PIN','Buka':'Unlock','PIN salah':'Wrong PIN','PIN diaktifkan':'PIN enabled','PIN dihapus':'PIN removed','PIN harus 4 sampai 6 angka':'PIN must be 4 to 6 digits','Keamanan':'Security','Enkripsi: aktif':'Encryption: on','Enkripsi: nonaktif':'Encryption: off','Kata sandi enkripsi (min. 12 karakter)':'Encryption password (min. 12 characters)','Ulangi kata sandi enkripsi':'Repeat encryption password','Aktifkan atau ganti kata sandi enkripsi':'Enable or change encryption password','Matikan enkripsi':'Turn off encryption','Kunci sekarang':'Lock now','Jika kata sandi enkripsi lupa, data tidak bisa dipulihkan oleh siapa pun, termasuk pengembang dan penyedia layanan cloud.':'If you forget the encryption password, nobody can recover your data, including the developer and the cloud provider.','Data Anda terenkripsi. Masukkan kata sandi enkripsi.':'Your data is encrypted. Enter the encryption password.','Kata sandi enkripsi':'Encryption password','Kata sandi salah':'Wrong password','Kata sandi minimal 12 karakter':'Password must be at least 12 characters','Konfirmasi kata sandi tidak cocok':'Password confirmation does not match','Enkripsi diaktifkan':'Encryption enabled','Enkripsi dimatikan':'Encryption turned off','Gagal mengenkripsi data':'Failed to encrypt data','Email atau kata sandi salah':'Wrong email or password','Email sudah terdaftar':'Email already registered','Kata sandi terlalu lemah':'Password is too weak','Format email tidak valid':'Invalid email format','Terlalu banyak percobaan. Coba lagi nanti':'Too many attempts. Try again later','Tidak ada koneksi internet':'No internet connection','Terjadi kesalahan':'Something went wrong','Email belum diverifikasi. Kami mengirim ulang tautan verifikasi ke email Anda.':'Email not verified. We resent the verification link to your email.','Pendaftaran berhasil. Cek email Anda untuk verifikasi, lalu masuk.':'Signed up. Check your email to verify, then sign in.','Tautan reset dikirim ke email Anda.':'Reset link sent to your email.','Isi email dulu.':'Enter your email first.','Data terlalu besar untuk disinkronkan. Kurangi gambar papan visi.':'Data is too large to sync. Reduce vision board images.','Masuk':'Sign in','Daftar':'Sign up','Lupa kata sandi?':'Forgot password?','Keluar':'Sign out','Akun':'Account','Menyinkronkan…':'Syncing…','Tersinkron ✓':'Synced ✓','Gagal sinkron':'Sync failed','Ubah':'Edit','Kata sandi (min. 8 karakter)':'Password (min. 8 characters)','Penyimpanan penuh, data tidak tersimpan di perangkat':'Storage full, data was not saved on this device','Pengaturan ini tersimpan di perangkat ini.':'These settings are stored on this device.','Buka gambar':'Open image','Halo,':'Hello,','Instal':'Install','Instal aplikasi':'Install app','Zui Jurnal terpasang':'Zui Jurnal installed','Di iPhone: ketuk tombol Bagikan, lalu "Tambahkan ke Layar Utama".':'On iPhone: tap the Share button, then "Add to Home Screen".'};
 var RX=[[/(\d+) dari (\d+) tugas selesai/g,'$1 of $2 tasks done'],[/(\d+) dari (\d+) sudah terwujud/g,'$1 of $2 manifested'],[/Terlambat (\d+) hari/g,'Overdue $1 days'],[/Hari ke-(\d+), (\d+) hari lengkap/g,'Day $1, $2 full days'],[/dibaca (\d+) kali/g,'read $1 times'],[/(\d+) menit/g,'$1 min'],[/H-(\d+)/g,'D-$1'],[/\+1 ulangan/g,'+1 repeat'],[/Runtutan (\d+) hari/g,'Streak: $1 days']];
+RX.push([/(\d+) hari lagi/g,'$1 days left'],[/· (\d+) hari/g,'· $1 days'],[/Fitur ini tersedia mulai paket (\w+)\. Paket Anda saat ini/g,'This feature is available from the $1 plan. Your current plan is'],[/(\d+) terlambat/g,'$1 overdue'],[/Lewat jam/g,'Past'],[/Dilanjutkan (\d+)x ke/g,'Continued $1x to'],[/(\d+) hari bersyukur, (\d+) catatan/g,'$1 grateful days, $2 entries'],[/(\d+) syukur/g,'$1 entries'],[/(\d+)\/(\d+) terwujud/g,'$1/$2 manifested'],[/(\d+) rincian/g,'$1 items'],[/Kotak masuk admin/g,'Admin inbox']);
+Object.assign(D,{'Tim ZUI':'ZUI Team','Langganan ZUI JURNAL':'ZUI JURNAL subscription','Langganan':'Subscription','Status langganan':'Subscription status','Masa percobaan':'Trial','Masa tenggang':'Grace period','Masa aktif habis':'Subscription ended','Rupiah · QRIS':'Rupiah · QRIS','Ringgit · DuitNow':'Ringgit · DuitNow','1 bulan':'1 month','6 bulan':'6 months','1 tahun':'1 year','paket Anda':'your plan','Nomor referensi resit':'Receipt reference number','Kirim permintaan bayar':'Send payment request','Riwayat permintaan':'Request history','Menunggu konfirmasi Tim ZUI':'Waiting for ZUI team confirmation','Lihat paket':'View plans','Bantuan & langganan':'Help & subscription','Umpan balik, pertanyaan, dan bukti bayar langganan':'Feedback, questions, and payment proof','Gratis selamanya':'Free forever','Percobaan':'Trial','Tenggang':'Grace','aktif':'active','ditolak':'rejected','menunggu':'waiting','Isi nomor referensi resit dulu':'Enter the receipt reference first','Masih ada permintaan yang menunggu':'A request is still waiting','Permintaan terkirim. Tim ZUI akan mengaktifkan setelah dana masuk.':'Request sent. The ZUI team will activate it once payment arrives.','Masa aktif habis. Data hanya bisa dibaca sampai Anda berlangganan.':'Subscription ended. Data is read-only until you subscribe.','Masa aktif habis. Data Anda aman, tetapi hanya bisa dibaca.':'Subscription ended. Your data is safe but read-only.','Masuk ke akun untuk berlangganan.':'Sign in to subscribe.','Chat':'Chat','Dibuat':'Created','Tenggat awal':'Original deadline','Sub item':'Sub-items','Tambah sub item ...':'Add sub-item ...','Tulis catatan atau alasan belum selesai ...':'Write a note or why it is not done ...','Catat':'Log','↪ Lanjutkan besok':'↪ Continue tomorrow','Belum selesai hari ini? Tulis alasannya di kolom catatan, lalu tekan Lanjutkan besok. Tenggat awal tetap dihitung, jadi status terlambat tetap terlihat.':'Not done today? Write the reason in the notes field, then tap Continue tomorrow. The original deadline still counts, so the overdue status stays visible.','Tugas dilanjutkan ke besok':'Task continued to tomorrow','Jam (opsional)':'Time (optional)','Rincian proyek':'Project breakdown','Catatan awal (opsional)':'First note (optional)','Keterangan (opsional)':'Description (optional)','Kelompok (opsional)':'Group (optional)','Mis. Rumah impian, Perjalanan':'E.g. Dream home, Travel','Ditulis':'Written','Terwujud':'Manifested','+ Keterangan':'+ Description','Tulis keterangan ...':'Write a description ...','Catat hal yang Anda syukuri hari ini, sekecil apa pun. Setiap hari otomatis menjadi satu kelompok.':'Note what you are grateful for today, however small. Each day becomes one group automatically.','Kumpulkan gambar dan kalimat tentang hidup yang Anda tuju. Lihat papan ini setiap hari. Kelompokkan menurut bidang hidup atau nama kelompok sendiri.':'Collect images and sentences about the life you are heading toward. Look at this board every day. Group them by life area or your own group name.','Tambah rincian, mis. Desain, Pengadaan, Pemasangan':'Add a breakdown item, e.g. Design, Procurement, Installation','Tugas tanpa rincian':'Tasks without an item','Naikkan urutan':'Move up','Kunci PIN':'PIN lock','Atur PIN dulu':'Set a PIN first','Layanan':'Services','Syarat penggunaan':'Terms of use','Kebijakan privasi':'Privacy policy','Kelola langganan':'Manage subscription','Berbagi dengan teman':'Share with friends','Umpan balik (chat langsung dengan admin)':'Feedback (chat directly with admin)','Jelajahi aplikasi lainnya di ZUISYSTEM.COM ↗':'Explore other apps at ZUISYSTEM.COM ↗','Zui Jurnal versi 26.01':'Zui Jurnal version 26.01','Aplikasi Zui Jurnal dikelola oleh Zui System':'Zui Jurnal is managed by Zui System','Gratis':'Free','Pro Bulanan':'Pro Monthly','Pro Tahunan':'Pro Yearly','Enkripsi dimatikan':'Encryption turned off','Data Anda dari versi sebelumnya masih terenkripsi. Masukkan kata sandi enkripsi sekali untuk membukanya. Setelah itu enkripsi dimatikan.':'Your data from the previous version is still encrypted. Enter the encryption password once to open it; encryption will then be turned off.',
+'Masuk ke akun untuk memakai chat dengan sesama pengguna dan admin.':'Sign in to chat with other users and the admin.','Masuk ke akun untuk memakai chat.':'Sign in to use chat.','Mulai chat dengan sesama pengguna Zui Jurnal':'Start a chat with another Zui Jurnal user','Email teman yang sudah terdaftar':'Registered friend\'s email','Bantuan':'Help','Umpan balik, pertanyaan, dan langganan':'Feedback, questions, and subscriptions','Belum ada pesan masuk.':'No incoming messages.','Percakapan':'Conversations','Belum ada percakapan. Masukkan email teman di atas untuk memulai.':'No conversations yet. Enter a friend\'s email above to start.','← Kembali':'← Back','Tulis pesan ...':'Write a message ...','Kirim':'Send','Belum ada pesan. Sapa duluan!':'No messages yet. Say hello!','Itu email Anda sendiri':'That is your own email','Email itu belum terdaftar di Zui Jurnal':'That email is not registered in Zui Jurnal','Paket pengguna:':'User plan:','Aktifkan':'Activate','Jadikan Gratis':'Set to Free','Paket diperbarui':'Plan updated'});
 var TD=Object.keys(D).sort((a,b)=>b.length-a.length).map(k=>[new RegExp('(?<![\\p{L}\\p{N}])'+k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?![\\p{L}])','gu'),D[k]]);
 function t1(s){RX.forEach(r=>{s=s.replace(r[0],r[1])});TD.forEach(r=>{s=s.replace(r[0],r[1])});return s}
 function tr(root){if(SET.lang!='en')return;var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),n,L=[];while(n=w.nextNode())L.push(n);
-L.forEach(n=>{var p=n.parentElement;if(p&&!p.closest('.t,.bd,.nt,#fj'))n.nodeValue=t1(n.nodeValue)});
+L.forEach(n=>{var p=n.parentElement;if(p&&!p.closest('.t,.bd,.nt,#fj,#fr,#fkl,#inf'))n.nodeValue=t1(n.nodeValue)});
 root.querySelectorAll('[placeholder],[aria-label]').forEach(e=>['placeholder','aria-label'].forEach(a=>{var v=e.getAttribute(a);if(v)e.setAttribute(a,t1(v))}))}
 function applyTheme(){var t=SET.theme,r=document.documentElement;if(t=='light'||t=='dark')r.setAttribute('data-app',t);else r.removeAttribute('data-app')}
-function openSet(){$('s-lang').value=SET.lang||'id';$('s-theme').value=SET.theme||'sys';['name','email','dob','motto','tag','rem'].forEach(k=>{$('s-'+k).value=['tag','rem'].indexOf(k)>=0?(SET[k]||''):gv(k)});$('esm').textContent=ENC?'Enkripsi: aktif':'Enkripsi: nonaktif';$('eoff').style.display=ENC?'':'none';tr($('esm'));$('acw').style.display=USER?'':'none';$('acm').textContent=USER?USER.email:'';$('sd').showModal()}
+function openSet(){$('s-lang').value=SET.lang||'id';$('s-theme').value=SET.theme||'sys';['name','email','dob','motto','tag','rem'].forEach(k=>{$('s-'+k).value=['tag','rem'].indexOf(k)>=0?(SET[k]||''):gv(k)});subUi();$('acw').style.display=USER?'':'none';$('acm').textContent=USER?USER.email:'';$('sd').showModal()}
 function saveSet(){pinSave();var old=SET.lang||'id';SET.lang=$('s-lang').value;SET.theme=$('s-theme').value;['name','email','dob','motto','tag','rem'].forEach(k=>{sv(k,$('s-'+k).value.trim())});
-try{localStorage.setItem('jurnal.set',JSON.stringify(spub()))}catch(e){}if(ENC)save();remAsk();applyTheme();$('sd').close();if(old!=SET.lang)location.reload();else rr()}
+try{localStorage.setItem('jurnal.set',JSON.stringify(spub()))}catch(e){}if(ENC)save();chPub();remAsk();applyTheme();$('sd').close();if(old!=SET.lang)location.reload();else rr()}
 function tagR(){var e=$('tag');if(!e)return;e.textContent=SET.tag||(SET.lang=='en'?'Control yourself & manifest':'Kendalikan diri & terwujud')}
 var NS={mood:0,en:0,mode:0,t:'',b:'',pm:'',rs:'',nx:'',pj:'',q:''},MOOD=['😞','😕','😐','🙂','😄'],ML=['Sangat buruk','Kurang baik','Biasa','Baik','Sangat baik'];
 function nin(k,v){NS[k]=v}
@@ -428,7 +567,7 @@ if(NSE){var o=f('catatan',NSE);Object.assign(o,{t:NS.t.trim(),b:b,mood:NS.mood,e
 NS={mood:0,en:0,mode:NS.mode,t:'',b:'',pm:'',rs:'',nx:'',pj:'',q:NS.q};save();rr()}
 function npin(id){var x=f('catatan',id);x.pin=x.pin?0:1;save();nlist()}
 function E(){return{rencana:[],todo:[],progres:[],manifest:[],script:[],afirmasi:[],syukur:[],bukti:[],proyek:[],m369:[],visual:[],vision:[],catatan:[],kebiasaan:[]}}
-var fa=null,fs=null,CN=0,USER=null,PT=null,AM='in',EDIT=null,NSE='',WL={rencana:'t d c n',proyek:'t d b c',todo:'t p u pj',progres:'t',manifest:'t',script:'t b c',afirmasi:'t g',m369:'t',vision:'t c',syukur:'t',bukti:'t'};
+var fa=null,fs=null,CN=0,USER=null,PT=null,AM='in',EDIT=null,NSE='',WL={rencana:'t d c n',proyek:'t d b c',todo:'t p u pj w ri',progres:'t',manifest:'t',script:'t b c',afirmasi:'t g',m369:'t',vision:'t c g',syukur:'t',bukti:'t'};
 function toast(m){var e=$('ts');e.textContent=m;tr(e);e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(function(){e.classList.remove('on')},3500)}
 function syn(t){var e=$('sy');if(e){e.textContent=t;tr(e)}}
 function fe(e){var m={'auth/invalid-credential':'Email atau kata sandi salah','auth/wrong-password':'Email atau kata sandi salah','auth/user-not-found':'Email atau kata sandi salah','auth/email-already-in-use':'Email sudah terdaftar','auth/weak-password':'Kata sandi terlalu lemah','auth/invalid-email':'Format email tidak valid','auth/too-many-requests':'Terlalu banyak percobaan. Coba lagi nanti','auth/network-request-failed':'Tidak ada koneksi internet'};return m[e&&e.code]||(e&&e.message)||'Terjadi kesalahan'}
@@ -444,10 +583,14 @@ try{loc=JSON.parse(localStorage.getItem(K))}catch(e){}
 if(!loc){try{loc=JSON.parse(localStorage.getItem('jurnal.v1'))}catch(e){}}
 try{var m=await r.get();if(m.exists){CN=m.data().n||0;var cs=await Promise.all(Array.from({length:CN},function(_,i){return r.collection('chunks').doc(String(i)).get()}));cl=JSON.parse(cs.map(function(x){return x.data().d}).join(''))}}catch(e){er=e}
 var lt=tsOf(loc),ct=tsOf(cl),ch=(cl&&ct>=lt)?cl:(loc||{}),env=ch.enc?ch:null;
-if(env){ENC=true;SALT=env.s;KEY=null;$('au').style.display='none';ch=await ekAsk(env);LASTOUT=env}else{ENC=false;KEY=null;LASTOUT=null}
+if(env){ENC=true;SALT=env.s;KEY=null;$('au').style.display='none';ch=unenc(await ekAsk(env))}else{ENC=false;KEY=null;LASTOUT=null}
 S=Object.assign(E(),ch);
-if(er){syn('Gagal sinkron');toast(fe(er))}else if(!cl||lt>ct)push();else syn('Tersinkron ✓');
-$('au').style.display='none';rr();sync();zr()}
+if(env)save();else if(er){syn('Gagal sinkron');toast(fe(er))}else if(!cl||lt>ct)push();else syn('Tersinkron ✓');
+$('au').style.display='none';rr();sync();zr();chInit()}
+// Enkripsi sudah dihapus. Data lama yang terenkripsi dibuka sekali lalu disimpan biasa.
+function unenc(o){ENC=false;KEY=null;SALT='';LASTOUT=null;o=o||{};var p=o._p||{};PDK.forEach(function(k){if(p[k])SET[k]=p[k]});delete o._p;delete o.enc;
+try{localStorage.setItem('jurnal.set',JSON.stringify(SET))}catch(e){}toast('Enkripsi dimatikan');return o}
+function lockNow(){if(!pinGet()){toast('Atur PIN dulu');return}$('sd').close();lockShow()}
 function msg(t,e){var m=$('am');m.textContent=t;m.className='am'+(e?' er':'');tr(m)}
 function amode(m){AM=m;$('abt').textContent=m=='in'?'Masuk':'Daftar';$('afg').style.display=m=='in'?'':'none';$('ap').autocomplete=m=='in'?'current-password':'new-password';$('ain').classList.toggle('on',m=='in');$('aup').classList.toggle('on',m=='up');msg('');tr($('au'))}
 async function authGo(ev){ev.preventDefault();if(!fa){msg('Layanan login belum siap.',1);return false}var em=$('ae').value.trim(),pw=$('ap').value;$('abt').disabled=true;
@@ -459,8 +602,8 @@ async function logout(){$('sd').close();await fa.signOut()}
 function ed(k,id){var x=f(k,id);if(!x)return;
 if(k=='catatan'){NS={mood:x.mood||0,en:x.en||0,mode:x.pm?1:0,t:x.t||'',b:x.b||'',pm:x.pm||'',rs:x.rs||'',nx:x.nx||'',pj:x.pj||'',q:''};NSE=id;rn();tr($('p5'));$('p5').scrollTop=0;return}
 var mp={rencana:0,proyek:1,todo:2,progres:3};if(k in mp)cur=mp[k];else{cur=4;mf=k=='manifest'?'niat':k}
-EDIT={k:k,id:id};openAdd(x.pj||'');
-$('ft').value=x.t||'';$('fd').value=x.d||x.u||'';$('fb').value=x.b||x.n||'';$('fc').value=x.c||'Lainnya';$('fp').value=x.p||'Sedang';$('fg').value=x.g||9;$('dt').textContent='Ubah';tr($('dt'))}
+EDIT={k:k,id:id};openAdd(x.pj||'',x.ri||'');
+$('fw').value=x.w||'';$('fk').value=x.g||'';$('ft').value=x.t||'';$('fd').value=x.d||x.u||'';$('fb').value=x.b||x.n||'';$('fc').value=x.c||'Lainnya';$('fp').value=x.p||'Sedang';$('fg').value=x.g||9;$('dt').textContent='Ubah';tr($('dt'))}
 function addEd(){document.querySelectorAll('button.x').forEach(function(b){var p=b.previousElementSibling;if(p&&p.classList.contains('ed'))return;var o=b.getAttribute('onclick')||'',m=o.match(/^del\('(\w+)','(\w+)'\)$/),k,id;
 if(m){k=m[1];id=m[2]}else{m=o.match(/^delp\('(\w+)'\)$/);if(!m)return;k='proyek';id=m[1]}
 var e=document.createElement('button');e.className='x ed';e.textContent='✎';e.setAttribute('aria-label','Ubah');e.setAttribute('onclick',"ed('"+k+"','"+id+"')");b.before(e)})}
@@ -479,7 +622,7 @@ t7=T.filter(x=>x.z&&x.z>=iso(-6)).length,hp=H.length?Math.round(H.reduce((s,h)=>
 C=S.catatan.filter(x=>x.d>=iso(-6)&&x.mood),am=C.length?(C.reduce((s,x)=>s+x.mood,0)/C.length).toFixed(1):'-',
 m3=S.m369.reduce((s,x)=>s+(x.lg[td]||[0,0,0]).reduce((a,b)=>a+b,0),0),m3t=S.m369.length*3;
 $('p6').innerHTML=`<p class="sum">${fd(td)}</p>`+kp([[hd+'/'+H.length,'Kebiasaan hari ini'],[due.length,'Tugas fokus'],[m3t?m3+'/'+m3t:'-','Sesi 369']])
-+`<h3 class="hh">Fokus hari ini</h3>`+(due.length?due.map(x=>`<div class="row"><button class="chk" onclick="tg('${x.id}')" aria-label="Tandai selesai">✓</button><div class="tx"><div class="t">${esc(x.t)}</div><div class="m"><span class="dot p-${x.p}"></span>${x.p}${x.u?', '+dd(x.u,0):''}</div></div></div>`).join(''):'<div class="em">Tidak ada tugas yang jatuh tempo. Nikmati harinya.</div>')
++`<h3 class="hh">Fokus hari ini</h3>`+(due.length?due.map(x=>`<div class="row"><button class="chk" onclick="tg('${x.id}')" aria-label="Tandai selesai">✓</button><div class="tx"><div class="t">${esc(x.t)}</div><div class="m"><span class="dot p-${x.p}"></span>${x.p}${tdd(x)?', '+tdd(x):''}</div></div></div>`).join(''):'<div class="em">Tidak ada tugas yang jatuh tempo. Nikmati harinya.</div>')
 +`<h3 class="hh">Kebiasaan</h3>`+(H.length?'':'<p class="tip">Tambahkan satu kebiasaan kecil yang ingin Anda jaga.</p>')+H.map(h=>`<div class="row${h.log[td]?' done':''}"><button class="chk" onclick="htg('${h.id}')" aria-label="Tandai selesai">✓</button><div class="tx"><div class="t">${esc(h.t)}</div><div class="m">Runtutan ${stk(h)} hari</div></div><button class="x" onclick="delh('${h.id}')" aria-label="Hapus">×</button></div>`).join('')
 +`<div class="hrow"><input class="ni" id="hin" maxlength="80" placeholder="Kebiasaan baru, mis. Tidak membuka media sosial sebelum jam 9" onkeydown="if(event.key==='Enter')hadd()"><button class="go2" onclick="hadd()">Tambah</button></div>`
 +`<h3 class="hh">Tinjauan 7 hari</h3>`+kp([[t7,'Tugas selesai'],[hp+'%','Kebiasaan'],[am,'Rata-rata suasana hati']])+`<h3 class="hh">Tren 14 hari</h3>`+trend()}
@@ -524,39 +667,48 @@ function greet(){var n=gv('name'),m=gv('motto');return n?`<p class="sum">Halo, $
 applyTheme();document.documentElement.lang=SET.lang=='en'?'en':'id';
 function gp(id){return S.proyek.filter(x=>x.id===id)[0]}
 function pst(id){var T=S.todo.filter(x=>x.pj===id),d=T.filter(x=>x.x).length;return{n:T.length,d:d,p:T.length?Math.round(d/T.length*100):0}}
-function openAdd(pid){var m=cur==4,sc=m&&mf=='script',isa=m&&mf=='afirmasi',vb=m&&mf=='vision',rb=cur<2||sc;pid=typeof pid=='string'?pid:'';IMG='';
+function frs(rid){var p=gp($('fj').value),R=(p&&p.ri)||[];$('fr').innerHTML='<option value="">'+(SET.lang=='en'?'No breakdown item':'Tanpa rincian')+'</option>'+R.map((r,i)=>`<option value="${r.id}">${i+1}. ${esc(r.t)}</option>`).join('');$('fr').value=rid||'';$('frw').style.display=(cur==2&&R.length)?'':'none'}
+function openAdd(pid,rid){if(RO()){roBlock();return}var lk=cur==1?'proyek':(cur==4&&['script','m369','visual','vision'].indexOf(mf)>=0)?'mlanjut':'';if(lk&&!can(lk)&&!EDIT){openSub();return}var m=cur==4,sc=m&&mf=='script',isa=m&&mf=='afirmasi',vb=m&&mf=='vision',rb=cur<2||sc,nb=(cur==2||(m&&mf=='niat'))&&!EDIT;pid=typeof pid=='string'?pid:'';rid=typeof rid=='string'?rid:'';IMG='';
+$('fww').style.display=cur==2?'':'none';$('fw').value='';$('fkw').style.display=vb?'':'none';$('fk').value='';
+$('fkl').innerHTML=[...new Set((S.vision||[]).map(x=>x.g).filter(Boolean))].map(g=>`<option value="${esc(g)}">`).join('');
 $('dt').textContent=m?MD[mf].dt:DT[cur];$('ft').value='';$('ft').placeholder=m?MD[mf].ph:PH[cur];$('fd').value='';$('fp').value='Sedang';$('fb').value='';$('fg').value=9;$('fi').value='';
 $('fdw').style.display=cur<3?'':'none';$('fd').previousElementSibling.textContent=cur==2?'Tenggat (opsional)':cur==1?'Tenggat proyek':'Tanggal target';
 $('fpw').style.display=cur==2?'':'none';$('fjw').style.display=cur==2?'':'none';
-$('fj').innerHTML='<option value="">Tanpa proyek</option>'+S.proyek.filter(x=>x.s<2).map(x=>`<option value="${x.id}">${esc(x.t)}</option>`).join('');$('fj').value=pid;
-$('fbw').style.display=rb?'':'none';$('fcw').style.display=(rb||vb)?'':'none';$('fgw').style.display=isa?'':'none';$('fiw').style.display=vb?'':'none';
-$('fb').rows=sc?8:3;$('fb').previousElementSibling.textContent=sc?'Isi script (tulis dengan kalimat sekarang, lengkap dengan perasaan)':cur==1?'Tujuan dan rincian proyek':'Catatan (opsional)';
+$('fj').innerHTML='<option value="">Tanpa proyek</option>'+S.proyek.filter(x=>x.s<2).map(x=>`<option value="${x.id}">${esc(x.t)}</option>`).join('');$('fj').value=pid;frs(rid);
+$('fbw').style.display=(rb||nb)?'':'none';$('fcw').style.display=(rb||vb)?'':'none';$('fgw').style.display=isa?'':'none';$('fiw').style.display=vb?'':'none';
+$('fb').rows=sc?8:3;$('fb').previousElementSibling.textContent=sc?'Isi script (tulis dengan kalimat sekarang, lengkap dengan perasaan)':cur==1?'Tujuan dan rincian proyek':cur==2?'Catatan awal (opsional)':(m&&mf=='niat')?'Keterangan (opsional)':'Catatan (opsional)';
 $('flt').textContent=m?(mf=='script'?'Judul':mf=='niat'?'Niat':mf=='afirmasi'?'Kalimat afirmasi':mf=='m369'?'Kalimat niat 369':mf=='vision'?'Impian':'Isi'):'Judul';
 tr(dl);dl.showModal();$('ft').focus()}
 function add(){var t=$('ft').value.trim();if(!t){$('ft').focus();return}var d=$('fd').value,c=$('fc').value,b=$('fb').value.trim();
-if(EDIT){var k=EDIT.k,o=f(k,EDIT.id),v={t:t,d:d,u:d,b:b,n:b,c:c,p:$('fp').value,g:Math.max(1,parseInt($('fg').value)||9),pj:$('fj').value};
+if(EDIT){var k=EDIT.k,o=f(k,EDIT.id),v={t:t,d:d,u:d,b:b,n:b,c:c,p:$('fp').value,g:Math.max(1,parseInt($('fg').value)||9),pj:$('fj').value,w:$('fw').value,ri:$('fj').value?$('fr').value:'',g2:0};v.g=k=='vision'?$('fk').value.trim():v.g;
 if(k=='script'&&!b){$('fb').focus();return}
 WL[k].split(' ').forEach(function(a){o[a]=v[a]});if(k=='vision'&&IMG)o.img=IMG;EDIT=null;save();rr();dl.close();return}
 if(cur==0)S.rencana.push({id:uid(),t:t,d:d,s:0,c:c,n:b});
 else if(cur==1)S.proyek.push({id:uid(),t:t,d:d,b:b,c:c,s:0});
-else if(cur==2)S.todo.push({id:uid(),t:t,p:$('fp').value,x:0,u:d,z:'',pj:$('fj').value});
+else if(cur==2)S.todo.push({id:uid(),t:t,p:$('fp').value,x:0,u:d,w:$('fw').value,z:'',pj:$('fj').value,ri:$('fj').value?$('fr').value:'',ct:Date.now(),sb:[],nl:b?[{id:uid(),ts:Date.now(),t:b}]:[]});
 else if(cur==3)S.progres.push({id:uid(),t:t,v:0});
-else if(mf=='niat')S.manifest.push({id:uid(),t:t,x:0});
+else if(mf=='niat')S.manifest.push({id:uid(),t:t,x:0,ct:Date.now(),kt:b?[{id:uid(),ts:Date.now(),t:b}]:[]});
 else if(mf=='script'){if(!b){$('fb').focus();return}S.script.push({id:uid(),t:t,b:b,c:c,d:iso(0),r:0})}
 else if(mf=='afirmasi')S.afirmasi.push({id:uid(),t:t,g:Math.max(1,parseInt($('fg').value)||9),n:0,dd:''});
 else if(mf=='m369')S.m369.push({id:uid(),t:t,st:iso(0),lg:{}});
-else if(mf=='vision'){if(IMGP){setTimeout(add,300);return}S.vision.push({id:uid(),t:t,c:c,img:IMG,x:0})}
-else S[mf].push({id:uid(),t:t,d:iso(0)});
+else if(mf=='vision'){if(IMGP){setTimeout(add,300);return}S.vision.push({id:uid(),t:t,c:c,g:$('fk').value.trim(),img:IMG,x:0})}
+else S[mf].push({id:uid(),t:t,d:iso(0),ts:Date.now()});
 save();rr();dl.close()}
 dl.addEventListener('close',function(){EDIT=null;sync()});
 function pimg(el){var g=el.files[0];IMG='';if(!g)return;IMGP=1;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);IMG=c.toDataURL('image/jpeg',.8);IMGP=0};im.onerror=function(){IMGP=0};im.src=r.result};r.onerror=function(){IMGP=0};r.readAsDataURL(g)}
-function mkp(id){var r=f('rencana',id);if(r.pid)return;var p={id:uid(),t:r.t,d:r.d,b:r.n||'',c:r.c||'',s:0,rid:r.id};S.proyek.push(p);r.pid=p.id;r.s=Math.max(r.s,1);save();rr()}
+function mkp(id){if(!can('proyek')){openSub();return}var r=f('rencana',id);if(r.pid)return;var p={id:uid(),t:r.t,d:r.d,b:r.n||'',c:r.c||'',s:0,rid:r.id};S.proyek.push(p);r.pid=p.id;r.s=Math.max(r.s,1);save();rr()}
 function cps(id){var x=gp(id);x.s=(x.s+1)%3;save();rr()}
 function delp(id){S.proyek=S.proyek.filter(x=>x.id!==id);S.todo.forEach(y=>{if(y.pj===id)y.pj=''});S.rencana.forEach(r=>{if(r.pid===id)r.pid=''});save();rr()}
-function atk(id){cur=2;openAdd(id)}
+function atk(id,rid){cur=2;openAdd(id,rid||'')}
+function rad(pid){var e=$('ri-'+pid),t=e?e.value.trim():'';if(!t){if(e)e.focus();return}var p=gp(pid);(p.ri=p.ri||[]).push({id:uid(),t:t});save();rr();fcs('ri-'+pid)}
+function rdl(pid,rid){var p=gp(pid);p.ri=(p.ri||[]).filter(r=>r.id!=rid);S.todo.forEach(y=>{if(y.ri==rid)y.ri=''});save();rr()}
+function rmv(pid,rid){var p=gp(pid),i=(p.ri||[]).findIndex(r=>r.id==rid);if(i>0){var a=p.ri[i];p.ri[i]=p.ri[i-1];p.ri[i-1]=a;save();rr()}}
 function pgl(){var P=S.proyek.filter(x=>x.s<2);return P.length?P.map(x=>{var g=pst(x.id);return`<div class="pg"><div class="h"><div class="t" style="font-size:18px">${esc(x.t)}</div><div class="n">${g.p}%</div></div><div class="bar"><i style="width:${g.p}%"></i></div><span class="m">${g.d} dari ${g.n} tugas selesai</span></div>`}).join(''):'<div class="em">Belum ada proyek aktif.</div>'}
-function rp(){var P=S.proyek;
-$('p1').innerHTML=kp([[P.filter(x=>x.s==0).length,'Aktif'],[P.filter(x=>x.s==1).length,'Ditahan'],[P.filter(x=>x.s==2).length,'Selesai']])+(P.length?P.map(x=>{var g=pst(x.id),T=S.todo.filter(y=>y.pj===x.id);return`<details class="sc"${OP[x.id]?' open':''} ontoggle="OP['${x.id}']=this.open"><summary><span class="t">${esc(x.t)}</span><span class="m">${x.c?esc(x.c)+', ':''}${PS[x.s]}${x.d?', '+dd(x.d,x.s==2):''}</span><div class="bar"><i style="width:${g.p}%"></i></div><span class="m">${g.d} dari ${g.n} tugas selesai (${g.p}%)</span></summary>${x.b?`<div class="bd">${esc(x.b)}</div>`:''}${T.map(y=>`<div class="row${y.x?' done':''}"><button class="chk" onclick="tg('${y.id}')" aria-label="Tandai selesai">✓</button><div class="tx"><div class="t" style="font-size:16px">${esc(y.t)}</div><div class="m"><span class="dot p-${y.p}"></span>${y.p}${y.u?', '+dd(y.u,y.x):''}</div></div></div>`).join('')}<div class="ctl"><button class="w" onclick="atk('${x.id}')">+ Tugas</button><button class="w" onclick="cps('${x.id}')">${PS[x.s]}</button><button class="x" onclick="delp('${x.id}')" aria-label="Hapus">×</button></div></details>`}).join(''):'<div class="em">Belum ada proyek. Ubah rencana menjadi proyek, atau buat langsung.</div>')}
+function rp(){if(!can('proyek')){$('p1').innerHTML=lock('proyek');return}var P=S.proyek;
+$('p1').innerHTML=kp([[P.filter(x=>x.s==0).length,'Aktif'],[P.filter(x=>x.s==1).length,'Ditahan'],[P.filter(x=>x.s==2).length,'Selesai']])+(P.length?P.map(x=>{var g=pst(x.id),R=x.ri||[],T=S.todo.filter(y=>y.pj===x.id),lo=T.filter(y=>!y.ri||!R.some(r=>r.id==y.ri));return`<details class="sc"${OP[x.id]?' open':''} ontoggle="OP['${x.id}']=this.open"><summary><span class="t">${esc(x.t)}</span><span class="m">${x.c?esc(x.c)+', ':''}${PS[x.s]}${x.d?', '+dd(x.d,x.s==2):''}${R.length?', '+R.length+' rincian':''}</span><div class="bar"><i style="width:${g.p}%"></i></div><span class="m">${g.d} dari ${g.n} tugas selesai (${g.p}%)</span></summary>${x.b?`<div class="bd">${esc(x.b)}</div>`:''}
+<div class="hh2">Rincian proyek</div>${R.map((r,i)=>{var RT=T.filter(y=>y.ri==r.id),rd=RT.filter(y=>y.x).length;return`<div class="ri${RT.length&&rd==RT.length?' ok':''}"><div class="rh"><span class="rn">${RT.length&&rd==RT.length?'✓':i+1}</span><span class="t nt">${esc(r.t)}</span><span class="m">${rd}/${RT.length}</span>${i?`<button class="x sx" onclick="rmv('${x.id}','${r.id}')" aria-label="Naikkan urutan" title="Naikkan urutan">▲</button>`:''}<button class="w" onclick="atk('${x.id}','${r.id}')">+ Tugas</button><button class="x sx" onclick="rdl('${x.id}','${r.id}')" aria-label="Hapus">×</button></div>${RT.map(y=>trow(y,1)).join('')}</div>`}).join('')}
+<div class="hrow"><input class="ni" id="ri-${x.id}" maxlength="120" placeholder="Tambah rincian, mis. Desain, Pengadaan, Pemasangan" onkeydown="if(event.key==='Enter')rad('${x.id}')"><button class="go2" onclick="rad('${x.id}')">Tambah</button></div>
+${lo.length?`<div class="hh2">${R.length?'Tugas tanpa rincian':'Tugas'}</div>`+lo.map(y=>trow(y,1)).join(''):''}<div class="ctl"><button class="w" onclick="atk('${x.id}')">+ Tugas</button><button class="w" onclick="cps('${x.id}')">${PS[x.s]}</button><button class="x" onclick="delp('${x.id}')" aria-label="Hapus">×</button></div></details>`}).join(''):'<div class="em">Belum ada proyek. Ubah rencana menjadi proyek, atau buat langsung.</div>')}
 function r369(){var td=iso(0);return'<p class="tip">Tulis niat 3 kali di pagi hari, 6 kali di siang, dan 9 kali di malam, selama 33 hari berturut-turut.</p>'+(S.m369.length?S.m369.map(x=>{var n=Math.floor((new Date(td+'T00:00')-new Date(x.st+'T00:00'))/864e5)+1,L=x.lg[td]||[0,0,0],ds=[],full=0;for(var i=0;i<33;i++){var l=x.lg[iso(i-n+1)]||[0,0,0],c=l[0]+l[1]+l[2];if(c==3)full++;ds.push(`<i class="dt${c==3?' f':c?' h':''}"></i>`)}
 return`<div class="pg"><div class="h"><div class="t" style="font-size:19px;font-weight:300">${esc(x.t)}</div><div class="n">${Math.min(n,33)}/33</div></div><div class="m">Hari ke-${Math.min(n,33)}, ${full} hari lengkap</div><div class="dts">${ds.join('')}</div><div class="ctl">${['Pagi 3x','Siang 6x','Malam 9x'].map((a,i)=>`<button class="${L[i]?'on':''}" onclick="t369('${x.id}',${i})" aria-pressed="${!!L[i]}">${a}</button>`).join('')}<button class="x" onclick="del('m369','${x.id}')" aria-label="Hapus">×</button></div></div>`}).join(''):'<div class="em">Belum ada praktik 369. Tulis satu kalimat niat untuk dimulai.</div>')}
 function t369(id,i){var x=f('m369',id),td=iso(0),l=x.lg[td]||[0,0,0];l[i]=l[i]?0:1;x.lg[td]=l;save();rr()}
@@ -564,7 +716,15 @@ function tm(s){return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
 function vzGo(m){var e=$('vzt');VZ.t=e?e.value.trim():'';VZ.m=m;VZ.left=m*60;VZ.run=1;VZ.tm=setInterval(function(){VZ.left--;var c=$('vzc');if(c)c.textContent=tm(VZ.left);if(VZ.left<=0){clearInterval(VZ.tm);VZ.run=0;S.visual.push({id:uid(),t:VZ.t,d:iso(0),m:VZ.m});save();rr()}},1000);rr()}
 function vzStop(){clearInterval(VZ.tm);VZ.run=0;rr()}
 function rvz(){var V=S.visual;return'<p class="tip">Tutup mata. Bayangkan hasil akhirnya sejelas mungkin: apa yang Anda lihat, dengar, dan rasakan, seolah sedang terjadi.</p>'+(VZ.run?`<div class="vz"><div class="big" id="vzc">${tm(VZ.left)}</div><div class="m">${esc(VZ.t)}</div><div class="ctl"><button class="w" onclick="vzStop()">Hentikan</button></div></div>`:`<div class="vz"><label class="m" for="vzt">Yang ingin divisualisasikan</label><input id="vzt" value="${esc(VZ.t)}" placeholder="Mis. Proyek saya berjalan lancar" style="width:100%;padding:11px 12px;border:1px solid var(--ln);border-radius:8px;background:var(--sf);font-size:16px;margin:6px 0 10px"><div class="ctl">${[3,5,10].map(m=>`<button class="w" onclick="vzGo(${m})">Mulai ${m} menit</button>`).join('')}</div></div>`)+kp([[V.length,'Sesi'],[V.reduce((s,x)=>s+x.m,0),'Menit'],[V.filter(x=>x.d==iso(0)).length,'Hari ini']])+V.slice().reverse().slice(0,8).map(x=>`<div class="row"><div class="tx"><div class="t" style="font-size:16px">${esc(x.t||'Tanpa judul')}</div><div class="m">${fd(x.d)}, ${x.m} menit</div></div><button class="x" onclick="del('visual','${x.id}')" aria-label="Hapus">×</button></div>`).join('')}
-function rvb(){return'<p class="tip">Kumpulkan gambar dan kalimat tentang hidup yang Anda tuju. Lihat papan ini setiap hari.</p>'+(S.vision.length?'<div class="vb">'+S.vision.map(x=>`<div class="vc${x.x?' done':''}">${x.img?`<button class="zb" onclick="zoom('${x.id}')" aria-label="Buka gambar"><img src="${x.img}" alt="${esc(x.t)}"></button>`:`<div class="ph">${esc((x.c||'V').slice(0,1))}</div>`}<div class="cp"><div class="t">${esc(x.t)}</div><div class="m">${esc(x.c||'')}</div><div class="ctl"><button class="w" onclick="vbx('${x.id}')">${x.x?'Terwujud ✓':'Terwujud?'}</button><button class="x" onclick="del('vision','${x.id}')" aria-label="Hapus">×</button></div></div></div>`).join('')+'</div>':'<div class="em">Papan visi masih kosong. Tambahkan impian pertama, dengan gambar bila ada.</div>')}
+var VG='',CATS=['Karier','Keuangan','Hubungan','Kesehatan','Spiritual','Mimpi','Lainnya'];
+function vgk(x){return x.g||x.c||'Lainnya'}
+function vgl(){var G=[];S.vision.forEach(x=>{var k=vgk(x);if(G.indexOf(k)<0)G.push(k)});return G}
+function vgs(i){VG=i<0?'':vgl()[i]||'';rr()}
+function vgn(g){return CATS.indexOf(g)>=0?esc(g):'<span class="nt">'+esc(g)+'</span>'}
+function vcard(x){return`<div class="vc${x.x?' done':''}">${x.img?`<button class="zb" onclick="zoom('${x.id}')" aria-label="Buka gambar"><img src="${x.img}" alt="${esc(x.t)}"></button>`:`<div class="ph">${esc((x.c||'V').slice(0,1))}</div>`}<div class="cp"><div class="t">${esc(x.t)}</div><div class="m">${esc(x.c||'')}</div><div class="ctl"><button class="w" onclick="vbx('${x.id}')">${x.x?'Terwujud ✓':'Terwujud?'}</button><button class="x" onclick="del('vision','${x.id}')" aria-label="Hapus">×</button></div></div></div>`}
+function rvb(){var V=S.vision,G=vgl();if(VG&&G.indexOf(VG)<0)VG='';
+return'<p class="tip">Kumpulkan gambar dan kalimat tentang hidup yang Anda tuju. Lihat papan ini setiap hari. Kelompokkan menurut bidang hidup atau nama kelompok sendiri.</p>'+(V.length?'<div class="sgs"><button class="sg'+(VG?'':' on')+'" onclick="vgs(-1)">Semua</button>'+G.map((g,i)=>`<button class="sg${VG==g?' on':''}" onclick="vgs(${i})">${vgn(g)} ${V.filter(x=>vgk(x)==g).length}</button>`).join('')+'</div>'
++(VG?[VG]:G).map(g=>{var A=V.filter(x=>vgk(x)==g),dn=A.filter(x=>x.x).length;return`<h3 class="hh">${vgn(g)} <span class="m" style="font-weight:400">${dn}/${A.length} terwujud</span></h3><div class="vb">${A.map(vcard).join('')}</div>`}).join(''):'<div class="em">Papan visi masih kosong. Tambahkan impian pertama, dengan gambar bila ada.</div>')}
 function zoom(id){var x=f('vision',id);$('lbi').src=x.img;$('lbi').alt=x.t;$('lbt').textContent=x.t;$('lb').showModal()}
 function pop(k){var e=$('p'+k);e.classList.remove('in');void e.offsetWidth;e.classList.add('in');setTimeout(function(){e.classList.remove('in')},700)}
 function vbx(id){var x=f('vision',id);x.x=x.x?0:1;save();rr()}
@@ -573,7 +733,195 @@ function zr(){if(window.splReady){var f=window.splReady;window.splReady=null;f()
 if(CLOUD){S=E();K='jurnal.v1.pending';ENV=null;ENC=false;KEY=null;
 if(typeof firebase=='undefined'){$('au').style.display='flex';msg('Tidak dapat memuat layanan login. Periksa koneksi internet.',1);zr()}
 else{firebase.initializeApp(CFG);fa=firebase.auth();fs=firebase.firestore();
-fa.onAuthStateChanged(function(u){if(u&&u.emailVerified){if(!USER||USER.uid!==u.uid)setTimeout(function(){boot(u)},0)}else{USER=null;S=E();$('au').style.display='flex';rr();zr()}})}}else zr();
+fa.onAuthStateChanged(function(u){if(u&&u.emailVerified){if(!USER||USER.uid!==u.uid)setTimeout(function(){boot(u)},0)}else{chStop();USER=null;S=E();$('au').style.display='flex';rr();zr()}})}}else zr();
+/* ===== Chat sesama pengguna & chat admin (pola Zui Admin "standar") ===== */
+var CT={l:[],me:null,op:null,ms:[],dr:'',u:[],um:null,seen:{},rows:[]};
+function tsm(t){return t?(t.toMillis?t.toMillis():t.seconds?t.seconds*1000:+t||0):0}
+function myName(){return gv('name')||(USER&&USER.email?USER.email.split('@')[0]:'Pengguna')}
+function chOK(){return CLOUD&&USER&&fs}
+function chPub(){if(!chOK())return;var nm=myName(),em=(USER.email||'').toLowerCase();
+fs.collection('profiles').doc(USER.uid).set({nm:nm,em:em},{merge:true}).catch(function(){});
+if(em)fs.collection('emails').doc(em).set({u:USER.uid,nm:nm}).catch(function(){});
+if(CO&&CO.name!==nm)fs.collection('companies').doc(USER.uid).update({name:nm}).catch(function(){})}
+function chStop(){CT.u.forEach(function(f){try{f()}catch(e){}});CT.u=[];if(CT.um){CT.um();CT.um=null}CT.l=[];CT.me=null;CT.op=null;CT.ms=[];CO=null;CO0=0;PAY=null;SRQ=[];subUi()}
+function snapL(q,p){return q.docs.map(function(d){return Object.assign({id:d.id,p:p+d.id},d.data({serverTimestamps:'estimate'}))})}
+function chInit(){if(!chOK())return;chStop();try{CT.seen=JSON.parse(localStorage.getItem('zui.seen.'+USER.uid))||{}}catch(e){CT.seen={}}var me=USER.uid;
+subInit();chPub();
+CT.u.push(fs.collection('chats').where('m','array-contains',me).onSnapshot(function(q){CT.l=snapL(q,'chats/');chUpd()},function(){}));
+CT.u.push(fs.collection('support').doc(me).onSnapshot(function(d){CT.me=d.exists?d.data({serverTimestamps:'estimate'}):null;chUpd()},function(){}))}
+function unr(c,p){return !!(c&&c.lf&&c.lf!=USER.uid&&tsm(c.ts)>(CT.seen[p]||0))}
+function supUnr(){return !!(CT.me&&CT.me.from=='a'&&CT.me.seen===false&&!(CT.op&&CT.op.s))}
+function seen(p){CT.seen[p]=Date.now();try{localStorage.setItem('zui.seen.'+USER.uid,JSON.stringify(CT.seen))}catch(e){}}
+function chUpd(){if(!USER)return;var n=CT.l.filter(function(c){return unr(c,c.p)}).length+(supUnr()?1:0),b=items[MX];
+if(b)b.innerHTML='Chat'+(n?'<i class="ub"></i>':'');var sb=$('sbc');if(sb)sb.innerHTML=supUnr()?'<i class="ub"></i>':'';if(!CT.op)rc()}
+function chGo(i){var r=CT.rows[i];if(!r)return;if(r.s)chSup();else chOpen(r.p,r.t)}
+/* pesan dinormalkan: chats/{id}/msgs {f,t,ts}; support/{uid}/msgs {from,name,text,img,at,uid} */
+function chOpen(p,t,s){if(CT.um){CT.um();CT.um=null}CT.op={p:p,t:t,s:!!s};CT.ms=[];var me=USER.uid;
+CT.um=fs.collection(p+'/msgs').orderBy(s?'at':'ts').limitToLast(300).onSnapshot(function(q){CT.ms=q.docs.map(function(d){var x=d.data({serverTimestamps:'estimate'});
+return s?{me:x.from=='u',t:x.text||'',img:x.img||'',ts:tsm(x.at),nm:x.from=='a'?(x.name||'Tim ZUI'):''}:{me:x.f==me,t:x.t||'',img:'',ts:tsm(x.ts)}});
+if(s){if(CT.me&&CT.me.seen===false)fs.collection('support').doc(me).update({seen:true}).catch(function(){})}else seen(p);rcm();chUpd()},function(e){toast(fe(e))});
+if(!s)seen(p);rc();if(cur!=MX)go(MX);fcs('cin')}
+function chClose(){if(CT.um){CT.um();CT.um=null}CT.op=null;CT.ms=[];CT.dr='';rc();chUpd()}
+function chSup(draft){if(!chOK()){toast('Masuk ke akun untuk memakai chat.');return}if(draft)CT.dr=draft;chOpen('support/'+USER.uid,'Tim ZUI',1)}
+function supMsg(B,t,img){var me=USER.uid,sv=firebase.firestore.FieldValue.serverTimestamp(),r=fs.collection('support').doc(me);
+B.set(r.collection('msgs').doc(),{from:'u',name:myName(),text:String(t||'').slice(0,2000),img:img||'',at:sv,uid:me});
+B.set(r,{cid:me,coName:myName(),byEmail:(USER.email||'').toLowerCase(),last:(img&&!t?'📷 Foto':String(t).slice(0,120)),at:sv,from:'u',unread:true,seen:true},{merge:true})}
+async function chSend(){var e=$('cin'),t=(e?e.value:CT.dr).trim();if(!t||!CT.op)return;var p=CT.op.p,b=fs.batch();
+if(CT.op.s)supMsg(b,t);else{var sv=firebase.firestore.FieldValue.serverTimestamp(),pr=fs.doc(p);b.set(pr.collection('msgs').doc(),{f:USER.uid,t:t.slice(0,2000),ts:sv});b.set(pr,{last:t.slice(0,100),lf:USER.uid,ts:sv},{merge:true})}
+CT.dr='';if(e){e.value='';e.style.height=''}try{await b.commit()}catch(er){toast(fe(er));CT.dr=t;if(e)e.value=t}}
+function shrinkImg(file,side,max){return new Promise(function(ok,no){var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,side/Math.max(im.width,im.height)),d='';
+for(var k=0;k<7;k++){var c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*s));c.height=Math.max(1,Math.round(im.height*s));var x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);d=c.toDataURL('image/jpeg',.82);if(d.length<=max)break;s*=.8}
+d.length<=max?ok(d):no(new Error('Gambar terlalu besar'))};im.onerror=function(){no(new Error('Gambar tidak bisa dibaca'))};im.src=r.result};r.onerror=function(){no(new Error('Gambar tidak bisa dibaca'))};r.readAsDataURL(file)})}
+async function chImg(el){var g=el.files&&el.files[0];el.value='';if(!g||!CT.op||!CT.op.s)return;try{var d=await shrinkImg(g,1200,700000),b=fs.batch();supMsg(b,'',d);await b.commit()}catch(e){toast(e.message||fe(e))}}
+async function chNew(){var e=$('cne'),em=e?e.value.trim().toLowerCase():'';if(!em){if(e)e.focus();return}if(!can('chat')){openSub();return}if(em==(USER.email||'').toLowerCase()){toast('Itu email Anda sendiri');return}
+try{var d=await fs.collection('emails').doc(em).get();if(!d.exists){toast('Email itu belum terdaftar di Zui Jurnal');return}
+var o=d.data(),me=USER.uid,m=[me,o.u].sort(),cid=m.join('_'),nm={},ems={};nm[me]=myName();nm[o.u]=o.nm||em;ems[me]=(USER.email||'').toLowerCase();ems[o.u]=em;
+await fs.collection('chats').doc(cid).set({m:m,nm:nm,em:ems},{merge:true});e.value='';chOpen('chats/'+cid,o.nm||em)}catch(er){toast(fe(er))}}
+function crow(i,av,t,last,ts,un,ad){return`<button class="crow" onclick="chGo(${i})"><span class="av${ad?' ad':''}">${esc(av)}</span><span class="tx"><span class="t nt">${esc(t)}</span><span class="m"><span class="nt">${esc(last||'')}</span>${ts?' · '+(new Date(ts).toLocaleDateString('sv-SE')==iso(0)?ftm(ts):fd(new Date(ts).toLocaleDateString('sv-SE'))):''}</span></span>${un?'<i class="ub"></i>':''}</button>`}
+function rc(){var e=$('p7');if(!e)return;
+if(!chOK()){e.innerHTML='<p class="sum">Chat</p><div class="em">Masuk ke akun untuk memakai chat dengan sesama pengguna dan admin.</div>';tr(e);return}
+if(CT.op){var o=CT.op;
+e.innerHTML=`<div class="chd"><button class="w" onclick="chClose()">← Kembali</button><b class="nt">${esc(o.t)}</b>${o.s?'<button class="w" style="margin-left:auto" onclick="openSub()">⭐ Langganan</button>':''}</div><div id="cmsg" class="cm"></div><div class="cbar">${o.s?'<label class="w ph" title="Kirim foto bukti bayar" aria-label="Kirim foto">📷<input type="file" accept="image/*" hidden onchange="chImg(this)"></label>':''}<textarea id="cin" class="ni" rows="1" maxlength="2000" placeholder="Tulis pesan ..." oninput="CT.dr=this.value;this.style.height='';this.style.height=this.scrollHeight+'px'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();chSend()}">${esc(CT.dr)}</textarea><button class="go2" onclick="chSend()">Kirim</button></div>`;tr(e);rcm();return}
+var me=USER.uid,L=CT.l.slice().sort(function(a,b){return tsm(b.ts)-tsm(a.ts)}),R=[{s:1}],h='';
+h+=`<h3 class="hh" style="margin-top:4px">Bantuan & langganan</h3>`+crow(0,'Z','Tim ZUI',CT.me&&CT.me.last||'Umpan balik, pertanyaan, dan bukti bayar langganan',CT.me&&tsm(CT.me.at),supUnr(),1);
+if(!can('chat'))h+=`<h3 class="hh">Percakapan</h3>`+lock('chat');
+else{h+=`<div class="nc" style="margin-top:14px"><div class="m" style="margin-top:0">Mulai chat dengan sesama pengguna Zui Jurnal</div><div class="hrow"><input class="ni" id="cne" type="email" autocomplete="off" placeholder="Email teman yang sudah terdaftar" onkeydown="if(event.key==='Enter')chNew()"><button class="go2" onclick="chNew()">Mulai</button></div></div>`;
+h+=`<h3 class="hh">Percakapan</h3>`+(L.length?L.map(function(c){var ot=(c.m||[]).filter(function(u){return u!=me})[0]||me,n=(c.nm||{})[ot]||(c.em||{})[ot]||'?',i=R.length;R.push({p:c.p,t:n});return crow(i,n.slice(0,1).toUpperCase(),n,c.last,tsm(c.ts),unr(c,c.p))}).join(''):'<div class="em">Belum ada percakapan. Masukkan email teman di atas untuk memulai.</div>')}
+CT.rows=R;e.innerHTML=h;tr(e)}
+function rcm(){var e=$('cmsg');if(!e)return;var pd='';
+e.innerHTML=CT.ms.length?CT.ms.map(function(m){var t=m.ts,d=t?new Date(t).toLocaleDateString('sv-SE'):'',h=d&&d!=pd?`<div class="cdv">${dl2(d)}</div>`:'';if(d)pd=d;return h+`<div class="bb${m.me?' me':''}">${m.img?`<img src="${esc(m.img)}" alt="Foto" class="bim">`:''}${m.t?`<span class="nt">${esc(m.t)}</span>`:''}<small>${m.nm?'<span class="nt">'+esc(m.nm)+'</span> · ':''}${t?ftm(t):'…'}</small></div>`}).join(''):'<div class="em">Belum ada pesan. Sapa duluan!</div>';
+tr(e);var s=$('p7');s.scrollTop=s.scrollHeight}
+
+/* ===== Langganan: pola "standar" Zui Admin (sama dengan ZUI KONTRAKTOR) =====
+   companies/{uid}: name, owner, created_at, plan, until, free (plan/until/free hanya diubah Zui Admin)
+   companies/{uid}/members/{uid}: email, role
+   subreqs/{id}: permintaan bayar (status wait/ok/no), zconfig/pay: harga & QRIS/DuitNow dari Zui Admin
+   Samakan angka di bawah dengan blok ZUI JURNAL di config.js Zui Admin dan firestore.rules. */
+var SUBC={mulai:'2026-10-17',hari:14,tenggang:3};
+var PK=['starter','pro','business'],PKN={starter:'Starter',pro:'Pro',business:'Bisnis'};
+// Fitur yang dikunci dan paket minimumnya. Fitur lain terbuka di semua paket.
+var FEAT={proyek:'pro',mlanjut:'pro',chat:'business'};
+var FEATN={proyek:'Proyek & rincian proyek',mlanjut:'Scripting, 369, Visualisasi & Papan visi',chat:'Chat sesama pengguna'};
+var PKF={starter:['Rencana, Tugas, Progres, Catatan, Hari ini','Niat, Afirmasi, Syukur, Bukti','Sinkron cloud & chat dengan Tim ZUI'],
+pro:['Semua fitur Starter','Proyek & rincian proyek','Scripting, 369, Visualisasi, Papan visi'],
+business:['Semua fitur Pro','Chat sesama pengguna','Dukungan prioritas dari Tim ZUI']};
+// Harga cadangan bila admin belum menyimpan harga ZUI JURNAL (sama dengan bawaan Zui Admin).
+var DEFP={starter:{1:79000,6:395000,12:790000},pro:{1:149000,6:745000,12:1490000},business:{1:299000,6:1495000,12:2990000}};
+var DEFPM={starter:{1:21,6:105,12:210},pro:{1:39,6:195,12:390},business:{1:79,6:395,12:790}};
+var CO=null,CO0=0,PAY=null,SRQ=[],SB={m:1,pk:'',ref:''};
+function subCur(){return SET.cur=='MYR'?'MYR':'IDR'}
+function money(n,c){return c=='MYR'?'RM '+new Intl.NumberFormat('ms-MY',{maximumFractionDigits:2}).format(+n||0):'Rp '+new Intl.NumberFormat('id-ID',{maximumFractionDigits:0}).format(+n||0)}
+function price(pk,m){var c=subCur(),P=(PAY&&(c=='MYR'?PAY.pricesMYR:PAY.prices))||{},v=(P[pk]||{})[m];if(v==null)v=((c=='MYR'?DEFPM:DEFP)[pk]||{})[m];return +v||0}
+function subInit(){var me=USER.uid,ref=fs.collection('companies').doc(me);
+CT.u.push(ref.onSnapshot(function(d){if(!d.exists){if(!CO0){CO0=1;var B=fs.batch();B.set(ref,{name:myName(),owner:me,created_at:firebase.firestore.FieldValue.serverTimestamp()});B.set(ref.collection('members').doc(me),{email:(USER.email||'').toLowerCase(),role:'owner'});B.commit().catch(function(e){CO0=0;console.warn('companies',e)})}return}
+var x=d.data({serverTimestamps:'estimate'});CO={name:x.name||'',created:tsm(x.created_at),pk:x.plan||'',until:tsm(x.until),free:!!x.free};subUi();rr()},function(e){console.warn('companies',e)}));
+CT.u.push(fs.collection('subreqs').where('cid','==',me).onSnapshot(function(q){var o=SRQ;SRQ=q.docs.map(function(d){var x=d.data({serverTimestamps:'estimate'});return Object.assign({id:d.id},x,{atMs:tsm(x.at),doneMs:tsm(x.doneAt)})}).sort(function(a,b){return b.atMs-a.atMs});
+SRQ.forEach(function(r){var p=o.filter(function(z){return z.id==r.id})[0];if(p&&p.status=='wait'&&r.status!='wait')toast(r.status=='ok'?'Langganan '+PKN[r.plan]+' sudah aktif. Terima kasih!':'Permintaan bayar ditolak'+(r.note?': '+r.note:''))});if($('sub').open)rsub()},function(){}));
+fs.collection('zconfig').doc('pay').get().then(function(d){PAY=d.exists?d.data():{};if($('sub').open)rsub()}).catch(function(){PAY={}})}
+// Sama persis dengan STD.state di Zui Admin.
+function subSt(){if(!chOK()||!CO)return{kind:'none'};var now=Date.now(),DAY=864e5,G=SUBC.tenggang*DAY,TF=Date.parse(SUBC.mulai+'T00:00:00Z'),TD=SUBC.hari*DAY;
+if(CO.free)return{kind:'free',pk:'business',until:0};
+if(CO.until){var p=PK.indexOf(CO.pk)>=0?CO.pk:'starter',u=CO.until;if(now<u)return{kind:'paid',pk:p,until:u};if(now<u+G)return{kind:'grace',pk:p,until:u,gl:Math.ceil((u+G-now)/DAY)};return{kind:'expired',pk:p,until:u}}
+var te=Math.max(CO.created||now,TF)+TD;if(now<te)return{kind:'trial',until:te};if(now<te+G)return{kind:'grace',until:te,gl:Math.ceil((te+G-now)/DAY)};return{kind:'expired',until:te}}
+function dLeft(u){return Math.max(0,Math.ceil((u-Date.now())/864e5))}
+function RO(){return subSt().kind=='expired'}
+function can(f){var s=subSt(),need=FEAT[f];if(!need||!s.pk||s.kind=='free'||s.kind=='expired')return true;return PK.indexOf(s.pk)>=PK.indexOf(need)}
+function lock(f){var p=PKN[FEAT[f]];return`<div class="nc lock"><b>🔒 ${esc(FEATN[f])}</b><p class="m">Fitur ini tersedia mulai paket ${p}. Paket Anda saat ini ${PKN[subSt().pk]||'-'}.</p><button class="go2" onclick="openSub()">Lihat paket</button></div>`}
+function roBlock(){try{var o=JSON.parse(localStorage.getItem(K));if(o&&!o.enc)S=Object.assign(E(),o)}catch(e){}rr();toast('Masa aktif habis. Data hanya bisa dibaca sampai Anda berlangganan.');openSub()}
+function subLabel(){var s=subSt();if(s.kind=='none')return'';if(s.kind=='free')return'Gratis selamanya';if(s.kind=='trial')return'Percobaan · '+dLeft(s.until)+' hari';if(s.kind=='paid')return PKN[s.pk]+' · '+dLeft(s.until)+' hari';if(s.kind=='grace')return'Tenggang · '+s.gl+' hari';return'Masa aktif habis'}
+function subUi(){var s=subSt(),b=$('sbp'),r=$('rob');if(b){b.style.display=s.kind=='none'?'none':'';b.textContent='⭐ '+subLabel();b.classList.toggle('bad',s.kind=='grace'||s.kind=='expired'||(s.until&&dLeft(s.until)<=3&&s.kind!='free'));tr(b)}
+var e=$('plb');if(e){e.textContent=subLabel()||'-';tr(e)}
+if(r){var t=s.kind=='expired'?'Masa aktif habis. Data Anda aman, tetapi hanya bisa dibaca.':s.kind=='grace'?'Masa aktif sudah berakhir. Tenggang '+s.gl+' hari lagi sebelum hanya-baca.':'';r.style.display=t?'':'none';$('robt').textContent=t;tr(r)}}
+function openSub(){if(!chOK()){toast('Masuk ke akun untuk berlangganan.');return}var s=subSt();if(!SB.pk)SB.pk=s.pk||'pro';rsub();var d=$('sub');if(!d.open)d.showModal()}
+function sbSet(k,v){SB[k]=v;rsub()}
+function curSet(v){SET.cur=v;try{localStorage.setItem('jurnal.set',JSON.stringify(spub()))}catch(e){}rsub()}
+function rsub(){var s=subSt(),c=subCur(),w=SRQ.filter(function(r){return r.status=='wait'})[0],amt=price(SB.pk,SB.m),qr=PAY&&(c=='MYR'?PAY.duitnow:PAY.qris),nt=PAY&&(c=='MYR'?PAY.noteMYR:PAY.note),ML={1:'1 bulan',6:'6 bulan',12:'1 tahun'},h='';
+var st=s.kind=='free'?'<b>Gratis selamanya</b> · semua fitur':s.kind=='trial'?`<b>Masa percobaan</b> · semua fitur terbuka sampai ${fd(new Date(s.until).toLocaleDateString('sv-SE'))} (${dLeft(s.until)} hari lagi)`:s.kind=='paid'?`<b>Paket ${PKN[s.pk]}</b> · aktif sampai ${fd(new Date(s.until).toLocaleDateString('sv-SE'))} (${dLeft(s.until)} hari lagi)`:s.kind=='grace'?`<b class="late">Masa tenggang</b> · ${s.gl} hari lagi sebelum data hanya bisa dibaca`:`<b class="late">Masa aktif habis</b> · data hanya bisa dibaca`;
+h+=`<div class="nc sst"><div class="m" style="margin:0 0 4px">Status langganan</div><div>${st}</div></div>`;
+h+=`<div class="sgs">${[['IDR','Rupiah · QRIS'],['MYR','Ringgit · DuitNow']].map(function(x){return`<button class="sg${c==x[0]?' on':''}" onclick="curSet('${x[0]}')">${x[1]}</button>`}).join('')}</div>`;
+h+=`<div class="sgs">${[1,6,12].map(function(m){return`<button class="sg${SB.m==m?' on':''}" onclick="sbSet('m',${m})">${ML[m]}</button>`}).join('')}</div>`;
+h+=PK.map(function(p){var cu=(s.kind=='paid'||s.kind=='grace')&&s.pk==p;return`<div class="plan${SB.pk==p?' sel':''}${cu?' cur':''}" onclick="sbSet('pk','${p}')"><h4>${PKN[p]}${cu?' <span class="pill">paket Anda</span>':''}</h4><div class="pr">${money(price(p,SB.m),c)} <small>/ ${ML[SB.m]}</small></div><ul>${PKF[p].map(function(f){return'<li>'+esc(f)+'</li>'}).join('')}</ul></div>`}).join('');
+if(w)h+=`<div class="nc"><b>⏳ Menunggu konfirmasi Tim ZUI</b><p class="m">${PKN[w.plan]||w.plan} · ${w.months} bulan · ${money(w.amount,w.cur)} · Ref ${esc(w.ref||'-')}</p><p class="tip">Biasanya diproses di jam kerja. Kirim foto bukti bayar lewat chat agar lebih cepat.</p></div>`;
+else h+=`<h3 class="hh">Bayar paket ${PKN[SB.pk]} · ${ML[SB.m]}</h3><div class="pay"><div class="amt">${money(amt,c)}</div>${qr?`<img src="${esc(qr)}" alt="${c=='MYR'?'DuitNow QR':'QRIS'}" class="qr">`:`<p class="m">Kode ${c=='MYR'?'DuitNow':'QRIS'} belum tersedia. Hubungi Tim ZUI lewat chat.</p>`}${nt?`<p class="m nt" style="white-space:pre-wrap">${esc(nt)}</p>`:''}
+<ol class="m stp"><li>Bayar tepat ${money(amt,c)} lewat ${c=='MYR'?'DuitNow':'QRIS'} di atas.</li><li>Isi nomor referensi dari resit, lalu kirim permintaan.</li><li>Tim ZUI mengaktifkan paket setelah dana masuk.</li></ol>
+<input class="ni" id="sref" maxlength="60" placeholder="Nomor referensi resit" value="${esc(SB.ref)}" oninput="SB.ref=this.value"><button class="go2" style="width:100%" onclick="subReq(this)">Kirim permintaan bayar</button></div>`;
+h+=`<button class="go2 alt" style="width:100%" onclick="$('sub').close();chSup()">💬 Chat Tim ZUI (kirim foto bukti bayar)${supUnr()?' <i class="ub"></i>':''}</button>${PAY&&PAY.wa?`<a class="lnk" style="display:block;text-align:center" target="_blank" rel="noopener" href="https://wa.me/${esc(String(PAY.wa).replace(/\D/g,''))}?text=${encodeURIComponent('Halo Tim ZUI, saya ingin konfirmasi pembayaran ZUI JURNAL ('+(USER.email||'')+').')}">WhatsApp admin (cadangan)</a>`:''}`;
+if(SRQ.length)h+=`<h3 class="hh">Riwayat permintaan</h3>`+SRQ.slice(0,6).map(function(r){return`<div class="si"><span class="t">${PKN[r.plan]||r.plan} · ${r.months} bulan · ${money(r.amount,r.cur)}<span class="m" style="display:block">${r.atMs?fdt(r.atMs):''} · Ref ${esc(r.ref||'-')}${r.status=='no'&&r.note?' · '+esc(r.note):''}</span></span><span class="pill ${r.status=='ok'?'ok':r.status=='no'?'bad':''}">${r.status=='ok'?'aktif':r.status=='no'?'ditolak':'menunggu'}</span></div>`}).join('');
+$('subb').innerHTML=h;tr($('subb'))}
+async function subReq(btn){var ref=(SB.ref||'').trim(),c=subCur(),amt=price(SB.pk,SB.m);if(!ref){var e=$('sref');if(e)e.focus();toast('Isi nomor referensi resit dulu');return}
+if(SRQ.some(function(r){return r.status=='wait'})){toast('Masih ada permintaan yang menunggu');return}btn.disabled=true;
+var me=USER.uid,B=fs.batch(),sv=firebase.firestore.FieldValue.serverTimestamp();
+B.set(fs.collection('subreqs').doc(),{cid:me,uid:me,coName:myName(),byEmail:(USER.email||'').toLowerCase(),plan:SB.pk,months:SB.m,amount:amt,cur:c,ref:ref.slice(0,60),at:sv,status:'wait'});
+supMsg(B,'Permintaan bayar: '+PKN[SB.pk]+' · '+SB.m+' bulan · '+money(amt,c)+' · Ref '+ref.slice(0,60));
+try{await B.commit();SB.ref='';toast('Permintaan terkirim. Tim ZUI akan mengaktifkan setelah dana masuk.')}catch(er){toast(fe(er))}btn.disabled=false}
+/* ===== Halaman layanan ===== */
+var APPURL='https://jurnal.zuisystem.com';
+function feedback(){$('sd').close();chSup()}
+function shareTx(){return SET.lang=='en'?'I use Zui Jurnal to manage my plans, tasks, and manifestation. Try it:':'Aku pakai Zui Jurnal untuk mengatur rencana, tugas, dan manifestasi. Coba juga:'}
+async function shareNat(){try{await navigator.share({title:'Zui Jurnal',text:shareTx(),url:APPURL})}catch(e){}}
+async function shareCp(){try{await navigator.clipboard.writeText(shareTx()+' '+APPURL);toast(SET.lang=='en'?'Link copied':'Tautan disalin')}catch(e){prompt('',APPURL)}}
+function info(k){var en=SET.lang=='en',h='',b='',u=encodeURIComponent(APPURL),t=encodeURIComponent(shareTx()),tu=encodeURIComponent(shareTx()+' '+APPURL);
+if(k=='plan'){openSub();return}
+else if(k=='share'){h=en?'Share with friends':'Berbagi dengan teman';
+b=`<p>${en?'Invite friends to plan and grow together.':'Ajak teman merencanakan dan bertumbuh bersama.'}</p><div class="shg">
+<a href="https://wa.me/?text=${tu}" target="_blank" rel="noopener">🟢 WhatsApp</a>
+<a href="mailto:?subject=${encodeURIComponent('Zui Jurnal')}&body=${tu}">✉️ Email</a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=${u}" target="_blank" rel="noopener">📘 Facebook</a>
+<a href="https://twitter.com/intent/tweet?text=${t}&url=${u}" target="_blank" rel="noopener">✖️ X / Twitter</a>
+<a href="https://t.me/share/url?url=${u}&text=${t}" target="_blank" rel="noopener">✈️ Telegram</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=${u}" target="_blank" rel="noopener">💼 LinkedIn</a>
+${navigator.share?`<button onclick="shareNat()">📱 ${en?'More apps':'Aplikasi lainnya'}</button>`:''}
+<button onclick="shareCp()">🔗 ${en?'Copy link':'Salin tautan'}</button></div>`}
+else{var X=INFO[k][en?'en':'id'];h=X[0];b=X[1]}
+$('inh').textContent=h;$('inb').innerHTML=b;$('inf').showModal();$('inf').scrollTop=0}
+var CO='PT. Zaor Utama Indonesia';
+var INFO={
+faq:{id:['FAQ',`<h4>Apa itu Zui Jurnal?</h4><p>Jurnal pribadi untuk merencanakan, mengelola proyek dan tugas, memantau progres, berlatih manifestasi, dan menulis catatan harian dalam satu aplikasi.</p>
+<h4>Bagaimana alur Proyek dan Tugas?</h4><p>Rencana bisa dijadikan proyek. Di dalam proyek, tambahkan rincian (sub item), lalu tekan "+ Tugas" pada rincian. Tugas itu otomatis masuk ke modul Tugas dan progresnya terhitung di Proyek dan Progres.</p>
+<h4>Tugas saya belum selesai hari ini. Bagaimana?</h4><p>Ketuk tugasnya, tulis alasannya di kolom catatan, lalu tekan "Lanjutkan besok". Tugas pindah ke hari berikutnya, tetapi tenggat awal tetap dihitung sehingga status terlambat tetap terlihat.</p>
+<h4>Apakah data saya aman?</h4><p>Data jurnal tersimpan di akun Anda dan hanya bisa dibaca oleh Anda. Pasang PIN di Pengaturan untuk mengunci aplikasi di perangkat.</p>
+<h4>Bisakah dipakai tanpa internet?</h4><p>Bisa. Perubahan disimpan di perangkat dan disinkronkan saat kembali online.</p>
+<h4>Bagaimana chat dengan teman?</h4><p>Buka modul Chat, masukkan email teman yang sudah terdaftar di Zui Jurnal, lalu tekan Mulai.</p>
+<h4>Bagaimana memasang di HP?</h4><p>Tekan tombol "Instal". Di iPhone: ketuk Bagikan, lalu "Tambahkan ke Layar Utama".</p>
+<h4>Bagaimana menghubungi admin atau menghapus akun?</h4><p>Buka Pengaturan, pilih "Umpan balik", lalu kirim pesan ke admin.</p>`],
+en:['FAQ',`<h4>What is Zui Jurnal?</h4><p>A personal journal to plan, manage projects and tasks, track progress, practise manifestation, and write daily notes in one app.</p>
+<h4>How do Projects and Tasks work?</h4><p>Turn a plan into a project, add breakdown items inside the project, then tap "+ Task" on an item. The task appears in Tasks automatically and counts toward project progress.</p>
+<h4>I could not finish a task today.</h4><p>Tap the task, write the reason in its notes, then tap "Continue tomorrow". The original deadline still counts, so the overdue status stays visible.</p>
+<h4>Is my data safe?</h4><p>Your journal is stored in your account and only you can read it. Set a PIN in Settings to lock the app on your device.</p>
+<h4>Does it work offline?</h4><p>Yes. Changes are saved on the device and synced when you are back online.</p>
+<h4>How do I chat with friends?</h4><p>Open Chat, enter a friend's email that is registered in Zui Jurnal, then tap Start.</p>
+<h4>How do I contact the admin or delete my account?</h4><p>Open Settings, choose "Feedback", and send a message to the admin.</p>`]},
+terms:{id:['Syarat penggunaan',`<p>Berlaku sejak versi 26.01. Dengan memakai Zui Jurnal, Anda menyetujui syarat berikut.</p><ol>
+<li><b>Layanan.</b> Zui Jurnal adalah aplikasi jurnal pribadi yang dikelola oleh Zui System, ${CO}.</li>
+<li><b>Akun.</b> Anda bertanggung jawab menjaga kerahasiaan email, kata sandi, dan PIN Anda. Satu akun untuk satu orang.</li>
+<li><b>Konten Anda.</b> Isi jurnal, gambar, dan pesan adalah milik Anda. Anda bertanggung jawab atas konten yang Anda tulis dan kirim.</li>
+<li><b>Chat.</b> Dilarang mengirim spam, penipuan, ujaran kebencian, pelecehan, atau konten yang melanggar hukum. Akun yang melanggar dapat dibatasi atau ditutup.</li>
+<li><b>Percobaan & langganan.</b> Akun baru mendapat masa percobaan 14 hari dengan semua fitur. Setelah masa percobaan atau masa paket berakhir ada tenggang 3 hari; setelah itu data tetap tersimpan tetapi hanya bisa dibaca sampai Anda berlangganan. Paket Starter, Pro, dan Bisnis diaktifkan Tim ZUI setelah pembayaran dikonfirmasi dan berlaku sesuai masa paket. Biaya yang sudah dibayar tidak dapat dikembalikan, kecuali diatur lain oleh Tim ZUI.</li>
+<li><b>Ketersediaan.</b> Kami berusaha menjaga layanan tetap berjalan, tetapi tidak menjamin layanan bebas gangguan. Simpan salinan data penting Anda.</li>
+<li><b>Perubahan.</b> Syarat ini dapat diperbarui. Perubahan penting akan diumumkan di aplikasi.</li>
+<li><b>Hukum.</b> Syarat ini tunduk pada hukum Republik Indonesia.</li></ol><p>Pertanyaan: Pengaturan, lalu Umpan balik.</p>`],
+en:['Terms of use',`<p>Effective from version 26.01. By using Zui Jurnal you agree to these terms.</p><ol>
+<li><b>Service.</b> Zui Jurnal is a personal journal app managed by Zui System, ${CO}.</li>
+<li><b>Account.</b> Keep your email, password, and PIN private. One account per person.</li>
+<li><b>Your content.</b> Your entries, images, and messages belong to you, and you are responsible for them.</li>
+<li><b>Chat.</b> No spam, fraud, hate speech, harassment, or unlawful content. Violating accounts may be limited or closed.</li>
+<li><b>Trial & subscriptions.</b> New accounts get a 14-day trial with all features. When the trial or a paid period ends there is a 3-day grace period; after that your data is kept but read-only until you subscribe. Starter, Pro, and Business plans are activated by the ZUI team once payment is confirmed. Fees are non-refundable unless the ZUI team agrees otherwise.</li>
+<li><b>Availability.</b> We work to keep the service running but cannot guarantee it is uninterrupted.</li>
+<li><b>Changes.</b> These terms may be updated; important changes are announced in the app.</li>
+<li><b>Law.</b> Governed by the laws of the Republic of Indonesia.</li></ol>`]},
+privacy:{id:['Kebijakan privasi',`<p>Zui System, ${CO}, menghormati privasi Anda. Kebijakan ini menjelaskan data yang kami simpan dan cara memakainya.</p>
+<h4>Data yang disimpan</h4><ul><li>Email dan data login untuk akun Anda.</li><li>Isi jurnal: rencana, proyek, tugas, catatan, manifestasi, dan gambar papan visi.</li><li>Nama tampilan dan email untuk fitur chat, serta isi pesan chat.</li><li>Pengaturan aplikasi dan PIN (PIN disimpan dalam bentuk hash di perangkat).</li></ul>
+<h4>Cara penyimpanan</h4><p>Data disimpan di perangkat Anda dan di layanan cloud Google Firebase agar tersinkron antar perangkat.</p>
+<h4>Siapa yang bisa melihat</h4><ul><li>Isi jurnal hanya bisa dibaca oleh akun Anda.</li><li>Pesan chat bisa dibaca oleh Anda dan lawan bicara. Pesan ke admin bisa dibaca oleh admin Zui System.</li><li>Pengguna lain hanya bisa menemukan Anda jika mengetahui email Anda.</li></ul>
+<h4>Penggunaan data</h4><p>Data dipakai hanya untuk menjalankan aplikasi. Kami tidak menjual data Anda dan tidak menampilkan iklan berdasarkan isi jurnal.</p>
+<h4>Hak Anda</h4><p>Anda dapat mengubah data kapan saja dan meminta penghapusan akun beserta datanya lewat Umpan balik di Pengaturan.</p>
+<h4>Perubahan</h4><p>Kebijakan ini dapat diperbarui dan akan diumumkan di aplikasi.</p>`],
+en:['Privacy policy',`<p>Zui System, ${CO}, respects your privacy.</p>
+<h4>What we store</h4><ul><li>Your email and sign-in data.</li><li>Journal content: plans, projects, tasks, notes, manifestation entries, and vision board images.</li><li>Display name, email, and messages for chat.</li><li>App settings and PIN (stored as a hash on the device).</li></ul>
+<h4>Where</h4><p>On your device and in Google Firebase so it syncs across devices.</p>
+<h4>Who can see it</h4><ul><li>Only your account can read your journal.</li><li>Chat messages are visible to you and the other person; messages to the admin are visible to Zui System admins.</li><li>Other users can only find you if they know your email.</li></ul>
+<h4>Use</h4><p>Data is used only to run the app. We do not sell your data.</p>
+<h4>Your rights</h4><p>You can edit your data at any time and request deletion of your account through Feedback in Settings.</p>`]}};
 var DP=null;
 function isStd(){return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}
 function isIOS(){return /iphone|ipad|ipod/i.test(navigator.userAgent)}
@@ -582,10 +930,10 @@ async function install(){if(DP){DP.prompt();try{await DP.userChoice}catch(e){}DP
 window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();DP=e;instShow()});
 window.addEventListener('appinstalled',function(){DP=null;instShow();toast('Zui Jurnal terpasang')});
 rr();pv.scrollLeft=6*pv.clientWidth;sync();lockShow();instShow();
-document.addEventListener('visibilitychange',function(){if(document.hidden)HT=Date.now();else{var dt=Date.now()-HT;if(dt>120000)relock();else if(dt>60000)lockShow()}});
+document.addEventListener('visibilitychange',function(){if(document.hidden)HT=Date.now();else{var dt=Date.now()-HT;if(dt>60000)lockShow()}});
 setInterval(remChk,30000);
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register('sw.js').catch(function(){});
-if(ENV&&!CLOUD)ekAsk(ENV).then(function(o){S=Object.assign(E(),o);LASTOUT=ENV;rr();sync()});
+if(ENV&&!CLOUD)ekAsk(ENV).then(function(o){S=Object.assign(E(),unenc(o));save();rr();sync()});
 </script>
 </body>
 </html>
