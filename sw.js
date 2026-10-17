@@ -1,6 +1,6 @@
 // Zui Jurnal service worker
 // Naikkan angka versi ini setiap kali kamu mengubah file aplikasi.
-const VERSION = 'zui-jurnal-v26.01c';
+const VERSION = 'zui-jurnal-v26.02';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 // File dari luar yang aman disimpan untuk offline (pustaka Firebase dan font).
 const CDN = ['www.gstatic.com', 'fonts.googleapis.com', 'fonts.gstatic.com'];
@@ -44,13 +44,14 @@ self.addEventListener('fetch', e => {
   // Selain itu (login dan database Firebase) dibiarkan langsung ke internet.
 });
 
-// Klik notifikasi pengingat: buka atau fokuskan aplikasi.
+// Klik notifikasi: buka atau fokuskan aplikasi, lalu tuju modul yang diminta (mis. Kewajiban).
 self.addEventListener('notificationclick', e => {
   e.notification.close();
+  const go = (e.notification.data || {}).go || '';
   e.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(list => {
-      for (const c of list) if ('focus' in c) return c.focus();
-      return self.clients.openWindow('./');
+      for (const c of list) if ('focus' in c) { if (go) c.postMessage({ go }); return c.focus(); }
+      return self.clients.openWindow('./' + (go ? '#' + go : ''));
     })
   );
 });
