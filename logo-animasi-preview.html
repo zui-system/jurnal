@@ -1,13 +1,13 @@
 <title>Zui Jurnal Logo Motion</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Plus+Jakarta+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap">
 <style>
 /* Layout: a phone-shaped splash stage beside a timeline of the 10-second sequence; stacks on narrow screens. Palette from the app's index.html. */
 :root{
   --bg:#EDF0F3;--sf:#fff;--ink:#16202A;--mu:#5F6B77;--ln:#D8DEE4;--ac:#1D6E8C;--ac2:#B9791A;--gold:#E0A64A;--ok:#2E7D5B;--hi:#C0443A;--onac:#fff;
   --paper:#F7F9FA;--rule:#DCE3E9;--il:#8B98A5;
-  --f-display:"Fraunces",Georgia,serif;--f-body:"Plus Jakarta Sans",system-ui,sans-serif;
+  --f-display:'Outfit',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--f-body:var(--f-display); /* same face as the app */
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10171E;--sf:#18222B;--ink:#E7ECF0;--mu:#93A0AC;--ln:#2A3743;--ac:#5BB4D2;--ac2:#E0A64A;--gold:#E0A64A;--ok:#5CC596;--hi:#E5776D;--onac:#10171E;--paper:#141D25;--rule:#24313C;--il:#5E6E7C;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#10171E;--sf:#18222B;--ink:#E7ECF0;--mu:#93A0AC;--ln:#2A3743;--ac:#5BB4D2;--ac2:#E0A64A;--gold:#E0A64A;--ok:#5CC596;--hi:#E5776D;--onac:#10171E;--paper:#141D25;--rule:#24313C;--il:#5E6E7C;color-scheme:dark}
@@ -42,6 +42,16 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
 .steps li span{color:var(--mu);font-variant-numeric:tabular-nums}
 .steps li.on{background:var(--sf);box-shadow:inset 3px 0 0 var(--ac2)}
 .side p{margin:0;color:var(--mu);font-size:.9rem;max-width:56ch}
+.brand{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:16px;display:grid;gap:14px}
+.uses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.use{display:grid;justify-items:center;align-content:start;gap:8px;text-align:center;font-size:.78rem;color:var(--mu)}
+.use .ic{width:56px;height:56px}
+.lock{display:flex;align-items:center;gap:8px}
+.lock svg{width:30px;height:30px;flex:none}
+.lock b{font-weight:600;letter-spacing:.03em;font-size:.95rem;color:var(--ink);white-space:nowrap}
+.sw{display:flex;gap:10px;flex-wrap:wrap;font-size:.8rem;color:var(--mu)}
+.sw span{display:flex;align-items:center;gap:6px}
+.sw i{width:14px;height:14px;border-radius:4px;border:1px solid var(--ln)}
 
 /* ---------- illustration strokes ---------- */
 .d{fill:none;stroke-linecap:round;stroke-linejoin:round}
@@ -59,7 +69,7 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
 .bar{stroke:var(--gold);stroke-width:16}
 .spark{stroke:var(--gold);stroke-width:6;opacity:0}
 .pen{fill:var(--ac2);opacity:0}
-.wm{font-family:var(--f-display);font-weight:600;font-size:30px;fill:var(--ink);opacity:0}
+.wm{font-family:var(--f-display);font-weight:600;font-size:26px;letter-spacing:.03em;fill:var(--ink);opacity:0}
 .tg{font-family:var(--f-body);font-size:13px;fill:var(--mu);opacity:0}
 .pt{font-family:var(--f-body);font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;fill:var(--mu);opacity:0}
 .sm .il,.sm .ink{stroke-width:calc(1.6px / var(--k))}.sm .gd,.sm .okc{stroke-width:calc(2px / var(--k))}
@@ -90,6 +100,16 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
     </div>
 
     <div class="side">
+      <div class="brand">
+        <span class="lbl">Satu identitas di semua tempat</span>
+        <div class="uses">
+          <div class="use"><svg class="ic" viewBox="0 0 512 512" aria-hidden="true"><use href="#mark"/></svg>Ikon di layar HP</div>
+          <div class="use"><svg class="ic" viewBox="0 0 512 512" aria-hidden="true"><use href="#mark"/></svg>Akhir animasi splash</div>
+          <div class="use"><div class="lock"><svg viewBox="0 0 512 512" aria-hidden="true"><use href="#mark"/></svg><b>ZUI JURNAL</b></div>Login, daftar, header</div>
+        </div>
+        <div class="sw"><span><i style="background:var(--ac)"></i>Biru Zui #1D6E8C</span><span><i style="background:var(--gold)"></i>Garis emas</span><span><i style="background:#fff"></i>Putih</span><span>Huruf: Outfit</span></div>
+        <p>Bentuk Z, warna, dan huruf sama dengan ikon dan tulisan yang sudah dipakai aplikasi, jadi orang langsung mengenalinya.</p>
+      </div>
       <span class="lbl">Urutan 10 detik</span>
       <ol class="steps" id="steps">
                 <li data-a="0.3" data-b="3"><span>0,3–3</span>Logo ditulis lebih dulu: bingkai, huruf Z, garis emas, lalu terisi warna</li>
@@ -102,6 +122,12 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
     </div>
   </div>
 </div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="mark" viewBox="0 0 512 512">
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="#1D6E8C"/>
+  <path d="M176 166H330L196 314H338" fill="none" stroke="#fff" stroke-width="36" stroke-linejoin="miter"/>
+  <path d="M192 388H320" stroke="#E0A64A" stroke-width="16" stroke-linecap="round"/>
+</symbol></svg>
 
 <template id="art">
 <svg viewBox="0 0 360 640" role="img" aria-label="Splash Zui Jurnal dengan ilustrasi jurnal">
@@ -117,7 +143,7 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
     <path class="d spark" d="M350 412L392 436"/>
     <circle class="pen" id="pen" r="11"/>
   </g>
-  <text class="wm" id="wm" x="180" y="250" text-anchor="middle">Zui Jurnal</text>
+  <text class="wm" id="wm" x="180" y="250" text-anchor="middle">ZUI JURNAL</text>
   <text class="tg" id="tg" x="180" y="274" text-anchor="middle">Kendalikan diri &amp; terwujud</text>
 
   <!-- small illustrations, scattered over the whole screen -->
