@@ -40,51 +40,19 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
 .load svg{width:96px;height:96px;overflow:visible}
 ol{margin:0;padding-left:1.2em;color:var(--mu);font-size:.9rem;display:grid;gap:4px}
 
-/* ---------- logo drawing ---------- */
-.d{fill:none;stroke-dasharray:1;stroke-dashoffset:1;stroke-linecap:round;stroke-linejoin:round}
+/* ---------- logo drawing (animated from JS with the Web Animations API) ---------- */
+.d{fill:none;stroke-linecap:round;stroke-linejoin:round}
 .box{stroke:var(--ac);stroke-width:6}
-.fillbox{fill:var(--ac);opacity:0;transform-origin:256px 256px;transform:scale(.9)}
+.fillbox{fill:var(--ac);opacity:0}
 .rule{stroke:var(--ln);stroke-width:3}
 .zed{stroke:var(--ink);stroke-width:36;stroke-linecap:butt;stroke-linejoin:miter}
+.solid.done .zed{stroke:var(--onac)}
 .bar{stroke:var(--gold);stroke-width:16}
-.spark{stroke:var(--gold);stroke-width:6;opacity:0}
+.spark{stroke:var(--gold);stroke-width:6}
 .pen{fill:var(--ac2);opacity:0}
-
-.play .box{animation:draw calc(.9s*var(--spd)) cubic-bezier(.6,.05,.3,1) forwards}
-.play .rule{animation:draw calc(.45s*var(--spd)) ease-out forwards,fadeout calc(.4s*var(--spd)) ease-in calc(2.1s*var(--spd)) forwards}
-.play .rule:nth-of-type(1){animation-delay:calc(.55s*var(--spd)),calc(2.1s*var(--spd))}
-.play .rule:nth-of-type(2){animation-delay:calc(.68s*var(--spd)),calc(2.1s*var(--spd))}
-.play .rule:nth-of-type(3){animation-delay:calc(.81s*var(--spd)),calc(2.1s*var(--spd))}
-.play .zed{animation:draw calc(.95s*var(--spd)) cubic-bezier(.65,0,.35,1) calc(1s*var(--spd)) forwards}
-.play .bar{animation:draw calc(.45s*var(--spd)) cubic-bezier(.3,.7,.2,1) calc(1.9s*var(--spd)) forwards}
-.play .spark{animation:spark calc(.6s*var(--spd)) ease-out calc(2.2s*var(--spd)) forwards}
-.play .pen{animation:pen calc(1.35s*var(--spd)) linear calc(1s*var(--spd)) forwards}
-.solid.play .fillbox{animation:fill calc(.5s*var(--spd)) cubic-bezier(.2,.8,.2,1) calc(2.4s*var(--spd)) forwards}
-.solid.play .zed{animation:draw calc(.95s*var(--spd)) cubic-bezier(.65,0,.35,1) calc(1s*var(--spd)) forwards,toWhite calc(.4s*var(--spd)) ease calc(2.45s*var(--spd)) forwards}
-.play .word{animation:rise calc(.6s*var(--spd)) ease-out calc(2.6s*var(--spd)) both}
-
-/* loader loops: Z redraws forever */
-.loop .box{stroke-dashoffset:0;opacity:.35}
-.loop .zed{animation:loopz calc(1.6s*var(--spd)) cubic-bezier(.65,0,.35,1) infinite}
-.loop .bar{animation:loopb calc(1.6s*var(--spd)) ease-in-out infinite}
-
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes fadeout{to{opacity:0}}
-@keyframes fill{to{opacity:1;transform:scale(1)}}
-@keyframes toWhite{to{stroke:var(--onac)}}
-@keyframes spark{0%{opacity:0;stroke-dasharray:.2 1;stroke-dashoffset:.2}40%{opacity:1}100%{opacity:0;stroke-dashoffset:-1}}
-@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@keyframes loopz{0%{stroke-dashoffset:1}55%,70%{stroke-dashoffset:0}100%{stroke-dashoffset:-1}}
-@keyframes loopb{0%,45%{stroke-dashoffset:1}65%,80%{stroke-dashoffset:0}100%{stroke-dashoffset:-1}}
-/* pen tip follows the Z path */
-@keyframes pen{0%{opacity:1;offset-distance:0%}92%{opacity:1}100%{opacity:0;offset-distance:100%}}
-.pen{offset-path:path("M176 166 H330 L196 314 H338");offset-rotate:0deg}
-
-@media (prefers-reduced-motion:reduce){
-  .play *,.loop *{animation:none!important}
-  .d{stroke-dashoffset:0}.rule,.spark,.pen{opacity:0}
-  .solid .fillbox{opacity:1;transform:none}.solid .zed{stroke:var(--onac)}
-}
+.note{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:var(--sf);border:1px solid var(--ac2);border-radius:12px;padding:12px 14px;font-size:.9rem}
+.note p{margin:0;max-width:60ch}
+.note[hidden]{display:none}
 </style>
 
 <div class="wrap">
@@ -99,8 +67,13 @@ ol{margin:0;padding-left:1.2em;color:var(--mu);font-size:.9rem;display:grid;gap:
     </div>
   </header>
 
+  <div class="note" id="rm" hidden>
+    <p>HP atau browsermu sedang mengaktifkan pengaturan <b>kurangi gerakan</b>, jadi animasi ditampilkan diam. Ketuk tombol ini untuk tetap memutarnya.</p>
+    <button class="pri" id="force" type="button">Putar animasi</button>
+  </div>
+
   <section class="stage" aria-label="Animasi splash">
-    <span class="lbl">Splash saat aplikasi dibuka · 3 detik</span>
+    <span class="lbl">Splash saat aplikasi dibuka · 3 detik · diputar ulang otomatis</span>
     <div class="anim" data-kind="solid"></div>
     <div class="word play-word"><b>Zui Jurnal</b><span>Kendalikan diri &amp; terwujud</span></div>
   </section>
@@ -133,43 +106,88 @@ ol{margin:0;padding-left:1.2em;color:var(--mu);font-size:.9rem;display:grid;gap:
 
 <template id="logo">
   <svg viewBox="0 0 512 512" role="img" aria-label="Logo Zui Jurnal">
-    <rect class="fillbox" x="16" y="16" width="480" height="480" rx="96"/>
-    <rect class="d box" x="16" y="16" width="480" height="480" rx="96" pathLength="1"/>
-    <line class="d rule" x1="96" y1="200" x2="416" y2="200" pathLength="1"/>
-    <line class="d rule" x1="96" y1="290" x2="416" y2="290" pathLength="1"/>
-    <line class="d rule" x1="96" y1="380" x2="416" y2="380" pathLength="1"/>
-    <path class="d zed" d="M176 166 H330 L196 314 H338" pathLength="1"/>
-    <line class="d bar" x1="192" y1="388" x2="320" y2="388" pathLength="1"/>
-    <g>
-      <line class="spark" x1="350" y1="372" x2="392" y2="348" pathLength="1"/>
-      <line class="spark" x1="356" y1="392" x2="404" y2="392" pathLength="1"/>
-      <line class="spark" x1="350" y1="412" x2="392" y2="436" pathLength="1"/>
-    </g>
+    <path class="fillbox" d="M112 16H400A96 96 0 0 1 496 112V400A96 96 0 0 1 400 496H112A96 96 0 0 1 16 400V112A96 96 0 0 1 112 16Z"/>
+    <path class="d box" d="M112 16H400A96 96 0 0 1 496 112V400A96 96 0 0 1 400 496H112A96 96 0 0 1 16 400V112A96 96 0 0 1 112 16Z"/>
+    <path class="d rule" d="M96 200H416"/>
+    <path class="d rule" d="M96 290H416"/>
+    <path class="d rule" d="M96 380H416"/>
+    <path class="d zed" d="M176 166H330L196 314H338"/>
+    <path class="d bar" d="M192 388H320"/>
+    <path class="d spark" d="M350 372L392 348"/>
+    <path class="d spark" d="M356 392H404"/>
+    <path class="d spark" d="M350 412L392 436"/>
     <circle class="pen" r="11" cx="0" cy="0"/>
   </svg>
 </template>
 
 <script>
 const tpl=document.getElementById('logo');
+const E='cubic-bezier(.65,0,.35,1)';
+let spd=1,timer=null,forced=false;
+const rm=matchMedia('(prefers-reduced-motion: reduce)');
+const len=el=>el.getTotalLength();
+
+function prep(el){const L=len(el);el.style.strokeDasharray=L+' '+L;el.style.strokeDashoffset=L;return L}
+function draw(el,dur,delay,ease){const L=prep(el);
+  return el.animate([{strokeDashoffset:L},{strokeDashoffset:0}],{duration:dur*spd,delay:delay*spd,easing:ease||E,fill:'forwards'})}
+function fade(el,from,to,dur,delay){return el.animate([{opacity:from},{opacity:to}],{duration:dur*spd,delay:delay*spd,fill:'forwards'})}
+
+function playOnce(svg,kind){
+  const q=s=>svg.querySelector(s),qa=s=>svg.querySelectorAll(s);
+  svg.classList.remove('done');
+  draw(q('.box'),900,0,'cubic-bezier(.6,.05,.3,1)');
+  qa('.rule').forEach((r,i)=>{draw(r,450,550+i*130,'ease-out');fade(r,1,0,400,2100)});
+  const z=q('.zed');draw(z,950,1000);
+  draw(q('.bar'),450,1900,'cubic-bezier(.3,.7,.2,1)');
+  qa('.spark').forEach(sp=>{const L=prep(sp);sp.style.strokeDasharray=(L*.5)+' '+L;
+    sp.animate([{strokeDashoffset:L*.5,opacity:0},{opacity:1,offset:.4},{strokeDashoffset:-L,opacity:0}],{duration:600*spd,delay:2200*spd,easing:'ease-out',fill:'forwards'})});
+  // pen tip rides along the Z stroke
+  const pen=q('.pen'),ZL=len(z),frames=[];
+  for(let i=0;i<=40;i++){const t=i/40,p=z.getPointAtLength(ZL*(t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2));
+    frames.push({transform:`translate(${p.x}px,${p.y}px)`,opacity:i===40?0:1})}
+  pen.animate(frames,{duration:950*spd,delay:1000*spd,fill:'forwards'});
+  if(kind==='solid'){
+    q('.fillbox').animate([{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'scale(1)'}],{duration:500*spd,delay:2400*spd,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'});
+    q('.fillbox').style.transformOrigin='256px 256px';
+    const c=getComputedStyle(svg).getPropertyValue('--onac').trim(),ink=getComputedStyle(svg).getPropertyValue('--ink').trim();
+    z.animate([{stroke:ink},{stroke:c}],{duration:400*spd,delay:2450*spd,fill:'forwards'});
+  }
+}
+function loop(svg){
+  const z=svg.querySelector('.zed'),b=svg.querySelector('.bar'),box=svg.querySelector('.box');
+  box.style.opacity=.35;
+  const L=prep(z),B=prep(b),o={duration:1600*spd,iterations:Infinity,easing:E};
+  z.animate([{strokeDashoffset:L},{strokeDashoffset:0,offset:.55},{strokeDashoffset:0,offset:.7},{strokeDashoffset:-L}],o);
+  b.animate([{strokeDashoffset:B},{strokeDashoffset:B,offset:.45},{strokeDashoffset:0,offset:.65},{strokeDashoffset:0,offset:.8},{strokeDashoffset:-B}],o);
+}
+function still(svg,kind){
+  svg.querySelectorAll('.rule,.spark,.pen').forEach(n=>n.style.opacity=0);
+  if(kind==='solid'){svg.classList.add('done');svg.querySelector('.fillbox').style.opacity=1}
+}
 function mount(){
+  clearTimeout(timer);
+  const motion=forced||!rm.matches;
+  document.getElementById('rm').hidden=motion;
   document.querySelectorAll('.anim').forEach(el=>{
     const k=el.dataset.kind;
     el.replaceChildren(tpl.content.cloneNode(true));
     const svg=el.firstElementChild;
-    if(k==='loop'){svg.classList.add('loop');svg.querySelectorAll('.rule,.spark,.pen,.fillbox').forEach(n=>n.remove())}
-    else{svg.classList.add('play');if(k==='solid')svg.classList.add('solid')}
-    if(k==='line')svg.querySelector('.fillbox').remove();
+    if(k!=='solid')svg.querySelector('.fillbox').remove();
+    if(k==='loop')svg.querySelectorAll('.rule,.spark,.pen').forEach(n=>n.remove());
+    if(!motion)return still(svg,k);
+    k==='loop'?loop(svg):playOnce(svg,k);
   });
   const w=document.querySelector('.play-word');
-  w.classList.remove('play');void w.offsetWidth;w.classList.add('play');
+  w.getAnimations().forEach(a=>a.cancel());
+  if(motion)w.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:600*spd,delay:2600*spd,easing:'ease-out',fill:'both'});
+  if(motion)timer=setTimeout(mount,5500*spd); // auto-repeat so the splash is never missed
 }
-mount();
-document.getElementById('replay').addEventListener('click',mount);
+document.getElementById('replay').addEventListener('click',()=>{forced=true;mount()});
+document.getElementById('force').addEventListener('click',()=>{forced=true;mount()});
 const slow=document.getElementById('slow');
 slow.addEventListener('click',()=>{
   const on=slow.getAttribute('aria-pressed')!=='true';
-  slow.setAttribute('aria-pressed',on);
-  document.documentElement.style.setProperty('--spd',on?3:1);
-  mount();
+  slow.setAttribute('aria-pressed',on);spd=on?3:1;mount();
 });
+mount();
 </script>
