@@ -204,28 +204,62 @@ textarea.ni{resize:vertical;line-height:1.5}
 .am.er{color:var(--hi)}
 .ed{margin-left:auto!important}
 .ed+.x{margin-left:0!important}
-/* PC: menu in a left sidebar, pages split into a main column and a summary column */
+/* PC dashboard: greeting banner, calendar/status rail, the app in the middle, today rail, summary cards */
+.dsw{height:100%}
+.dban,.dsl,.dsr,.dsb,.dsf,.dadr,.dadd{display:none}
 @media (min-width:1024px){
-.app{display:grid;grid-template-columns:248px minmax(0,1fr);grid-template-rows:auto auto 1fr;max-width:none;background:linear-gradient(90deg,var(--sf) 247px,var(--ln) 247px 248px,var(--bg) 248px)}
-.top{grid-column:1;grid-row:1;flex-direction:column;align-items:stretch;gap:14px;padding:24px 20px 12px}
-.top .lt b::before{content:"";display:block;width:44px;height:44px;margin-bottom:12px;border-radius:11px;background:url(icon-192.png) center/cover}
-.top .rt{justify-content:space-between}
-.hd{grid-column:1;grid-row:2;overflow:visible;padding:4px 12px 100px}
-.hdi{flex-direction:column;gap:2px;width:auto;padding:0;transform:none!important}
-.hdi button{display:block;width:100%;text-align:left;font-size:15px;font-weight:500;opacity:1;color:var(--mu);padding:10px 12px;border-radius:10px;line-height:1.2;transform:none!important}
-.hdi button:hover{background:var(--bg);color:var(--ink)}
-.hdi button.on{background:color-mix(in srgb,var(--ac) 12%,transparent);color:var(--ac);animation:none}
-.pv{grid-column:2;grid-row:1/4}
-.pv section{padding:28px max(40px,calc((100% - 1160px)/2)) 60px}
-.pv section.pcg{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:0 36px;align-content:start;align-items:start}
-.pv section.pcg.eq{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-.pcm,.pcs{min-width:0}
-.pcg:not(.eq) .pcs{position:sticky;top:0;background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:16px}
-.pcs>.kp{margin-top:0;border-top:0}.pcs>.kp:last-child{border-bottom:0;margin-bottom:0}.pcs>.sgs:last-child{margin-bottom:0}
-.fab{left:20px;right:auto;width:208px;bottom:calc(24px + env(safe-area-inset-bottom,0px));text-align:center}
-#rob{position:fixed;top:12px;left:272px;right:24px;margin:0;z-index:5;background:var(--sf)}
-.kcal{max-width:520px}
+html,body{height:auto;min-height:100%}
+.dsw{height:auto;display:grid;grid-template-columns:240px minmax(0,720px) 280px;gap:18px 30px;justify-content:center;padding:22px 24px 26px}
+.dban{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:24px;background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:18px 24px}
+.dban h2{margin:0;font-size:22px;font-weight:600;text-wrap:balance}
+.dban p{margin:4px 0 0;color:var(--mu);font-size:14px;line-height:1.5;max-width:70ch}
+.dban .dbd{text-align:right;flex:none;color:var(--mu);font-size:13px;line-height:1.5}
+.dban .dbd b{display:block;color:var(--ink);font-size:15px;font-weight:500}
+.dsl,.dsr{display:flex;flex-direction:column;gap:14px;align-self:start;position:sticky;top:16px;min-width:0}
+.dsl{grid-column:1;grid-row:2}.dsr{grid-column:3;grid-row:2}
+.app{grid-column:2;grid-row:2;max-width:none;margin:0;height:calc(100vh - 170px);min-height:560px}
+.top{padding:0 2px}.hd{padding-left:2px}.pv section{padding:4px 2px 40px}
+.fab{display:none!important}
+.dadr{display:flex;justify-content:flex-end;margin:4px 0 10px}
+.dadd{display:inline-block;margin-left:auto;background:var(--ac);color:var(--onac,#fff);border-radius:99px;padding:7px 14px;font-size:13px;font-weight:500;white-space:nowrap}
+.sgs .dadd{align-self:center}
+.dc{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:14px 16px}
+.dl{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--mu);font-weight:600;margin:0 0 8px}
+.dcal{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font-size:12px;font-variant-numeric:tabular-nums}
+.dcal span{color:var(--mu);font-size:10px;padding-bottom:4px}
+.dcal i{font-style:normal;padding:5px 0;border-radius:7px;position:relative}
+.dcal i.o{visibility:hidden}
+.dcal i.td{background:var(--ac);color:var(--onac,#fff);font-weight:600}
+.dcal i.dl2::after{content:"";position:absolute;left:50%;bottom:1px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--ac2)}
+.dch{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.dch b{font-weight:600}.dch small{color:var(--mu)}
+.dst{display:grid;gap:8px;font-size:13px}
+.dst div{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.dst .ib{cursor:pointer}
+.dbt{display:block;width:100%;text-align:center;border:1px solid var(--ln);border-radius:10px;padding:9px;font-size:13px;font-weight:500}
+.dnx{display:flex;justify-content:space-between;align-items:baseline}
+.dnx b{font-size:22px;font-weight:500}.dnx span{font-size:22px;font-weight:300;color:var(--ac);font-variant-numeric:tabular-nums}
+.dnx+small{display:block;color:var(--mu);font-size:12px;margin-top:2px}
+.dtl{display:grid;gap:9px;font-size:13px}
+.dtl button{display:flex;gap:10px;align-items:center;text-align:left;width:100%}
+.dtl i{width:16px;height:16px;border:2px solid var(--mu);border-radius:50%;flex:none}
+.dtl span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dtl em{font-style:normal;color:var(--hi);font-size:12px;flex:none}
+.dbar{height:6px;border-radius:3px;background:var(--ln);overflow:hidden;margin:2px 0 8px}
+.dbar i{display:block;height:100%;background:var(--ok)}
+.dsm{color:var(--mu);font-size:12px}
+.daf{border-left:3px solid #E0A64A;padding-left:12px;font-size:14px;line-height:1.5}
+.daf small{display:block;color:var(--mu);font-size:12px;margin-top:6px}
+.dlk{color:var(--ac);font-size:13px}
+.dsb{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.dsb button{text-align:left;background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:14px 16px;font-size:13.5px;line-height:1.5;color:var(--mu)}
+.dsb button:hover{border-color:var(--ac)}
+.dsb b{display:block;margin-bottom:4px;font-size:14px;color:var(--ink)}
+.dsb em{font-style:normal;color:var(--ac);font-weight:500}
+.dsf{grid-column:1/-1;display:block;text-align:center;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);font-weight:600}
+#sy,#sbp,#inst{display:none!important}
 }
+@media (min-width:1024px) and (max-width:1279px){.dsw{grid-template-columns:240px minmax(0,720px)}.dsr{display:none}}
 .pg .ctl .x,.pg .ctl .ed{font-size:20px;padding:4px 8px;border:0}
 #sy{font-size:11px;color:var(--mu)}
 .hrow{display:flex;gap:8px;margin:8px 0 4px}
@@ -441,6 +475,9 @@ try{if((JSON.parse(localStorage.getItem('jurnal.set'))||{}).lang=='en')document.
 var fin=function(){setTimeout(splEnd,Math.max(0,600-(Date.now()-t0)))};
 window.splReady=fin;setTimeout(splEnd,8000)}
 else{splPlay();setTimeout(splEnd,10000)}})()</script>
+<div class="dsw">
+<section id="dban" class="dban" aria-label="Ringkasan hari ini"></section>
+<aside id="dsl" class="dsl" aria-label="Kalender dan status"></aside>
 <div class="app">
   <div class="top"><span class="lt"><b>ZUI JURNAL <small id="tag" class="nt" role="button" tabindex="0" title="Ubah tulisan" onclick="editTag()" onkeydown="if(event.key==='Enter')editTag()" style="font-weight:400;color:var(--mu);letter-spacing:0">Kendalikan diri &amp; terwujud</small></b><button class="ib" id="sbp" onclick="openSub()" style="display:none"></button></span><span class="rt"><span id="sy"></span><span id="tg"></span><button class="ib" id="inst" onclick="install()" style="display:none">⬇ Instal</button><span class="rb"><button class="gear" id="chb" onclick="chShow()" aria-label="Chat">💬<span id="chd"></span></button><button class="gear" onclick="openSet()" aria-label="Pengaturan">⚙</button></span></span></div>
   <div class="hd"><div class="hdi" id="hdi" role="tablist"></div></div>
@@ -456,6 +493,10 @@ else{splPlay();setTimeout(splEnd,10000)}})()</script>
     <section id="p7" aria-label="Kewajiban"></section>
   </div>
   <button class="fab" id="fab" onclick="openAdd()"></button>
+</div>
+<aside id="dsr" class="dsr" aria-label="Hari ini"></aside>
+<section id="dsb" class="dsb" aria-label="Ringkasan"></section>
+<div class="dsf">Zui Jurnal versi 26.01</div>
 </div>
 <dialog id="dl">
   <h2 id="dt"></h2>
@@ -1257,19 +1298,54 @@ function instShow(){var v=!isStd()&&(!!DP||isIOS());['inst','inst2'].forEach(fun
 async function install(){if(DP){DP.prompt();try{await DP.userChoice}catch(e){}DP=null;instShow()}else if(isIOS())toast('Di iPhone: ketuk tombol Bagikan, lalu "Tambahkan ke Layar Utama".')}
 window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();DP=e;instShow()});
 window.addEventListener('appinstalled',function(){DP=null;instShow();toast('Zui Jurnal terpasang')});
-// PC layout: move each page's summary blocks into a side column (sections are re-rendered with innerHTML, so re-apply after every render)
-var PCQ=matchMedia('(min-width:1024px)'),PCS={
-p0:function(e){return e.matches('.kp,.sgs')},p1:function(e){return e.matches('.kp')},p2:function(e){return e.matches('.sum,.bar,.sgs')},
-p3:function(e,t){if(e.tagName=='H3')t.h=1;return !t.h},p4:function(e){return e.matches('.sgs,.sum')},p5:function(e){return e.matches('#nq,#nl')},
-p6:function(e,t){if(e.tagName=='H3'){t.h=1;if(e.nextElementSibling&&e.nextElementSibling.matches('.kp'))t.s=1}return !t.h||t.s},
-p7:function(e,t){if(e.matches('details'))return 0;if(e.tagName=='H3'&&e.nextElementSibling&&e.nextElementSibling.matches('.hh2'))t.s=1;return t.s}};
-function pcLay(sec){var f=PCS[sec.id],k=[].slice.call(sec.children);if(!f||!PCQ.matches||(k[0]&&k[0].classList.contains('pcm')))return;
-var m=document.createElement('div'),sd=document.createElement('div'),t={};m.className='pcm';sd.className='pcs';
-k.forEach(function(e){(f(e,t)?sd:m).appendChild(e)});if(!sd.children.length){k.forEach(function(e){sec.appendChild(e)});return}
-sec.classList.add('pcg');sec.classList.toggle('eq',sec.id=='p5'||sec.id=='p7');sec.append(m,sd)}
-var PCO=new MutationObserver(function(L){L.forEach(function(r){pcLay(r.target)})});
-document.querySelectorAll('.pv section').forEach(function(x){PCO.observe(x,{childList:true})});
-PCQ.addEventListener('change',function(){document.querySelectorAll('.pv section').forEach(function(x){x.classList.remove('pcg','eq')});rr();rk();setTimeout(function(){pv.scrollLeft=cur*pv.clientWidth},0)});
+// PC dashboard panels. Rebuilt after every full render (rr) and once a minute for the prayer countdown.
+var DQ=matchMedia('(min-width:1024px)');
+function dGreet(){var h=new Date().getHours();return h<11?'Selamat pagi':h<15?'Selamat siang':h<18?'Selamat sore':'Selamat malam'}
+function dPray(){try{if(!kwIsl()||!kwc().cfg.loc)return null;var n=kwNext5();if(!n||n[0]=='terbit')return n?{k:'Matahari terbit',t:n[1]}:null;return{k:KWN[n[0]],t:n[1]}}catch(e){return null}}
+function dLeft(t){var m=Math.max(0,Math.round((t-Date.now())/6e4)),h=Math.floor(m/60);return(h?h+' jam ':'')+(m%60)+' menit lagi'}
+function dsh(){if(!DQ.matches||!$('dban'))return;var td=iso(0),T=S.todo,H=S.kebiasaan,due=T.filter(x=>!x.x&&(!x.u||x.u<=td)).sort((a,b)=>PRI[a.p]-PRI[b.p]),hd=H.filter(x=>x.log[td]).length,pr=dPray(),n=gv('name'),m=gv('motto'),hj=null;
+try{hj=kwHj(td)}catch(e){}
+var bits=[];if(due.length)bits.push(due.length+' tugas fokus');if(H.length&&H.length>hd)bits.push((H.length-hd)+' kebiasaan belum dicentang');
+var sm=bits.length?'Ada '+bits.join(', ')+(pr?', dan '+(pr.k=='Matahari terbit'?'matahari terbit':'shalat '+pr.k)+' pukul '+ftm(pr.t):'')+'.':'Semua tugas dan kebiasaan hari ini sudah beres.';
+$('dban').innerHTML=`<div><h2>${dGreet()}${n?', <span class="nt">'+esc(n)+'</span>':''}</h2><p>${m?'<span class="nt">"'+esc(m)+'"</span> ':''}${sm}</p></div><div class="dbd"><b>${new Date().toLocaleDateString(LOC,{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</b>${hj?hj.s:''}</div>`;
+// left: month calendar with deadline dots, then sync/subscription/install
+var d0=new Date(),y=d0.getFullYear(),mo=d0.getMonth(),first=(new Date(y,mo,1).getDay()+6)%7,nd=new Date(y,mo+1,0).getDate(),DL={};
+T.forEach(x=>{if(!x.x&&x.u)DL[x.u]=1});S.rencana.forEach(x=>{if(x.s<2&&x.d)DL[x.d]=1});S.proyek.forEach(x=>{if(x.s<2&&x.d)DL[x.d]=1});
+var c='';['Sen','Sel','Rab','Kam','Jum','Sab','Min'].forEach(w=>c+='<span>'+w+'</span>');for(var i=0;i<first;i++)c+='<i class="o"></i>';
+for(var dd=1;dd<=nd;dd++){var k=y+'-'+String(mo+1).padStart(2,'0')+'-'+String(dd).padStart(2,'0');c+='<i class="'+(k==td?'td':'')+(DL[k]?' dl2':'')+'">'+dd+'</i>'}
+var sy=($('sy')&&$('sy').textContent.trim())||(USER?'':'Hanya di perangkat ini'),sl=typeof subLabel=='function'?subLabel():'',ins=!isStd()&&(!!DP||isIOS());
+$('dsl').innerHTML=`<div class="dc"><div class="dch"><b>${d0.toLocaleDateString(LOC,{month:'long',year:'numeric'})}</b><small>• tenggat</small></div><div class="dcal">${c}</div></div>`
++`<div class="dc dst">${sy?`<div><span>Sinkronisasi</span><span>${esc(sy)}</span></div>`:''}${sl?`<div><span>Langganan</span><button class="ib" onclick="openSub()">${esc(sl)}</button></div>`:''}${ins?'<button class="dbt" onclick="install()">Instal aplikasi</button>':''}<button class="dbt" onclick="openSet()">Pengaturan</button></div>`;
+// right: next prayer, focus tasks, habits, one manifestation
+var r='';
+if(pr)r+=`<button class="dc" style="text-align:left" onclick="go(7)"><p class="dl">${pr.k=='Matahari terbit'?'Berikutnya':'Shalat berikutnya'}</p><div class="dnx"><b>${pr.k}</b><span>${ftm(pr.t)}</span></div><small>${dLeft(pr.t)}${kwc().cfg.loc.n?' · '+esc(String(kwc().cfg.loc.n).split(',')[0]):''}</small></button>`;
+r+=`<div class="dc"><p class="dl">Fokus hari ini</p>`+(due.length?'<div class="dtl">'+due.slice(0,5).map(x=>`<button onclick="tg('${x.id}')" title="Tandai selesai"><i></i><span class="nt">${esc(x.t)}</span>${isLate(x)?'<em>Terlambat</em>':x.u==td?'<em>Hari ini</em>':''}</button>`).join('')+'</div>':'<span class="dsm">Tidak ada tugas yang jatuh tempo.</span>')+`</div>`;
+r+=`<button class="dc" style="text-align:left" onclick="go(6)"><p class="dl">Kebiasaan hari ini</p>`+(H.length?`<div class="dbar"><i style="width:${Math.round(hd/H.length*100)}%"></i></div><span class="dsm">${hd} dari ${H.length} kebiasaan selesai</span>`:'<span class="dsm">Belum ada kebiasaan. Tambahkan di halaman Hari ini.</span>')+`</button>`;
+var mf0=S.manifest.filter(x=>!x.x).sort((a,b)=>(b.ct||0)-(a.ct||0))[0];
+if(mf0)r+=`<button class="dc" style="text-align:left" onclick="go(4)"><p class="dl">Manifestasi</p><div class="daf"><span class="nt">${esc(mf0.t)}</span>${mf0.ct?'<small>Ditulis '+fd(new Date(mf0.ct).toLocaleDateString('sv-SE'))+'</small>':''}</div></button>`;
+$('dsr').innerHTML=r;
+// bottom: one card per area
+var A=S.rencana,ra=A.filter(x=>x.s<2&&x.d&&x.d>=td).sort((a,b)=>a.d.localeCompare(b.d))[0],
+t7=T.filter(x=>x.z&&x.z>=iso(-6)).length,
+P=S.progres,av=(function(){var a=P.map(x=>x.v).concat(S.proyek.filter(x=>x.s<2).map(x=>pst(x.id).p));return a.length?Math.round(a.reduce((s,v)=>s+v,0)/a.length):null})(),
+pn=S.proyek.filter(x=>x.s<2).map(x=>[x,pst(x.id).p]).filter(a=>a[1]<100).sort((a,b)=>b[1]-a[1])[0],
+st=0;for(var j=0;j<366;j++){var dj=iso(-j);if(S.catatan.some(x=>x.d==dj))st++;else if(j>0)break}
+var C=S.catatan.filter(x=>x.d>=iso(-6)&&x.mood),am=C.length?Math.round(C.reduce((s,x)=>s+x.mood,0)/C.length):0,MO=['','sangat buruk','kurang baik','biasa','baik','sangat baik'];
+var days=function(d){return Math.round((new Date(d+'T00:00')-new Date(td+'T00:00'))/864e5)};
+$('dsb').innerHTML=`<button onclick="go(0)"><b>Rencana</b>${A.length?A.length+' rencana, <em>'+A.filter(x=>x.s==1).length+' berjalan</em> dan '+A.filter(x=>x.s==2).length+' selesai.'+(ra?' <span class="nt">'+esc(ra.t)+'</span> tinggal '+days(ra.d)+' hari lagi.':''):'Belum ada rencana. Tulis yang ingin Anda capai.'}</button>`
++`<button onclick="go(2)"><b>Tugas minggu ini</b><em>${T.filter(x=>!x.x).length} aktif</em>, ${T.filter(x=>!x.x&&x.u==td).length} jatuh tempo hari ini. ${t7} tugas selesai dalam 7 hari terakhir.</button>`
++`<button onclick="go(3)"><b>Progres</b>${av==null?'Belum ada proyek atau target yang dilacak.':'Rata-rata proyek dan target <em>'+av+'%</em>.'+(pn?' <span class="nt">'+esc(pn[0].t)+'</span> paling dekat selesai ('+pn[1]+'%).':'')}</button>`
++`<button onclick="go(5)"><b>Catatan</b>${st?'Menulis <em>'+st+' hari berturut-turut</em>.':'Belum ada catatan hari ini.'}${am?' Suasana hati rata-rata minggu ini: '+MO[am]+'.':''}</button>`;
+['dban','dsl','dsr','dsb'].forEach(i=>tr($(i)))}
+// small add button: next to the filter chips, or at the top right of the page when it has none
+function dAdd(sec){if(!DQ.matches)return;var i=+sec.id.slice(1);if(i>=5||(i==4&&mf=='visual')||sec.querySelector('.dadd'))return;
+var b=document.createElement('button');b.className='dadd';b.textContent='+ '+(i==4?MD[mf].fab:FAB[i]);b.onclick=function(){if(cur!=i)go(i);openAdd()};tr(b);
+var g=sec.querySelector(':scope>.sgs');if(g){g.appendChild(b);return}var w=document.createElement('div');w.className='dadr';w.appendChild(b);sec.insertBefore(w,sec.firstChild)}
+var DMO=new MutationObserver(function(L){L.forEach(function(r){dAdd(r.target)})});
+document.querySelectorAll('.pv section').forEach(function(x){DMO.observe(x,{childList:true})});
+var rr0=rr;rr=function(){rr0();dsh()};
+DQ.addEventListener('change',function(){rr();setTimeout(function(){pv.scrollLeft=cur*pv.clientWidth},0)});
+setInterval(dsh,60000);
 rr();pv.scrollLeft=(/kw/.test(location.hash)?7:6)*pv.clientWidth;sync();lockShow();instShow();
 document.addEventListener('visibilitychange',function(){if(document.hidden)HT=Date.now();else{var dt=Date.now()-HT;if(dt>60000)lockShow()}});
 setInterval(remChk,30000);
