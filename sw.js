@@ -1,6 +1,6 @@
 // Zui Jurnal service worker
 // Naikkan angka versi ini setiap kali kamu mengubah file aplikasi.
-const VERSION = 'zui-jurnal-v26.03';
+const VERSION = 'zui-jurnal-v26.04';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 // File dari luar yang aman disimpan untuk offline (pustaka Firebase dan font).
 const CDN = ['www.gstatic.com', 'fonts.googleapis.com', 'fonts.gstatic.com'];
