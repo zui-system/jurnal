@@ -62,7 +62,7 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
 .wm{font-family:var(--f-display);font-weight:600;font-size:30px;fill:var(--ink);opacity:0}
 .tg{font-family:var(--f-body);font-size:13px;fill:var(--mu);opacity:0}
 .pt{font-family:var(--f-body);font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;fill:var(--mu);opacity:0}
-.sm .il{stroke-width:3.4}.sm .gd,.sm .okc{stroke-width:4.2}.sm .ink{stroke-width:3.4}
+.sm .il,.sm .ink{stroke-width:calc(1.6px / var(--k))}.sm .gd,.sm .okc{stroke-width:calc(2px / var(--k))}
 .still .wm,.still .tg,.still .fillbox,.still .pt{opacity:1}
 </style>
 
@@ -124,9 +124,9 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
   <text class="wm" id="wm" x="180" y="250" text-anchor="middle">Zui Jurnal</text>
   <text class="tg" id="tg" x="180" y="274" text-anchor="middle">Kendalikan diri &amp; terwujud</text>
 
-  <!-- small illustrations, bottom band: two rows of three -->
+  <!-- small illustrations, scattered loosely in the lower half -->
   <g class="sm">
-  <g transform="translate(26.3 355.6) scale(0.55)"><g class="fl">
+  <g style="--k:0.32" transform="translate(78 352) rotate(-8) scale(0.32) translate(-94 -99)"><g class="fl">
     <path class="d il" d="M24 62Q58 50 94 62V148Q58 136 24 148Z" data-t="3400,700"/>
     <path class="d il" d="M94 62Q130 50 164 62V148Q130 136 94 148Z" data-t="3550,700"/>
     <path class="d il" d="M34 84Q58 77 84 84M34 102Q58 95 84 102M34 120Q58 113 84 120" data-t="4000,600"/>
@@ -135,7 +135,7 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
     <path class="d ink" d="M104 120c5-8 9 7 14 0s7 6 11 2" data-t="5550,400"/>
   </g></g>
 
-  <g transform="translate(28.2 355.0) scale(0.55)"><g class="fl">
+  <g style="--k:0.3" transform="translate(268 338) rotate(7) scale(0.3) translate(-276 -100)"><g class="fl">
     <path class="d il" d="M216 52H336V156H216Z" data-t="3700,700"/>
     <path class="d il" d="M216 74H336M240 44V60M312 44V60" data-t="4100,450"/>
     <path class="d il" d="M246 74V156M276 74V156M306 74V156M216 101H336M216 128H336" data-t="4300,700"/>
@@ -147,7 +147,7 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
     <path class="d gd" d="M252 115l5 5 9-10" data-t="7500,220"/>
   </g></g>
 
-  <g transform="translate(229.2 104.8) scale(0.55)"><g class="fl">
+  <g style="--k:0.3" transform="translate(292 470) rotate(-6) scale(0.3) translate(-96 -555)"><g class="fl">
     <path class="d il" d="M28 500H164V610H28Z" data-t="4000,700"/>
     <path class="d il" d="M42 520H56V534H42ZM42 548H56V562H42ZM42 576H56V590H42Z" data-t="4400,500"/>
     <path class="d il" d="M66 527H146M66 555H136M66 583H150" data-t="4700,500"/>
@@ -157,7 +157,7 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
     <path class="d okc" d="M64 555H136" data-t="8450,320"/>
   </g></g>
 
-  <g transform="translate(47.8 303.0) scale(0.55)"><g class="fl">
+  <g style="--k:0.36" transform="translate(92 478) rotate(8) scale(0.36) translate(-55 -380)"><g class="fl">
     <path class="d il" d="M22 356H76V398Q76 416 58 416H40Q22 416 22 398Z" data-t="4300,700"/>
     <path class="d il" d="M76 366Q94 366 94 380T76 394" data-t="4800,350"/>
     <path class="d il" d="M16 424H82" data-t="5000,300"/>
@@ -165,13 +165,13 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
     <path class="d gd steam" d="M58 344c-6-8 6-12 0-20s6-12 0-18" data-t="5450,500"/>
   </g></g>
 
-  <g transform="translate(4.0 346.4) scale(0.55)"><g class="fl">
+  <g style="--k:0.45" transform="translate(182 404) rotate(18) scale(0.45) translate(-320 -301)"><g class="fl">
     <path class="d il" d="M300 300L338 286L344 302L306 316Z" data-t="4600,600" transform="rotate(-50 322 301)"/>
     <path class="d il" d="M306 316L292 322L300 300" data-t="5100,300" transform="rotate(-50 322 301)"/>
     <path class="d il" d="M330 289L336 305" data-t="5300,250" transform="rotate(-50 322 301)"/>
   </g></g>
 
-  <g transform="translate(135.1 210.0) scale(0.55)"><g class="fl">
+  <g style="--k:0.32" transform="translate(180 545) rotate(0) scale(0.32) translate(-267 -549)"><g class="fl">
     <path class="d il" d="M190 612L240 540L262 568L296 518L344 612Z" data-t="4900,900"/>
     <path class="d il" d="M282 538L296 548L310 538" data-t="5600,350"/>
     <path class="d il" d="M296 518V486" data-t="8700,250"/>
