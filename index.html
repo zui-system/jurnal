@@ -218,7 +218,8 @@ html,body{height:auto;min-height:100%}
 .dsl,.dsr{display:flex;flex-direction:column;gap:14px;align-self:start;position:sticky;top:16px;min-width:0}
 .dsl{grid-column:1;grid-row:2}.dsr{grid-column:3;grid-row:2}
 .app{grid-column:2;grid-row:2;max-width:none;margin:0;height:calc(100vh - 170px);min-height:560px}
-.top{padding:0 2px}.hd{padding-left:2px}.pv section{padding:4px 2px 40px}
+.top{padding:0 2px}.hd{padding-left:2px}.hdi{gap:18px}.hdi button{font-size:17px}.pv section{padding:4px 8px 40px 2px;scrollbar-width:thin;scrollbar-color:var(--ln) transparent}
+.pv section::-webkit-scrollbar{width:6px}.pv section::-webkit-scrollbar-thumb{background:var(--ln);border-radius:3px}
 .fab{display:none!important}
 .dadr{display:flex;justify-content:flex-end;margin:4px 0 10px}
 .dadd{display:inline-block;margin-left:auto;background:var(--ac);color:var(--onac,#fff);border-radius:99px;padding:7px 14px;font-size:13px;font-weight:500;white-space:nowrap}
@@ -233,8 +234,9 @@ html,body{height:auto;min-height:100%}
 .dcal i.dl2::after{content:"";position:absolute;left:50%;bottom:1px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--ac2)}
 .dch{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
 .dch b{font-weight:600}.dch small{color:var(--mu)}
-.dst{display:grid;gap:8px;font-size:13px}
-.dst div{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.dst{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;font-size:13px}
+.dst div{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0}.dst div>span:first-child{color:var(--mu);font-size:12px}
+.dst .ib{white-space:normal;text-align:left;max-width:100%}
 .dst .ib{cursor:pointer}
 .dbt{display:block;width:100%;text-align:center;border:1px solid var(--ln);border-radius:10px;padding:9px;font-size:13px;font-weight:500}
 .dnx{display:flex;justify-content:space-between;align-items:baseline}
@@ -1302,7 +1304,7 @@ window.addEventListener('appinstalled',function(){DP=null;instShow();toast('Zui 
 var DQ=matchMedia('(min-width:1024px)');
 function dGreet(){var h=new Date().getHours();return h<11?'Selamat pagi':h<15?'Selamat siang':h<18?'Selamat sore':'Selamat malam'}
 function dPray(){try{if(!kwIsl()||!kwc().cfg.loc)return null;var n=kwNext5();if(!n||n[0]=='terbit')return n?{k:'Matahari terbit',t:n[1]}:null;return{k:KWN[n[0]],t:n[1]}}catch(e){return null}}
-function dLeft(t){var m=Math.max(0,Math.round((t-Date.now())/6e4)),h=Math.floor(m/60);return(h?h+' jam ':'')+(m%60)+' menit lagi'}
+function dCnt(t){var m=Math.max(0,Math.round((t-Date.now())/6e4)),h=Math.floor(m/60);return(h?h+' jam ':'')+(m%60)+' menit lagi'}
 function dsh(){if(!DQ.matches||!$('dban'))return;var td=iso(0),T=S.todo,H=S.kebiasaan,due=T.filter(x=>!x.x&&(!x.u||x.u<=td)).sort((a,b)=>PRI[a.p]-PRI[b.p]),hd=H.filter(x=>x.log[td]).length,pr=dPray(),n=gv('name'),m=gv('motto'),hj=null;
 try{hj=kwHj(td)}catch(e){}
 var bits=[];if(due.length)bits.push(due.length+' tugas fokus');if(H.length&&H.length>hd)bits.push((H.length-hd)+' kebiasaan belum dicentang');
@@ -1318,7 +1320,7 @@ $('dsl').innerHTML=`<div class="dc"><div class="dch"><b>${d0.toLocaleDateString(
 +`<div class="dc dst">${sy?`<div><span>Sinkronisasi</span><span>${esc(sy)}</span></div>`:''}${sl?`<div><span>Langganan</span><button class="ib" onclick="openSub()">${esc(sl)}</button></div>`:''}${ins?'<button class="dbt" onclick="install()">Instal aplikasi</button>':''}<button class="dbt" onclick="openSet()">Pengaturan</button></div>`;
 // right: next prayer, focus tasks, habits, one manifestation
 var r='';
-if(pr)r+=`<button class="dc" style="text-align:left" onclick="go(7)"><p class="dl">${pr.k=='Matahari terbit'?'Berikutnya':'Shalat berikutnya'}</p><div class="dnx"><b>${pr.k}</b><span>${ftm(pr.t)}</span></div><small>${dLeft(pr.t)}${kwc().cfg.loc.n?' · '+esc(String(kwc().cfg.loc.n).split(',')[0]):''}</small></button>`;
+if(pr)r+=`<button class="dc" style="text-align:left" onclick="go(7)"><p class="dl">${pr.k=='Matahari terbit'?'Berikutnya':'Shalat berikutnya'}</p><div class="dnx"><b>${pr.k}</b><span>${ftm(pr.t)}</span></div><small>${dCnt(pr.t)}${kwc().cfg.loc.n?' · '+esc(String(kwc().cfg.loc.n).split(',')[0]):''}</small></button>`;
 r+=`<div class="dc"><p class="dl">Fokus hari ini</p>`+(due.length?'<div class="dtl">'+due.slice(0,5).map(x=>`<button onclick="tg('${x.id}')" title="Tandai selesai"><i></i><span class="nt">${esc(x.t)}</span>${isLate(x)?'<em>Terlambat</em>':x.u==td?'<em>Hari ini</em>':''}</button>`).join('')+'</div>':'<span class="dsm">Tidak ada tugas yang jatuh tempo.</span>')+`</div>`;
 r+=`<button class="dc" style="text-align:left" onclick="go(6)"><p class="dl">Kebiasaan hari ini</p>`+(H.length?`<div class="dbar"><i style="width:${Math.round(hd/H.length*100)}%"></i></div><span class="dsm">${hd} dari ${H.length} kebiasaan selesai</span>`:'<span class="dsm">Belum ada kebiasaan. Tambahkan di halaman Hari ini.</span>')+`</button>`;
 var mf0=S.manifest.filter(x=>!x.x).sort((a,b)=>(b.ct||0)-(a.ct||0))[0];
