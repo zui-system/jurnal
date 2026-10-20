@@ -70,7 +70,7 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
   <header>
     <div>
       <h1>Animasi splash Zui Jurnal</h1>
-      <p>Logo ditulis lebih dulu di bagian atas, lalu ilustrasi garis bertema jurnal muncul kecil di bagian bawah. Total 10 detik, diputar ulang otomatis.</p>
+      <p>Logo ditulis lebih dulu di bagian atas, lalu ilustrasi garis kecil bertema jurnal tersebar di seluruh layar. Total 10 detik, diputar ulang otomatis.</p>
     </div>
     <div class="ctl">
       <button class="pri" id="replay" type="button">Putar ulang</button>
@@ -92,10 +92,9 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
     <div class="side">
       <span class="lbl">Urutan 10 detik</span>
       <ol class="steps" id="steps">
-        <li data-a="0" data-b="1.4"><span>0–1,4</span>Garis halaman buku dan garis margin muncul</li>
-        <li data-a="0.3" data-b="3"><span>0,3–3</span>Logo ditulis lebih dulu: bingkai, huruf Z, garis emas, lalu terisi warna</li>
+                <li data-a="0.3" data-b="3"><span>0,3–3</span>Logo ditulis lebih dulu: bingkai, huruf Z, garis emas, lalu terisi warna</li>
         <li data-a="3" data-b="4.3"><span>3–4,3</span>Nama aplikasi, tagline, dan nama PT di bawah muncul</li>
-        <li data-a="3.4" data-b="6"><span>3,4–6</span>Ilustrasi kecil di bagian bawah digambar: buku, kalender, daftar tugas, cangkir, pensil, gunung</li>
+        <li data-a="3.4" data-b="6"><span>3,4–6</span>Ilustrasi kecil tersebar di layar digambar: buku, kalender, daftar tugas, cangkir, pensil, gunung</li>
         <li data-a="6.6" data-b="9.3"><span>6,6–9,3</span>Kebiasaan dicentang, tugas dicoret, bendera berkibar di puncak</li>
         <li data-a="9.3" data-b="10"><span>9,3–10</span>Memudar, lalu mulai lagi</li>
       </ol>
@@ -106,9 +105,6 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
 
 <template id="art">
 <svg viewBox="0 0 360 640" role="img" aria-label="Splash Zui Jurnal dengan ilustrasi jurnal">
-  <!-- paper: ruled lines + margin -->
-  <g id="paper"></g>
-  <path class="d mg" d="M44 0V640" data-t="200,1200"/>
 
   <!-- logo first, upper part of the screen -->
   <g transform="translate(110 68) scale(.273)">
@@ -124,9 +120,9 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
   <text class="wm" id="wm" x="180" y="250" text-anchor="middle">Zui Jurnal</text>
   <text class="tg" id="tg" x="180" y="274" text-anchor="middle">Kendalikan diri &amp; terwujud</text>
 
-  <!-- small illustrations, scattered loosely in the lower half -->
+  <!-- small illustrations, scattered over the whole screen -->
   <g class="sm">
-  <g style="--k:0.32" transform="translate(78 352) rotate(-8) scale(0.32) translate(-94 -99)"><g class="fl">
+  <g style="--k:0.3" transform="translate(50 62) rotate(-14) scale(0.3) translate(-94 -99)"><g class="fl">
     <path class="d il" d="M24 62Q58 50 94 62V148Q58 136 24 148Z" data-t="3400,700"/>
     <path class="d il" d="M94 62Q130 50 164 62V148Q130 136 94 148Z" data-t="3550,700"/>
     <path class="d il" d="M34 84Q58 77 84 84M34 102Q58 95 84 102M34 120Q58 113 84 120" data-t="4000,600"/>
@@ -135,7 +131,7 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
     <path class="d ink" d="M104 120c5-8 9 7 14 0s7 6 11 2" data-t="5550,400"/>
   </g></g>
 
-  <g style="--k:0.3" transform="translate(268 338) rotate(7) scale(0.3) translate(-276 -100)"><g class="fl">
+  <g style="--k:0.28" transform="translate(312 168) rotate(11) scale(0.28) translate(-276 -100)"><g class="fl">
     <path class="d il" d="M216 52H336V156H216Z" data-t="3700,700"/>
     <path class="d il" d="M216 74H336M240 44V60M312 44V60" data-t="4100,450"/>
     <path class="d il" d="M246 74V156M276 74V156M306 74V156M216 101H336M216 128H336" data-t="4300,700"/>
@@ -147,7 +143,7 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
     <path class="d gd" d="M252 115l5 5 9-10" data-t="7500,220"/>
   </g></g>
 
-  <g style="--k:0.3" transform="translate(292 470) rotate(-6) scale(0.3) translate(-96 -555)"><g class="fl">
+  <g style="--k:0.27" transform="translate(52 262) rotate(9) scale(0.27) translate(-96 -555)"><g class="fl">
     <path class="d il" d="M28 500H164V610H28Z" data-t="4000,700"/>
     <path class="d il" d="M42 520H56V534H42ZM42 548H56V562H42ZM42 576H56V590H42Z" data-t="4400,500"/>
     <path class="d il" d="M66 527H146M66 555H136M66 583H150" data-t="4700,500"/>
@@ -157,7 +153,7 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
     <path class="d okc" d="M64 555H136" data-t="8450,320"/>
   </g></g>
 
-  <g style="--k:0.36" transform="translate(92 478) rotate(8) scale(0.36) translate(-55 -380)"><g class="fl">
+  <g style="--k:0.34" transform="translate(296 352) rotate(-12) scale(0.34) translate(-55 -380)"><g class="fl">
     <path class="d il" d="M22 356H76V398Q76 416 58 416H40Q22 416 22 398Z" data-t="4300,700"/>
     <path class="d il" d="M76 366Q94 366 94 380T76 394" data-t="4800,350"/>
     <path class="d il" d="M16 424H82" data-t="5000,300"/>
@@ -165,19 +161,28 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
     <path class="d gd steam" d="M58 344c-6-8 6-12 0-20s6-12 0-18" data-t="5450,500"/>
   </g></g>
 
-  <g style="--k:0.45" transform="translate(182 404) rotate(18) scale(0.45) translate(-320 -301)"><g class="fl">
+  <g style="--k:0.42" transform="translate(120 410) rotate(32) scale(0.42) translate(-320 -301)"><g class="fl">
     <path class="d il" d="M300 300L338 286L344 302L306 316Z" data-t="4600,600" transform="rotate(-50 322 301)"/>
     <path class="d il" d="M306 316L292 322L300 300" data-t="5100,300" transform="rotate(-50 322 301)"/>
     <path class="d il" d="M330 289L336 305" data-t="5300,250" transform="rotate(-50 322 301)"/>
   </g></g>
 
-  <g style="--k:0.32" transform="translate(180 545) rotate(0) scale(0.32) translate(-267 -549)"><g class="fl">
+  <g style="--k:0.3" transform="translate(258 500) rotate(7) scale(0.3) translate(-267 -549)"><g class="fl">
     <path class="d il" d="M190 612L240 540L262 568L296 518L344 612Z" data-t="4900,900"/>
     <path class="d il" d="M282 538L296 548L310 538" data-t="5600,350"/>
     <path class="d il" d="M296 518V486" data-t="8700,250"/>
     <path class="d gd flag" d="M296 486L320 494L296 503" data-t="8900,350"/>
   </g></g>
   </g>
+
+  <!-- tiny doodles filling the gaps -->
+  <path class="d gd" d="M306.0 51.0L307.8 55.6L312.7 55.8L308.9 58.9L310.1 63.7L306.0 61.0L301.9 63.7L303.1 58.9L299.3 55.8L304.2 55.6Z" data-t="5600,400"/>
+  <path class="d gd" d="M212.0 346.0L213.5 350.0L217.7 350.1L214.4 352.8L215.5 356.9L212.0 354.5L208.5 356.9L209.6 352.8L206.3 350.1L210.5 350.0Z" data-t="5800,400"/>
+  <path class="d il" d="M36 410h12M42 404v12" data-t="5700,300"/>
+  <path class="d il" d="M326 578h10M331 573v10" data-t="6000,300"/>
+  <path class="d il" d="M30 552c6-6 10 6 16 0s10 6 16 0" data-t="5900,400"/>
+  <path class="d il" d="M330 250a4 4 0 1 0 0.1 0" data-t="6100,250"/>
+  <path class="d gd" d="M178 468v14l5-4 5 4v-14z" data-t="6200,400"/>
 
   <text class="pt" id="pt" x="180" y="612" text-anchor="middle">PT. Zaor Utama Indonesia</text>
 </svg>
@@ -196,11 +201,6 @@ function draw(el,t,dur,ease){const L=prep(el);return A(el,[{strokeDashoffset:L},
 
 function build(){
   const svg=$('art').content.firstElementChild.cloneNode(true);
-  const paper=svg.querySelector('#paper');
-  for(let y=40,i=0;y<640;y+=32,i++){
-    const p=document.createElementNS('http://www.w3.org/2000/svg','path');
-    p.setAttribute('class','d rl');p.setAttribute('d',`M0 ${y}H360`);p.dataset.t=`${i*45},700`;paper.append(p);
-  }
   $('screen').replaceChildren(svg);return svg;
 }
 
