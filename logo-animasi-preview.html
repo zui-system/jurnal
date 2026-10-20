@@ -3,63 +3,72 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Plus+Jakarta+Sans:wght@400;600&display=swap">
 <style>
-/* Layout: one stage for the splash, then two smaller usage cards below. Tokens follow the app's own palette (index.html). */
+/* Layout: a phone-shaped splash stage beside a timeline of the 10-second sequence; stacks on narrow screens. Palette from the app's index.html. */
 :root{
-  --bg:#EDF0F3;--sf:#fff;--ink:#16202A;--mu:#5F6B77;--ln:#D8DEE4;--ac:#1D6E8C;--ac2:#B9791A;--gold:#E0A64A;--onac:#fff;
+  --bg:#EDF0F3;--sf:#fff;--ink:#16202A;--mu:#5F6B77;--ln:#D8DEE4;--ac:#1D6E8C;--ac2:#B9791A;--gold:#E0A64A;--ok:#2E7D5B;--hi:#C0443A;--onac:#fff;
+  --paper:#F7F9FA;--rule:#DCE3E9;--il:#8B98A5;
   --f-display:"Fraunces",Georgia,serif;--f-body:"Plus Jakarta Sans",system-ui,sans-serif;
-  --spd:1;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10171E;--sf:#18222B;--ink:#E7ECF0;--mu:#93A0AC;--ln:#2A3743;--ac:#5BB4D2;--ac2:#E0A64A;--gold:#E0A64A;--onac:#10171E;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#10171E;--sf:#18222B;--ink:#E7ECF0;--mu:#93A0AC;--ln:#2A3743;--ac:#5BB4D2;--ac2:#E0A64A;--gold:#E0A64A;--onac:#10171E;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10171E;--sf:#18222B;--ink:#E7ECF0;--mu:#93A0AC;--ln:#2A3743;--ac:#5BB4D2;--ac2:#E0A64A;--gold:#E0A64A;--ok:#5CC596;--hi:#E5776D;--onac:#10171E;--paper:#141D25;--rule:#24313C;--il:#5E6E7C;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10171E;--sf:#18222B;--ink:#E7ECF0;--mu:#93A0AC;--ln:#2A3743;--ac:#5BB4D2;--ac2:#E0A64A;--gold:#E0A64A;--ok:#5CC596;--hi:#E5776D;--onac:#10171E;--paper:#141D25;--rule:#24313C;--il:#5E6E7C;color-scheme:dark}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);line-height:1.55;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px}
-.wrap{max-width:860px;margin:0 auto;display:grid;gap:20px}
+.wrap{max-width:900px;margin:0 auto;display:grid;gap:20px}
 header{display:flex;flex-wrap:wrap;gap:12px;align-items:end;justify-content:space-between}
 h1{font-family:var(--f-display);font-weight:600;font-size:1.6rem;margin:0;text-wrap:balance}
-header p{margin:2px 0 0;color:var(--mu);max-width:52ch}
+header p{margin:2px 0 0;color:var(--mu);max-width:54ch}
 .ctl{display:flex;gap:8px;flex-wrap:wrap}
 button{font:600 .9rem var(--f-body);border:1px solid var(--ln);background:var(--sf);color:var(--ink);padding:9px 14px;border-radius:10px;cursor:pointer}
 button.pri{background:var(--ac);border-color:var(--ac);color:var(--onac)}
 button:focus-visible{outline:2px solid var(--ac2);outline-offset:2px}
 button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
-
-.stage{background:var(--sf);border:1px solid var(--ln);border-radius:18px;display:grid;place-items:center;padding-block:40px 32px;gap:18px;overflow:hidden}
-.stage svg{width:min(260px,62vw);height:auto;overflow:visible}
-.word{text-align:center}
-.word b{display:block;font-family:var(--f-display);font-weight:600;font-size:1.9rem;letter-spacing:.01em}
-.word span{color:var(--mu);font-size:.95rem}
-.lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mu);font-weight:600}
-
-.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.card{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:18px;display:grid;gap:12px;min-width:0}
-.card p{margin:0;color:var(--mu);font-size:.9rem}
-.mini{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--ln);border-radius:12px}
-.mini svg{width:40px;height:40px;overflow:visible}
-.mini b{font-family:var(--f-display);font-weight:600;font-size:1.1rem}
-.load{display:grid;place-items:center;padding:14px 0}
-.load svg{width:96px;height:96px;overflow:visible}
-ol{margin:0;padding-left:1.2em;color:var(--mu);font-size:.9rem;display:grid;gap:4px}
-
-/* ---------- logo drawing (animated from JS with the Web Animations API) ---------- */
-.d{fill:none;stroke-linecap:round;stroke-linejoin:round}
-.box{stroke:var(--ac);stroke-width:6}
-.fillbox{fill:var(--ac);opacity:0}
-.rule{stroke:var(--ln);stroke-width:3}
-.zed{stroke:var(--ink);stroke-width:36;stroke-linecap:butt;stroke-linejoin:miter}
-.solid.done .zed{stroke:var(--onac)}
-.bar{stroke:var(--gold);stroke-width:16}
-.spark{stroke:var(--gold);stroke-width:6}
-.pen{fill:var(--ac2);opacity:0}
 .note{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:var(--sf);border:1px solid var(--ac2);border-radius:12px;padding:12px 14px;font-size:.9rem}
 .note p{margin:0;max-width:60ch}
 .note[hidden]{display:none}
+
+.main{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:700px){.main{grid-template-columns:minmax(0,1fr)}}
+.phone{width:100%;max-width:360px;margin:0 auto;display:grid;gap:10px}
+.screen{border:1px solid var(--ln);border-radius:28px;overflow:hidden;background:var(--paper);aspect-ratio:9/16;max-width:100%}
+.screen svg{display:block;width:100%;height:100%}
+.prog{display:flex;align-items:center;gap:10px;font-size:.8rem;color:var(--mu);font-variant-numeric:tabular-nums}
+.track{flex:1;height:4px;border-radius:2px;background:var(--ln);overflow:hidden}
+.track i{display:block;height:100%;width:0;background:var(--ac)}
+
+.side{display:grid;gap:14px;min-width:0}
+.lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mu);font-weight:600}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.steps li{display:grid;grid-template-columns:76px 1fr;gap:10px;padding:8px 10px;border-radius:10px;font-size:.92rem;transition:background .2s}
+.steps li span{color:var(--mu);font-variant-numeric:tabular-nums}
+.steps li.on{background:var(--sf);box-shadow:inset 3px 0 0 var(--ac2)}
+.side p{margin:0;color:var(--mu);font-size:.9rem;max-width:56ch}
+
+/* ---------- illustration strokes ---------- */
+.d{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.il{stroke:var(--il);stroke-width:2}
+.rl{stroke:var(--rule);stroke-width:1.5}
+.mg{stroke:var(--hi);stroke-width:1.5;opacity:.45}
+.gd{stroke:var(--gold);stroke-width:2.5}
+.okc{stroke:var(--ok);stroke-width:2.5}
+.ink{stroke:var(--ac);stroke-width:2}
+/* logo */
+.box{stroke:var(--ac);stroke-width:6}
+.fillbox{fill:var(--ac);opacity:0}
+.zed{stroke:var(--ink);stroke-width:36;stroke-linecap:butt;stroke-linejoin:miter}
+.still .zed{stroke:var(--onac)}
+.bar{stroke:var(--gold);stroke-width:16}
+.spark{stroke:var(--gold);stroke-width:6;opacity:0}
+.pen{fill:var(--ac2);opacity:0}
+.wm{font-family:var(--f-display);font-weight:600;font-size:30px;fill:var(--ink);opacity:0}
+.tg{font-family:var(--f-body);font-size:13px;fill:var(--mu);opacity:0}
+.still .wm,.still .tg,.still .fillbox{opacity:1}
 </style>
 
 <div class="wrap">
   <header>
     <div>
-      <h1>Animasi logo Zui Jurnal</h1>
-      <p>Pratinjau gaya garis ilustrasi. Logo digambar seperti tulisan pena di halaman jurnal, lalu terisi warna jadi ikon aplikasi.</p>
+      <h1>Animasi splash Zui Jurnal</h1>
+      <p>Latar ilustrasi garis bertema jurnal digambar lebih dulu, lalu logo ditulis di tengahnya. Total 10 detik, diputar ulang otomatis.</p>
     </div>
     <div class="ctl">
       <button class="pri" id="replay" type="button">Putar ulang</button>
@@ -72,122 +81,177 @@ ol{margin:0;padding-left:1.2em;color:var(--mu);font-size:.9rem;display:grid;gap:
     <button class="pri" id="force" type="button">Putar animasi</button>
   </div>
 
-  <section class="stage" aria-label="Animasi splash">
-    <span class="lbl">Splash saat aplikasi dibuka · 3 detik · diputar ulang otomatis</span>
-    <div class="anim" data-kind="solid"></div>
-    <div class="word play-word"><b>Zui Jurnal</b><span>Kendalikan diri &amp; terwujud</span></div>
-  </section>
-
-  <div class="row">
-    <div class="card">
-      <span class="lbl">Versi garis saja</span>
-      <div class="load"><div class="anim" data-kind="line"></div></div>
-      <p>Tetap berupa garis, tanpa isian. Cocok untuk layar login atau halaman kosong.</p>
+  <div class="main">
+    <div class="phone">
+      <div class="screen" id="screen"></div>
+      <div class="prog"><div class="track"><i id="bar"></i></div><span id="time">0,0 / 10 dtk</span></div>
     </div>
-    <div class="card">
-      <span class="lbl">Loader (berulang)</span>
-      <div class="load"><div class="anim" data-kind="loop"></div></div>
-      <div class="mini"><div class="anim" data-kind="solid"></div><b>Zui Jurnal</b></div>
-      <p>Atas: indikator memuat data. Bawah: ukuran kecil di header.</p>
-    </div>
-  </div>
 
-  <div class="card">
-    <span class="lbl">Urutan gerak</span>
-    <ol>
-      <li>Bingkai ikon digambar satu garis (0–0,9 dtk).</li>
-      <li>Tiga garis halaman jurnal muncul sebagai latar (0,5–1,3 dtk).</li>
-      <li>Huruf Z ditulis satu goresan, ujung pena emas mengikuti (1,0–2,0 dtk).</li>
-      <li>Garis bawah emas menyapu, percikan kecil (1,9–2,8 dtk).</li>
-      <li>Bingkai terisi biru, Z berubah putih, nama aplikasi muncul (2,4–3,2 dtk).</li>
-    </ol>
+    <div class="side">
+      <span class="lbl">Urutan 10 detik</span>
+      <ol class="steps" id="steps">
+        <li data-a="0" data-b="1.4"><span>0–1,4</span>Garis halaman buku dan garis margin muncul</li>
+        <li data-a="0.6" data-b="4"><span>0,6–4</span>Ilustrasi digambar: buku terbuka, kalender kebiasaan, cangkir kopi, pensil, daftar tugas, gunung dan bendera</li>
+        <li data-a="2.2" data-b="3.8"><span>2,2–3,8</span>Tulisan tangan muncul di halaman buku</li>
+        <li data-a="3.6" data-b="6.3"><span>3,6–6,3</span>Logo ditulis: bingkai, huruf Z, garis emas, lalu terisi warna</li>
+        <li data-a="5.2" data-b="8.8"><span>5,2–8,8</span>Kebiasaan dicentang, tugas dicoret, bendera berkibar di puncak</li>
+        <li data-a="6.3" data-b="7.2"><span>6,3–7,2</span>Nama aplikasi dan tagline muncul</li>
+        <li data-a="7.2" data-b="10"><span>7,2–10</span>Tahan, uap kopi mengepul, lalu memudar dan mulai lagi</li>
+      </ol>
+      <p>Arti ilustrasinya: buku dan tulisan untuk jurnal harian, kalender dan centang untuk mengendalikan diri, gunung dan bendera untuk "terwujud".</p>
+    </div>
   </div>
 </div>
 
-<template id="logo">
-  <svg viewBox="0 0 512 512" role="img" aria-label="Logo Zui Jurnal">
-    <path class="fillbox" d="M112 16H400A96 96 0 0 1 496 112V400A96 96 0 0 1 400 496H112A96 96 0 0 1 16 400V112A96 96 0 0 1 112 16Z"/>
-    <path class="d box" d="M112 16H400A96 96 0 0 1 496 112V400A96 96 0 0 1 400 496H112A96 96 0 0 1 16 400V112A96 96 0 0 1 112 16Z"/>
-    <path class="d rule" d="M96 200H416"/>
-    <path class="d rule" d="M96 290H416"/>
-    <path class="d rule" d="M96 380H416"/>
-    <path class="d zed" d="M176 166H330L196 314H338"/>
-    <path class="d bar" d="M192 388H320"/>
+<template id="art">
+<svg viewBox="0 0 360 640" role="img" aria-label="Splash Zui Jurnal dengan ilustrasi jurnal">
+  <!-- paper: ruled lines + margin -->
+  <g id="paper"></g>
+  <path class="d mg" d="M44 0V640" data-t="200,1200"/>
+
+  <!-- open notebook, top-left -->
+  <g class="fl">
+    <path class="d il" d="M24 62Q58 50 94 62V148Q58 136 24 148Z" data-t="600,900"/>
+    <path class="d il" d="M94 62Q130 50 164 62V148Q130 136 94 148Z" data-t="800,900"/>
+    <path class="d il" d="M34 84Q58 77 84 84M34 102Q58 95 84 102M34 120Q58 113 84 120" data-t="1300,700"/>
+    <path class="d ink" d="M104 84c5-8 9 7 14 0s9 7 14 0 9 7 14 0 7 6 10 2" data-t="2200,700"/>
+    <path class="d ink" d="M104 102c5-8 9 7 14 0s9 7 14 0 7 6 12 1" data-t="2800,550"/>
+    <path class="d ink" d="M104 120c5-8 9 7 14 0s7 6 11 2" data-t="3300,450"/>
+  </g>
+
+  <!-- habit calendar, top-right -->
+  <g class="fl">
+    <path class="d il" d="M216 52H336V156H216Z" data-t="1000,800"/>
+    <path class="d il" d="M216 74H336M240 44V60M312 44V60" data-t="1500,500"/>
+    <path class="d il" d="M246 74V156M276 74V156M306 74V156M216 101H336M216 128H336" data-t="1700,800"/>
+    <path class="d gd" d="M222 88l5 5 9-10" data-t="5200,250"/>
+    <path class="d gd" d="M252 88l5 5 9-10" data-t="5400,250"/>
+    <path class="d gd" d="M282 88l5 5 9-10" data-t="5600,250"/>
+    <path class="d gd" d="M312 88l5 5 9-10" data-t="5800,250"/>
+    <path class="d gd" d="M222 115l5 5 9-10" data-t="6000,250"/>
+    <path class="d gd" d="M252 115l5 5 9-10" data-t="6200,250"/>
+  </g>
+
+  <!-- coffee mug, middle-left -->
+  <g class="fl">
+    <path class="d il" d="M22 356H76V398Q76 416 58 416H40Q22 416 22 398Z" data-t="1400,800"/>
+    <path class="d il" d="M76 366Q94 366 94 380T76 394" data-t="2000,400"/>
+    <path class="d il" d="M16 424H82" data-t="2200,300"/>
+    <path class="d gd steam" d="M38 344c-6-8 6-12 0-20s6-12 0-18" data-t="2600,600"/>
+    <path class="d gd steam" d="M58 344c-6-8 6-12 0-20s6-12 0-18" data-t="2800,600"/>
+  </g>
+
+  <!-- pencil, middle-right -->
+  <g class="fl">
+    <path class="d il" d="M300 300L338 286L344 302L306 316Z" data-t="1800,700" transform="rotate(-50 322 301)"/>
+    <path class="d il" d="M306 316L292 322L300 300" data-t="2300,350" transform="rotate(-50 322 301)"/>
+    <path class="d il" d="M330 289L336 305" data-t="2500,250" transform="rotate(-50 322 301)"/>
+    <path class="d gd" d="M300 418l4-10 4 10-10-4h12z" data-t="3000,500"/>
+    <path class="d il" d="M318 444h12M324 438v12" data-t="3200,300"/>
+  </g>
+
+  <!-- checklist card, bottom-left -->
+  <g class="fl">
+    <path class="d il" d="M28 500H164V610H28Z" data-t="2200,800"/>
+    <path class="d il" d="M42 520H56V534H42ZM42 548H56V562H42ZM42 576H56V590H42Z" data-t="2700,600"/>
+    <path class="d il" d="M66 527H146M66 555H136M66 583H150" data-t="3000,600"/>
+    <path class="d okc" d="M44 526l5 5 9-11" data-t="7000,300"/>
+    <path class="d okc" d="M64 527H146" data-t="7200,350"/>
+    <path class="d okc" d="M44 554l5 5 9-11" data-t="7600,300"/>
+    <path class="d okc" d="M64 555H136" data-t="7800,350"/>
+  </g>
+
+  <!-- mountain + flag, bottom-right -->
+  <g class="fl">
+    <path class="d il" d="M190 612L240 540L262 568L296 518L344 612Z" data-t="2600,1100"/>
+    <path class="d il" d="M282 538L296 548L310 538" data-t="3400,400"/>
+    <path class="d il" d="M296 518V486" data-t="8200,300"/>
+    <path class="d gd flag" d="M296 486L320 494L296 503" data-t="8400,400"/>
+  </g>
+
+  <!-- logo, centred -->
+  <g transform="translate(110 196) scale(.273)">
+    <path class="fillbox" id="fillbox" d="M112 16H400A96 96 0 0 1 496 112V400A96 96 0 0 1 400 496H112A96 96 0 0 1 16 400V112A96 96 0 0 1 112 16Z"/>
+    <path class="d box" d="M112 16H400A96 96 0 0 1 496 112V400A96 96 0 0 1 400 496H112A96 96 0 0 1 16 400V112A96 96 0 0 1 112 16Z" data-t="3600,900" data-e="cubic-bezier(.6,.05,.3,1)"/>
+    <path class="d zed" id="zed" d="M176 166H330L196 314H338" data-t="4400,950"/>
+    <path class="d bar" d="M192 388H320" data-t="5300,450" data-e="cubic-bezier(.3,.7,.2,1)"/>
     <path class="d spark" d="M350 372L392 348"/>
     <path class="d spark" d="M356 392H404"/>
     <path class="d spark" d="M350 412L392 436"/>
-    <circle class="pen" r="11" cx="0" cy="0"/>
-  </svg>
+    <circle class="pen" id="pen" r="11"/>
+  </g>
+  <text class="wm" id="wm" x="180" y="378" text-anchor="middle">Zui Jurnal</text>
+  <text class="tg" id="tg" x="180" y="402" text-anchor="middle">Kendalikan diri &amp; terwujud</text>
+</svg>
 </template>
 
 <script>
-const tpl=document.getElementById('logo');
-const E='cubic-bezier(.65,0,.35,1)';
-let spd=1,timer=null,forced=false;
+const D=10000,E='cubic-bezier(.65,0,.35,1)';
+const $=id=>document.getElementById(id);
+let spd=1,forced=false,timer=null,raf=null,anims=[];
 const rm=matchMedia('(prefers-reduced-motion: reduce)');
-const len=el=>el.getTotalLength();
 
-function prep(el){const L=len(el);el.style.strokeDasharray=L+' '+L;el.style.strokeDashoffset=L;return L}
-function draw(el,dur,delay,ease){const L=prep(el);
-  return el.animate([{strokeDashoffset:L},{strokeDashoffset:0}],{duration:dur*spd,delay:delay*spd,easing:ease||E,fill:'forwards'})}
-function fade(el,from,to,dur,delay){return el.animate([{opacity:from},{opacity:to}],{duration:dur*spd,delay:delay*spd,fill:'forwards'})}
+// gap is longer than the path so no round-cap dot shows before the stroke starts
+function prep(el){const L=el.getTotalLength();el.style.strokeDasharray=L+' '+(L+20);el.style.strokeDashoffset=L+10;return L+10}
+function A(el,kf,o){const a=el.animate(kf,{fill:'forwards',...o,duration:o.duration*spd,delay:(o.delay||0)*spd});anims.push(a);return a}
+function draw(el,t,dur,ease){const L=prep(el);return A(el,[{strokeDashoffset:L},{strokeDashoffset:0}],{duration:dur,delay:t,easing:ease||E})}
 
-function playOnce(svg,kind){
-  const q=s=>svg.querySelector(s),qa=s=>svg.querySelectorAll(s);
-  svg.classList.remove('done');
-  draw(q('.box'),900,0,'cubic-bezier(.6,.05,.3,1)');
-  qa('.rule').forEach((r,i)=>{draw(r,450,550+i*130,'ease-out');fade(r,1,0,400,2100)});
-  const z=q('.zed');draw(z,950,1000);
-  draw(q('.bar'),450,1900,'cubic-bezier(.3,.7,.2,1)');
-  qa('.spark').forEach(sp=>{const L=prep(sp);sp.style.strokeDasharray=(L*.5)+' '+L;
-    sp.animate([{strokeDashoffset:L*.5,opacity:0},{opacity:1,offset:.4},{strokeDashoffset:-L,opacity:0}],{duration:600*spd,delay:2200*spd,easing:'ease-out',fill:'forwards'})});
-  // pen tip rides along the Z stroke
-  const pen=q('.pen'),ZL=len(z),frames=[];
-  for(let i=0;i<=40;i++){const t=i/40,p=z.getPointAtLength(ZL*(t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2));
-    frames.push({transform:`translate(${p.x}px,${p.y}px)`,opacity:i===40?0:1})}
-  pen.animate(frames,{duration:950*spd,delay:1000*spd,fill:'forwards'});
-  if(kind==='solid'){
-    q('.fillbox').animate([{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'scale(1)'}],{duration:500*spd,delay:2400*spd,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'});
-    q('.fillbox').style.transformOrigin='256px 256px';
-    const c=getComputedStyle(svg).getPropertyValue('--onac').trim(),ink=getComputedStyle(svg).getPropertyValue('--ink').trim();
-    z.animate([{stroke:ink},{stroke:c}],{duration:400*spd,delay:2450*spd,fill:'forwards'});
+function build(){
+  const svg=$('art').content.firstElementChild.cloneNode(true);
+  const paper=svg.querySelector('#paper');
+  for(let y=40,i=0;y<640;y+=32,i++){
+    const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('class','d rl');p.setAttribute('d',`M0 ${y}H360`);p.dataset.t=`${i*45},700`;paper.append(p);
   }
+  $('screen').replaceChildren(svg);return svg;
 }
-function loop(svg){
-  const z=svg.querySelector('.zed'),b=svg.querySelector('.bar'),box=svg.querySelector('.box');
-  box.style.opacity=.35;
-  const L=prep(z),B=prep(b),o={duration:1600*spd,iterations:Infinity,easing:E};
-  z.animate([{strokeDashoffset:L},{strokeDashoffset:0,offset:.55},{strokeDashoffset:0,offset:.7},{strokeDashoffset:-L}],o);
-  b.animate([{strokeDashoffset:B},{strokeDashoffset:B,offset:.45},{strokeDashoffset:0,offset:.65},{strokeDashoffset:0,offset:.8},{strokeDashoffset:-B}],o);
+
+function play(svg){
+  const q=s=>svg.querySelector(s);
+  svg.querySelectorAll('[data-t]').forEach(el=>{const [t,d]=el.dataset.t.split(',').map(Number);draw(el,t,d,el.dataset.e)});
+  // logo extras
+  const z=q('#zed'),ZL=z.getTotalLength(),fr=[];
+  for(let i=0;i<=40;i++){const t=i/40,e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2,p=z.getPointAtLength(ZL*e);
+    fr.push({transform:`translate(${p.x}px,${p.y}px)`,opacity:i===40?0:1})}
+  A(q('#pen'),fr,{duration:950,delay:4400});
+  svg.querySelectorAll('.spark').forEach(sp=>{const L=sp.getTotalLength();sp.style.strokeDasharray=(L*.5)+' '+(L*2);
+    A(sp,[{strokeDashoffset:L*.5,opacity:0},{opacity:1,offset:.4},{strokeDashoffset:-L,opacity:0}],{duration:600,delay:5600,easing:'ease-out'})});
+  const fb=q('#fillbox');fb.style.transformOrigin='256px 256px';
+  A(fb,[{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'scale(1)'}],{duration:500,delay:5800,easing:'cubic-bezier(.2,.8,.2,1)'});
+  const cs=getComputedStyle(svg);
+  A(z,[{stroke:cs.getPropertyValue('--ink').trim()},{stroke:cs.getPropertyValue('--onac').trim()}],{duration:400,delay:5850});
+  A(q('#wm'),[{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:600,delay:6300,easing:'ease-out'});
+  A(q('#tg'),[{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:600,delay:6600,easing:'ease-out'});
+  // ambient: steam rises, flag waves, illustrations float
+  svg.querySelectorAll('.steam').forEach((s,i)=>A(s,[{transform:'translateY(0)',opacity:1},{transform:'translateY(-10px)',opacity:0}],{duration:1600,delay:3400+i*500,iterations:4,easing:'ease-in'}));
+  A(q('.flag'),[{transform:'skewY(0)'},{transform:'skewY(-6deg)'},{transform:'skewY(0)'}],{duration:900,delay:8800,iterations:2}).effect.target.style.transformOrigin='296px 494px';
+  svg.querySelectorAll('.fl').forEach((g,i)=>A(g,[{transform:'translateY(0)'},{transform:`translateY(${i%2?-4:4}px)`},{transform:'translateY(0)'}],{duration:3200,delay:4000+i*200,iterations:2,easing:'ease-in-out'}));
+  // fade out before restarting
+  A(svg,[{opacity:1},{opacity:0}],{duration:600,delay:9400});
 }
-function still(svg,kind){
-  svg.querySelectorAll('.rule,.spark,.pen').forEach(n=>n.style.opacity=0);
-  if(kind==='solid'){svg.classList.add('done');svg.querySelector('.fillbox').style.opacity=1}
+
+function still(svg){svg.classList.add('still');svg.querySelectorAll('.spark,.pen,.steam').forEach(n=>n.style.opacity=0)}
+
+function tick(t0){
+  const steps=[...$('steps').children];
+  const f=now=>{const t=Math.min((now-t0)/spd,D);
+    $('bar').style.width=(t/D*100)+'%';$('time').textContent=(t/1000).toFixed(1).replace('.',',')+' / 10 dtk';
+    steps.forEach(li=>li.classList.toggle('on',t>=li.dataset.a*1000&&t<li.dataset.b*1000));
+    if(t<D)raf=requestAnimationFrame(f)};
+  raf=requestAnimationFrame(f);
 }
-function mount(){
-  clearTimeout(timer);
-  const motion=forced||!rm.matches;
-  document.getElementById('rm').hidden=motion;
-  document.querySelectorAll('.anim').forEach(el=>{
-    const k=el.dataset.kind;
-    el.replaceChildren(tpl.content.cloneNode(true));
-    const svg=el.firstElementChild;
-    if(k!=='solid')svg.querySelector('.fillbox').remove();
-    if(k==='loop')svg.querySelectorAll('.rule,.spark,.pen').forEach(n=>n.remove());
-    if(!motion)return still(svg,k);
-    k==='loop'?loop(svg):playOnce(svg,k);
-  });
-  const w=document.querySelector('.play-word');
-  w.getAnimations().forEach(a=>a.cancel());
-  if(motion)w.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:600*spd,delay:2600*spd,easing:'ease-out',fill:'both'});
-  if(motion)timer=setTimeout(mount,5500*spd); // auto-repeat so the splash is never missed
+
+function start(){
+  clearTimeout(timer);cancelAnimationFrame(raf);anims.forEach(a=>a.cancel());anims=[];
+  const motion=forced||!rm.matches;$('rm').hidden=motion;
+  const svg=build();
+  if(!motion){still(svg);$('bar').style.width='100%';$('time').textContent='10,0 / 10 dtk';return}
+  play(svg);tick(performance.now());
+  timer=setTimeout(start,D*spd);
 }
-document.getElementById('replay').addEventListener('click',()=>{forced=true;mount()});
-document.getElementById('force').addEventListener('click',()=>{forced=true;mount()});
-const slow=document.getElementById('slow');
-slow.addEventListener('click',()=>{
-  const on=slow.getAttribute('aria-pressed')!=='true';
-  slow.setAttribute('aria-pressed',on);spd=on?3:1;mount();
-});
-mount();
+$('replay').addEventListener('click',()=>{forced=true;start()});
+$('force').addEventListener('click',()=>{forced=true;start()});
+$('slow').addEventListener('click',e=>{const on=e.currentTarget.getAttribute('aria-pressed')!=='true';
+  e.currentTarget.setAttribute('aria-pressed',on);spd=on?2.5:1;start()});
+start();
 </script>
