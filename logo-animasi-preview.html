@@ -61,14 +61,16 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
 .pen{fill:var(--ac2);opacity:0}
 .wm{font-family:var(--f-display);font-weight:600;font-size:30px;fill:var(--ink);opacity:0}
 .tg{font-family:var(--f-body);font-size:13px;fill:var(--mu);opacity:0}
-.still .wm,.still .tg,.still .fillbox{opacity:1}
+.pt{font-family:var(--f-body);font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;fill:var(--mu);opacity:0}
+.sm .il{stroke-width:3.4}.sm .gd,.sm .okc{stroke-width:4.2}.sm .ink{stroke-width:3.4}
+.still .wm,.still .tg,.still .fillbox,.still .pt{opacity:1}
 </style>
 
 <div class="wrap">
   <header>
     <div>
       <h1>Animasi splash Zui Jurnal</h1>
-      <p>Latar ilustrasi garis bertema jurnal digambar lebih dulu, lalu logo ditulis di tengahnya. Total 10 detik, diputar ulang otomatis.</p>
+      <p>Logo ditulis lebih dulu di bagian atas, lalu ilustrasi garis bertema jurnal muncul kecil di bagian bawah. Total 10 detik, diputar ulang otomatis.</p>
     </div>
     <div class="ctl">
       <button class="pri" id="replay" type="button">Putar ulang</button>
@@ -91,12 +93,11 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
       <span class="lbl">Urutan 10 detik</span>
       <ol class="steps" id="steps">
         <li data-a="0" data-b="1.4"><span>0–1,4</span>Garis halaman buku dan garis margin muncul</li>
-        <li data-a="0.6" data-b="4"><span>0,6–4</span>Ilustrasi digambar: buku terbuka, kalender kebiasaan, cangkir kopi, pensil, daftar tugas, gunung dan bendera</li>
-        <li data-a="2.2" data-b="3.8"><span>2,2–3,8</span>Tulisan tangan muncul di halaman buku</li>
-        <li data-a="3.6" data-b="6.3"><span>3,6–6,3</span>Logo ditulis: bingkai, huruf Z, garis emas, lalu terisi warna</li>
-        <li data-a="5.2" data-b="8.8"><span>5,2–8,8</span>Kebiasaan dicentang, tugas dicoret, bendera berkibar di puncak</li>
-        <li data-a="6.3" data-b="7.2"><span>6,3–7,2</span>Nama aplikasi dan tagline muncul</li>
-        <li data-a="7.2" data-b="10"><span>7,2–10</span>Tahan, uap kopi mengepul, lalu memudar dan mulai lagi</li>
+        <li data-a="0.3" data-b="3"><span>0,3–3</span>Logo ditulis lebih dulu: bingkai, huruf Z, garis emas, lalu terisi warna</li>
+        <li data-a="3" data-b="4.3"><span>3–4,3</span>Nama aplikasi, tagline, dan nama PT di bawah muncul</li>
+        <li data-a="3.4" data-b="6"><span>3,4–6</span>Ilustrasi kecil di bagian bawah digambar: buku, kalender, daftar tugas, cangkir, pensil, gunung</li>
+        <li data-a="6.6" data-b="9.3"><span>6,6–9,3</span>Kebiasaan dicentang, tugas dicoret, bendera berkibar di puncak</li>
+        <li data-a="9.3" data-b="10"><span>9,3–10</span>Memudar, lalu mulai lagi</li>
       </ol>
       <p>Arti ilustrasinya: buku dan tulisan untuk jurnal harian, kalender dan centang untuk mengendalikan diri, gunung dan bendera untuk "terwujud".</p>
     </div>
@@ -109,79 +110,76 @@ button[aria-pressed="true"]{border-color:var(--ac2);color:var(--ac2)}
   <g id="paper"></g>
   <path class="d mg" d="M44 0V640" data-t="200,1200"/>
 
-  <!-- open notebook, top-left -->
-  <g class="fl">
-    <path class="d il" d="M24 62Q58 50 94 62V148Q58 136 24 148Z" data-t="600,900"/>
-    <path class="d il" d="M94 62Q130 50 164 62V148Q130 136 94 148Z" data-t="800,900"/>
-    <path class="d il" d="M34 84Q58 77 84 84M34 102Q58 95 84 102M34 120Q58 113 84 120" data-t="1300,700"/>
-    <path class="d ink" d="M104 84c5-8 9 7 14 0s9 7 14 0 9 7 14 0 7 6 10 2" data-t="2200,700"/>
-    <path class="d ink" d="M104 102c5-8 9 7 14 0s9 7 14 0 7 6 12 1" data-t="2800,550"/>
-    <path class="d ink" d="M104 120c5-8 9 7 14 0s7 6 11 2" data-t="3300,450"/>
-  </g>
-
-  <!-- habit calendar, top-right -->
-  <g class="fl">
-    <path class="d il" d="M216 52H336V156H216Z" data-t="1000,800"/>
-    <path class="d il" d="M216 74H336M240 44V60M312 44V60" data-t="1500,500"/>
-    <path class="d il" d="M246 74V156M276 74V156M306 74V156M216 101H336M216 128H336" data-t="1700,800"/>
-    <path class="d gd" d="M222 88l5 5 9-10" data-t="5200,250"/>
-    <path class="d gd" d="M252 88l5 5 9-10" data-t="5400,250"/>
-    <path class="d gd" d="M282 88l5 5 9-10" data-t="5600,250"/>
-    <path class="d gd" d="M312 88l5 5 9-10" data-t="5800,250"/>
-    <path class="d gd" d="M222 115l5 5 9-10" data-t="6000,250"/>
-    <path class="d gd" d="M252 115l5 5 9-10" data-t="6200,250"/>
-  </g>
-
-  <!-- coffee mug, middle-left -->
-  <g class="fl">
-    <path class="d il" d="M22 356H76V398Q76 416 58 416H40Q22 416 22 398Z" data-t="1400,800"/>
-    <path class="d il" d="M76 366Q94 366 94 380T76 394" data-t="2000,400"/>
-    <path class="d il" d="M16 424H82" data-t="2200,300"/>
-    <path class="d gd steam" d="M38 344c-6-8 6-12 0-20s6-12 0-18" data-t="2600,600"/>
-    <path class="d gd steam" d="M58 344c-6-8 6-12 0-20s6-12 0-18" data-t="2800,600"/>
-  </g>
-
-  <!-- pencil, middle-right -->
-  <g class="fl">
-    <path class="d il" d="M300 300L338 286L344 302L306 316Z" data-t="1800,700" transform="rotate(-50 322 301)"/>
-    <path class="d il" d="M306 316L292 322L300 300" data-t="2300,350" transform="rotate(-50 322 301)"/>
-    <path class="d il" d="M330 289L336 305" data-t="2500,250" transform="rotate(-50 322 301)"/>
-    <path class="d gd" d="M300 418l4-10 4 10-10-4h12z" data-t="3000,500"/>
-    <path class="d il" d="M318 444h12M324 438v12" data-t="3200,300"/>
-  </g>
-
-  <!-- checklist card, bottom-left -->
-  <g class="fl">
-    <path class="d il" d="M28 500H164V610H28Z" data-t="2200,800"/>
-    <path class="d il" d="M42 520H56V534H42ZM42 548H56V562H42ZM42 576H56V590H42Z" data-t="2700,600"/>
-    <path class="d il" d="M66 527H146M66 555H136M66 583H150" data-t="3000,600"/>
-    <path class="d okc" d="M44 526l5 5 9-11" data-t="7000,300"/>
-    <path class="d okc" d="M64 527H146" data-t="7200,350"/>
-    <path class="d okc" d="M44 554l5 5 9-11" data-t="7600,300"/>
-    <path class="d okc" d="M64 555H136" data-t="7800,350"/>
-  </g>
-
-  <!-- mountain + flag, bottom-right -->
-  <g class="fl">
-    <path class="d il" d="M190 612L240 540L262 568L296 518L344 612Z" data-t="2600,1100"/>
-    <path class="d il" d="M282 538L296 548L310 538" data-t="3400,400"/>
-    <path class="d il" d="M296 518V486" data-t="8200,300"/>
-    <path class="d gd flag" d="M296 486L320 494L296 503" data-t="8400,400"/>
-  </g>
-
-  <!-- logo, centred -->
-  <g transform="translate(110 196) scale(.273)">
+  <!-- logo first, upper part of the screen -->
+  <g transform="translate(110 68) scale(.273)">
     <path class="fillbox" id="fillbox" d="M112 16H400A96 96 0 0 1 496 112V400A96 96 0 0 1 400 496H112A96 96 0 0 1 16 400V112A96 96 0 0 1 112 16Z"/>
-    <path class="d box" d="M112 16H400A96 96 0 0 1 496 112V400A96 96 0 0 1 400 496H112A96 96 0 0 1 16 400V112A96 96 0 0 1 112 16Z" data-t="3600,900" data-e="cubic-bezier(.6,.05,.3,1)"/>
-    <path class="d zed" id="zed" d="M176 166H330L196 314H338" data-t="4400,950"/>
-    <path class="d bar" d="M192 388H320" data-t="5300,450" data-e="cubic-bezier(.3,.7,.2,1)"/>
+    <path class="d box" d="M112 16H400A96 96 0 0 1 496 112V400A96 96 0 0 1 400 496H112A96 96 0 0 1 16 400V112A96 96 0 0 1 112 16Z" data-t="300,900" data-e="cubic-bezier(.6,.05,.3,1)"/>
+    <path class="d zed" id="zed" d="M176 166H330L196 314H338" data-t="1100,950"/>
+    <path class="d bar" d="M192 388H320" data-t="2000,450" data-e="cubic-bezier(.3,.7,.2,1)"/>
     <path class="d spark" d="M350 372L392 348"/>
     <path class="d spark" d="M356 392H404"/>
     <path class="d spark" d="M350 412L392 436"/>
     <circle class="pen" id="pen" r="11"/>
   </g>
-  <text class="wm" id="wm" x="180" y="378" text-anchor="middle">Zui Jurnal</text>
-  <text class="tg" id="tg" x="180" y="402" text-anchor="middle">Kendalikan diri &amp; terwujud</text>
+  <text class="wm" id="wm" x="180" y="250" text-anchor="middle">Zui Jurnal</text>
+  <text class="tg" id="tg" x="180" y="274" text-anchor="middle">Kendalikan diri &amp; terwujud</text>
+
+  <!-- small illustrations, bottom band: two rows of three -->
+  <g class="sm">
+  <g transform="translate(26.3 355.6) scale(0.55)"><g class="fl">
+    <path class="d il" d="M24 62Q58 50 94 62V148Q58 136 24 148Z" data-t="3400,700"/>
+    <path class="d il" d="M94 62Q130 50 164 62V148Q130 136 94 148Z" data-t="3550,700"/>
+    <path class="d il" d="M34 84Q58 77 84 84M34 102Q58 95 84 102M34 120Q58 113 84 120" data-t="4000,600"/>
+    <path class="d ink" d="M104 84c5-8 9 7 14 0s9 7 14 0 9 7 14 0 7 6 10 2" data-t="4600,600"/>
+    <path class="d ink" d="M104 102c5-8 9 7 14 0s9 7 14 0 7 6 12 1" data-t="5100,500"/>
+    <path class="d ink" d="M104 120c5-8 9 7 14 0s7 6 11 2" data-t="5550,400"/>
+  </g></g>
+
+  <g transform="translate(28.2 355.0) scale(0.55)"><g class="fl">
+    <path class="d il" d="M216 52H336V156H216Z" data-t="3700,700"/>
+    <path class="d il" d="M216 74H336M240 44V60M312 44V60" data-t="4100,450"/>
+    <path class="d il" d="M246 74V156M276 74V156M306 74V156M216 101H336M216 128H336" data-t="4300,700"/>
+    <path class="d gd" d="M222 88l5 5 9-10" data-t="6600,220"/>
+    <path class="d gd" d="M252 88l5 5 9-10" data-t="6780,220"/>
+    <path class="d gd" d="M282 88l5 5 9-10" data-t="6960,220"/>
+    <path class="d gd" d="M312 88l5 5 9-10" data-t="7140,220"/>
+    <path class="d gd" d="M222 115l5 5 9-10" data-t="7320,220"/>
+    <path class="d gd" d="M252 115l5 5 9-10" data-t="7500,220"/>
+  </g></g>
+
+  <g transform="translate(229.2 104.8) scale(0.55)"><g class="fl">
+    <path class="d il" d="M28 500H164V610H28Z" data-t="4000,700"/>
+    <path class="d il" d="M42 520H56V534H42ZM42 548H56V562H42ZM42 576H56V590H42Z" data-t="4400,500"/>
+    <path class="d il" d="M66 527H146M66 555H136M66 583H150" data-t="4700,500"/>
+    <path class="d okc" d="M44 526l5 5 9-11" data-t="7700,280"/>
+    <path class="d okc" d="M64 527H146" data-t="7900,320"/>
+    <path class="d okc" d="M44 554l5 5 9-11" data-t="8250,280"/>
+    <path class="d okc" d="M64 555H136" data-t="8450,320"/>
+  </g></g>
+
+  <g transform="translate(47.8 303.0) scale(0.55)"><g class="fl">
+    <path class="d il" d="M22 356H76V398Q76 416 58 416H40Q22 416 22 398Z" data-t="4300,700"/>
+    <path class="d il" d="M76 366Q94 366 94 380T76 394" data-t="4800,350"/>
+    <path class="d il" d="M16 424H82" data-t="5000,300"/>
+    <path class="d gd steam" d="M38 344c-6-8 6-12 0-20s6-12 0-18" data-t="5300,500"/>
+    <path class="d gd steam" d="M58 344c-6-8 6-12 0-20s6-12 0-18" data-t="5450,500"/>
+  </g></g>
+
+  <g transform="translate(4.0 346.4) scale(0.55)"><g class="fl">
+    <path class="d il" d="M300 300L338 286L344 302L306 316Z" data-t="4600,600" transform="rotate(-50 322 301)"/>
+    <path class="d il" d="M306 316L292 322L300 300" data-t="5100,300" transform="rotate(-50 322 301)"/>
+    <path class="d il" d="M330 289L336 305" data-t="5300,250" transform="rotate(-50 322 301)"/>
+  </g></g>
+
+  <g transform="translate(135.1 210.0) scale(0.55)"><g class="fl">
+    <path class="d il" d="M190 612L240 540L262 568L296 518L344 612Z" data-t="4900,900"/>
+    <path class="d il" d="M282 538L296 548L310 538" data-t="5600,350"/>
+    <path class="d il" d="M296 518V486" data-t="8700,250"/>
+    <path class="d gd flag" d="M296 486L320 494L296 503" data-t="8900,350"/>
+  </g></g>
+  </g>
+
+  <text class="pt" id="pt" x="180" y="612" text-anchor="middle">PT. Zaor Utama Indonesia</text>
 </svg>
 </template>
 
@@ -213,19 +211,20 @@ function play(svg){
   const z=q('#zed'),ZL=z.getTotalLength(),fr=[];
   for(let i=0;i<=40;i++){const t=i/40,e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2,p=z.getPointAtLength(ZL*e);
     fr.push({transform:`translate(${p.x}px,${p.y}px)`,opacity:i===40?0:1})}
-  A(q('#pen'),fr,{duration:950,delay:4400});
+  A(q('#pen'),fr,{duration:950,delay:1100});
   svg.querySelectorAll('.spark').forEach(sp=>{const L=sp.getTotalLength();sp.style.strokeDasharray=(L*.5)+' '+(L*2);
-    A(sp,[{strokeDashoffset:L*.5,opacity:0},{opacity:1,offset:.4},{strokeDashoffset:-L,opacity:0}],{duration:600,delay:5600,easing:'ease-out'})});
+    A(sp,[{strokeDashoffset:L*.5,opacity:0},{opacity:1,offset:.4},{strokeDashoffset:-L,opacity:0}],{duration:600,delay:2300,easing:'ease-out'})});
   const fb=q('#fillbox');fb.style.transformOrigin='256px 256px';
-  A(fb,[{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'scale(1)'}],{duration:500,delay:5800,easing:'cubic-bezier(.2,.8,.2,1)'});
+  A(fb,[{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'scale(1)'}],{duration:500,delay:2500,easing:'cubic-bezier(.2,.8,.2,1)'});
   const cs=getComputedStyle(svg);
-  A(z,[{stroke:cs.getPropertyValue('--ink').trim()},{stroke:cs.getPropertyValue('--onac').trim()}],{duration:400,delay:5850});
-  A(q('#wm'),[{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:600,delay:6300,easing:'ease-out'});
-  A(q('#tg'),[{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:600,delay:6600,easing:'ease-out'});
+  A(z,[{stroke:cs.getPropertyValue('--ink').trim()},{stroke:cs.getPropertyValue('--onac').trim()}],{duration:400,delay:2550});
+  A(q('#wm'),[{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:600,delay:3000,easing:'ease-out'});
+  A(q('#tg'),[{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:600,delay:3300,easing:'ease-out'});
+  A(q('#pt'),[{opacity:0},{opacity:1}],{duration:700,delay:3600,easing:'ease-out'});
   // ambient: steam rises, flag waves, illustrations float
-  svg.querySelectorAll('.steam').forEach((s,i)=>A(s,[{transform:'translateY(0)',opacity:1},{transform:'translateY(-10px)',opacity:0}],{duration:1600,delay:3400+i*500,iterations:4,easing:'ease-in'}));
-  A(q('.flag'),[{transform:'skewY(0)'},{transform:'skewY(-6deg)'},{transform:'skewY(0)'}],{duration:900,delay:8800,iterations:2}).effect.target.style.transformOrigin='296px 494px';
-  svg.querySelectorAll('.fl').forEach((g,i)=>A(g,[{transform:'translateY(0)'},{transform:`translateY(${i%2?-4:4}px)`},{transform:'translateY(0)'}],{duration:3200,delay:4000+i*200,iterations:2,easing:'ease-in-out'}));
+  svg.querySelectorAll('.steam').forEach((s,i)=>A(s,[{transform:'translateY(0)',opacity:1},{transform:'translateY(-10px)',opacity:0}],{duration:1600,delay:5900+i*500,iterations:2,easing:'ease-in'}));
+  A(q('.flag'),[{transform:'skewY(0)'},{transform:'skewY(-6deg)'},{transform:'skewY(0)'}],{duration:900,delay:9000,iterations:1}).effect.target.style.transformOrigin='296px 494px';
+  svg.querySelectorAll('.fl').forEach((g,i)=>A(g,[{transform:'translateY(0)'},{transform:`translateY(${i%2?-4:4}px)`},{transform:'translateY(0)'}],{duration:3200,delay:6000+i*150,iterations:1,easing:'ease-in-out'}));
   // fade out before restarting
   A(svg,[{opacity:1},{opacity:0}],{duration:600,delay:9400});
 }
